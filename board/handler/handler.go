@@ -1,21 +1,51 @@
 package handler
 
 import (
+	"encoding/json"
 	"sudo-ku/board/model"
 )
 
-type SudokuBoard model.SudokuBoard
-
-func (s SudokuBoard) CheckSolution() bool {
-	return s.Board == s.Filled
+type SudokuBoard struct {
+	board    [9][9]int
+	solution [9][9]int
+	blanks   int
 }
 
-func (s SudokuBoard) Move(r, c, val int) bool {
-	if isLegal(s.Board, r, c, val) {
-		s.Board[r][c] = val
-		return true
+type SudokuBoardJSON struct {
+	model.SudokuBoard
+}
+
+func (s SudokuBoard) GetBoard() [9][9]int {
+	return s.board
+}
+
+func (s *SudokuBoard) UnmarshalJSON(b []byte) error {
+	temp := &SudokuBoardJSON{}
+
+	if err := json.Unmarshal(b, &temp); err != nil {
+		return err
+	}
+
+	s.board = temp.Board
+	s.solution = temp.Solution
+	s.blanks = temp.Blanks
+	return nil
+}
+func (s SudokuBoard) CheckSolution() bool {
+	return s.board == s.solution
+}
+
+func (s *SudokuBoard) Move(r, c, val int) (bool, int) {
+	if val == 0 && s.board[r][c] != 0 {
+		s.board[r][c] = 0
+		s.blanks++
+		return true, s.blanks
+	} else if isLegal(s.board, r, c, val) && val != 0 && s.board[r][c] == 0 {
+		s.board[r][c] = val
+		s.blanks--
+		return true, s.blanks
 	} else {
-		return false
+		return false, s.blanks
 	}
 }
 

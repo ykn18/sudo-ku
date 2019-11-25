@@ -1,4 +1,4 @@
-package auth
+package utils
 
 import (
 	"crypto/hmac"
@@ -17,9 +17,12 @@ type tokenPayload struct {
 	Expiration string
 }
 
-func decodeToken(payload string) (tokenPayload, error) {
+func DecodeToken(token string) (tokenPayload, error) {
 	var tokenBody tokenPayload
-	decodedPayload, err := base64.URLEncoding.DecodeString(payload)
+
+	splittedToken := strings.Split(token, ".")
+
+	decodedPayload, err := base64.URLEncoding.DecodeString(splittedToken[0])
 	if err != nil {
 		return tokenBody, err
 	}
@@ -52,7 +55,7 @@ func verifySignature(payload string, signature string) bool {
 func VerifyToken(token string) (bool, error) {
 	splittedToken := strings.Split(token, ".")
 	if verifySignature(splittedToken[0], splittedToken[1]) {
-		tokenBody, err := decodeToken(splittedToken[0])
+		tokenBody, err := DecodeToken(token)
 		if err != nil {
 			return false, err
 		}

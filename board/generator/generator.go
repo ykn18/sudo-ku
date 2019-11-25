@@ -6,11 +6,13 @@ import (
 	"time"
 )
 
-type SudokuBoard model.SudokuBoard
+type SudokuBoard struct {
+	model.SudokuBoard
+}
 
-func MakeSudokuBoard(difficulty string) SudokuBoard {
-	b, sol := makeBoardAndSolution(difficulty)
-	return SudokuBoard{Board: b, Filled: sol}
+func MakeSudokuBoard(difficulty string) model.SudokuBoard {
+	b, sol, count := makeBoardAndSolution(difficulty)
+	return model.SudokuBoard{Board: b, Solution: sol, Blanks: count}
 }
 
 func makeFilledBoard(board [9][9]int, rowStart, colStart int) ([9][9]int, bool) {
@@ -86,7 +88,7 @@ func makeEmptyBoard() [9][9]int {
 	return emptyBoard
 }
 
-func makeBoardAndSolution(difficulty string) ([9][9]int, [9][9]int) {
+func makeBoardAndSolution(difficulty string) ([9][9]int, [9][9]int, int) {
 	rand.Seed(time.Now().UTC().UnixNano())
 	emptyBoard := makeEmptyBoard()
 
@@ -121,10 +123,10 @@ func makeBoardAndSolution(difficulty string) ([9][9]int, [9][9]int) {
 			remaining -= 1
 		}
 		if remaining == goal {
-			return generatedBoard, filledBoard
+			return generatedBoard, filledBoard, 81 - goal
 		}
 	}
-	return generatedBoard, filledBoard
+	return generatedBoard, filledBoard, 81 - goal
 }
 
 func isInRow(b [9][9]int, r, n int) bool {
