@@ -61,6 +61,13 @@ func readPacket(conn net.Conn) (packet, error) {
 
 	return packet{Type: t, Size: size, Payload: payload[:int(size)]}, nil
 }
+
+func writePacket(conn net.Conn, p packet) error {
+	data := append([]byte{p.Type}, []byte{p.Size}...)
+	data = append(data, p.Payload...)
+	_, err := conn.Write(data)
+	return err
+}
 func handleMatchInit(conn net.Conn, matchChannel chan matchRequestMsg) {
 
 	p, err := readPacket(conn)
@@ -83,7 +90,7 @@ func handleMatchInit(conn net.Conn, matchChannel chan matchRequestMsg) {
 		}
 		netData, err := json.Marshal(clientMatchResponseMsg{Status: 0})
 		//TO DO: ADD CHECK
-		_, err = conn.Write([]byte(netData))
+		err = writePacket(conn, MakePacket(matchRequestAckPkt, netData))
 		if err != nil {
 			fmt.Println("", err)
 		}
@@ -155,13 +162,10 @@ func handleConnectionIn(c net.Conn, ch chan<- packet) {
 func handleConnectionOut(c net.Conn, ch <-chan packet) {
 	for {
 		p := <-ch
-		data := append([]byte{p.Type}, []byte{p.Size}...)
-		data = append(data, p.Payload...)
-		size, err := c.Write(data)
+		err := writePacket(c, p)
 		if err != nil {
 			fmt.Println("", err)
 		}
-		_ = size
 	}
 }
 
