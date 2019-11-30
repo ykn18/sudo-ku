@@ -20,11 +20,11 @@ class sudokuController:
         self.view.signInButton.clicked.connect(lambda : self.onSignInButton())
         self.view.signUpButton.clicked.connect(lambda : self.onSignUpButton())
         self.view.registrationButton.clicked.connect(lambda : self.onRegistrationButton())
-        self.view.challengeButton.clicked.connect(lambda : self.onChallengeButton())
-        self.view.collaborativeButton.clicked.connect(lambda : self.onCollaborativeButton())
-        self.view.easyButton.clicked.connect(lambda : self.onEasyButton())
-        self.view.mediumButton.clicked.connect(lambda : self.onMediumButton())
-        self.view.hardButton.clicked.connect(lambda : self.onHardButton())
+        self.view.challengeButton.pressed.connect(lambda mode = "0" : self.setMode(mode))
+        self.view.collaborativeButton.pressed.connect(lambda mode = "1" : self.setMode(mode))
+        self.view.easyButton.pressed.connect(lambda mode = "easy" : self.setDifficulty(mode))
+        self.view.mediumButton.pressed.connect(lambda mode = "medium" : self.setDifficulty(mode))
+        self.view.hardButton.pressed.connect(lambda mode = "hard" : self.setDifficulty(mode))
         
     def onSignInButton(self):
         username = self.view.usernameLine.text()
@@ -123,29 +123,11 @@ class sudokuController:
         tool_button.setStyleSheet(style)
         keypad.close()
 
-    def onChallengeButton(self):
-        self.mode = 0
-        self.view.stackedWidget.setCurrentIndex(3)
-    
-    def onCollaborativeButton(self):
-        self.mode = 1
+    def setMode(self, mode):
         self.view.stackedWidget.setCurrentIndex(3)
 
-    def onEasyButton(self):
-        self.difficulty = "easy"
-        self.view.stackedWidget.setCurrentIndex(4)
-    
-    def onMediumButton(self):
-        self.difficulty = "medium"
-        self.view.stackedWidget.setCurrentIndex(4)
-
-    def onHardButton(self):
-        self.difficulty = "hard"
-        self.view.stackedWidget.setCurrentIndex(4)
-
-
-
-
+    def setDifficulty(self, difficulty):
+        self.view.stackedWidget.setCurrentIndex(4)  
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self):
