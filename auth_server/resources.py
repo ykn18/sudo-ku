@@ -19,7 +19,7 @@ class UserRegistration(Resource):
         
         try:
             new_user.save_to_db()
-            return {'token' : create_token(data['username'])}
+            return {'token' : create_token(data['username'])}, 201
         except:
             return {'message': 'Something went wrong'}, 500
 
@@ -33,7 +33,7 @@ class UserLogin(Resource):
             return {'message': 'User {} doesn\'t exist'.format(data['username'])}
         
         if UserModel.verify_hash(data['password'], current_user.password):
-            return {'token' : create_token(data['username'])} 
+            return {'token' : create_token(data['username'])}, 200
         else:
-            return {'message': 'Wrong credentials'}        
+            return {'message': 'Wrong credentials'}, 400
       
