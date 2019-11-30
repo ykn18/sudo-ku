@@ -19,6 +19,8 @@ func main() {
 
 		http.ListenAndServe(":8080", r)
 	*/
+
+	/*
 	var s generator.SudokuBoard
 	var c int
 	c = 0
@@ -29,8 +31,9 @@ func main() {
 				c++
 			}
 		}
-	}
-	fmt.Println(c)
+	}*/
+	s := generator.MakeSudokuBoard("easy")
+	fmt.Println(s)
 }
 
 func getBoard(w http.ResponseWriter, r *http.Request) {
