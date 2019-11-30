@@ -6,9 +6,10 @@ import (
 )
 
 type SudokuBoard struct {
-	board    [9][9]int
-	solution [9][9]int
-	blanks   int
+	board        [9][9]int
+	solution     [9][9]int
+	editableMask [9][9]bool
+	blanks       int
 }
 
 type SudokuBoardJSON struct {
@@ -29,6 +30,13 @@ func (s *SudokuBoard) UnmarshalJSON(b []byte) error {
 	s.board = temp.Board
 	s.solution = temp.Solution
 	s.blanks = temp.Blanks
+	for i, v := range s.board {
+		for j, _ := range v {
+			if s.board[i][j] == 0 {
+				s.editableMask[i][j] = true
+			}
+		}
+	}
 	return nil
 }
 func (s SudokuBoard) CheckSolution() bool {
@@ -36,17 +44,24 @@ func (s SudokuBoard) CheckSolution() bool {
 }
 
 func (s *SudokuBoard) Move(r, c, val int) (bool, int) {
-	if val == 0 && s.board[r][c] != 0 {
-		s.board[r][c] = 0
-		s.blanks++
-		return true, s.blanks
-	} else if isLegal(s.board, r, c, val) && val != 0 && s.board[r][c] == 0 {
-		s.board[r][c] = val
-		s.blanks--
-		return true, s.blanks
-	} else {
-		return false, s.blanks
+	//Check if the position (r, c) is editable
+	if s.editableMask[r][c] == true {
+		//Check if a zero value is being inserted
+		if val == 0 {
+			if s.board[r][c] != 0 {
+				s.board[r][c] = 0
+				s.blanks++
+				return true, s.blanks
+			} else {
+				return true, s.blanks
+			}
+		} else if isLegal(s.board, r, c, val) {
+			s.board[r][c] = val
+			s.blanks--
+			return true, s.blanks
+		}
 	}
+	return false, s.blanks
 }
 
 func isInRow(b [9][9]int, r, n int) bool {
@@ -81,5 +96,8 @@ func isInSquare(b [9][9]int, r, c, n int) bool {
 }
 
 func isLegal(b [9][9]int, r, c, n int) bool {
+	if b[r][c] == n {
+		return true
+	}
 	return !isInRow(b, r, n) && !isInCol(b, c, n) && !isInSquare(b, r, c, n)
 }
