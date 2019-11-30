@@ -5,6 +5,7 @@ import (
 	"bufio"
 	"encoding/json"
 	"fmt"
+	"io"
 	"net"
 	. "sudo-ku/board/handler"
 	"sudo-ku/board/model"
@@ -32,13 +33,38 @@ func main() {
 	}
 }
 
-func handleMatchInit(conn net.Conn, matchChannel chan matchRequestMsg) {
-	jsonData, err := bufio.NewReader(conn).ReadString('|')
-	jsonData = jsonData[:len(jsonData)-1]
+func readPacket(conn net.Conn) (packet, error) {
+	var p packet
+	payload := make([]byte, 200)
+	r := bufio.NewReader(conn)
 
+	t, err := r.ReadByte()
 	if err != nil {
 		fmt.Println("tcp connection error:", err)
 		conn.Close()
+		return p, err
+	}
+
+	size, err := r.ReadByte()
+	if err != nil {
+		fmt.Println("tcp connection error:", err)
+		conn.Close()
+		return p, err
+	}
+
+	_, err = io.ReadFull(r, payload[:int(size)])
+	if err != nil {
+		fmt.Println("tcp connection error:", err)
+		conn.Close()
+		return p, err
+	}
+
+	return packet{Type: t, Size: size, Payload: payload[:int(size)]}, nil
+}
+func handleMatchInit(conn net.Conn, matchChannel chan matchRequestMsg) {
+
+	p, err := readPacket(conn)
+	if err != nil {
 		return
 	}
 	//At this point we're going to check the token for authentication,
@@ -46,8 +72,9 @@ func handleMatchInit(conn net.Conn, matchChannel chan matchRequestMsg) {
 	//the match server, along with the chosen difficulty level and
 	//the user name
 	var decodedReq clientMatchRequestMsg
-	json.Unmarshal([]byte(jsonData), &decodedReq)
+	json.Unmarshal(p.Payload, &decodedReq)
 
+	fmt.Println(decodedReq)
 	valid, err := utils.VerifyToken(decodedReq.Token)
 	if valid && (err == nil) {
 		payload, err := utils.DecodeToken(decodedReq.Token)
@@ -113,23 +140,24 @@ func matchServer(matchChannel chan matchRequestMsg) {
 	}
 }
 
-func handleConnectionIn(c net.Conn, ch chan<- []byte) {
+func handleConnectionIn(c net.Conn, ch chan<- packet) {
 	for {
-		netData, err := bufio.NewReader(c).ReadSlice(byte('|'))
+		p, err := readPacket(c)
 		if err != nil {
 			fmt.Println("", err)
 			c.Close()
 			return
 		}
-		netData = netData[:len(netData)-1]
-		ch <- netData
+		ch <- p
 	}
 }
 
-func handleConnectionOut(c net.Conn, ch <-chan []byte) {
+func handleConnectionOut(c net.Conn, ch <-chan packet) {
 	for {
-		netData := <-ch
-		size, err := c.Write(append(netData, []byte("|")...))
+		p := <-ch
+		data := append([]byte{p.Type}, []byte{p.Size}...)
+		data = append(data, p.Payload...)
+		size, err := c.Write(data)
 		if err != nil {
 			fmt.Println("", err)
 		}
@@ -138,10 +166,10 @@ func handleConnectionOut(c net.Conn, ch <-chan []byte) {
 }
 
 func gameServerChallenge(c1 matchRequestMsg, c2 matchRequestMsg) {
-	ch1In := make(chan []byte)
-	ch1Out := make(chan []byte)
-	ch2In := make(chan []byte)
-	ch2Out := make(chan []byte)
+	ch1In := make(chan packet)
+	ch1Out := make(chan packet)
+	ch2In := make(chan packet)
+	ch2Out := make(chan packet)
 
 	go handleConnectionIn(c1.conn, ch1In)
 	go handleConnectionOut(c1.conn, ch1Out)
@@ -180,53 +208,53 @@ func gameServerChallenge(c1 matchRequestMsg, c2 matchRequestMsg) {
 
 	if err1 != nil || err2 != nil {
 		fmt.Println("ops")
-		ch1Out <- []byte(`{"type":"error", "msg":"internal server error"}`)
-		ch2Out <- []byte(`{"type":"error", "msg":"internal server error"}`)
+		ch1Out <- MakePacket(errorPkt, []byte(`{msg":"internal server error"}`))
+		ch2Out <- MakePacket(errorPkt, []byte(`{msg":"internal server error"}`))
 	}
 
-	ch1Out <- startMatchMsg1
-	ch2Out <- startMatchMsg2
+	ch1Out <- MakePacket(matchFoundPkt, startMatchMsg1)
+	ch2Out <- MakePacket(matchFoundPkt, startMatchMsg2)
 
-	var decodedMsg moveMsg
-
+	var moveDecoded moveMsg
 	for {
 		select {
-		case msg1 := <-ch1In:
+		case p1 := <-ch1In:
 			{
-				json.Unmarshal([]byte(msg1), &decodedMsg)
-				switch decodedMsg.Type {
-				case "move":
-					r1, r2, done1, err := handleMoveMsg(&sudokuBoard1, decodedMsg)
+				switch p1.Type {
+				case movePkt:
+					json.Unmarshal([]byte(p1.Payload), &moveDecoded)
+
+					r, done1, err := handleMoveMsg(&sudokuBoard1, moveDecoded)
 					if err != nil {
-						ch1Out <- []byte(`{"type":"error", "msg":"internal server error"}`)
-						ch2Out <- []byte(`{"type":"error", "msg":"internal server error"}`)
+						ch1Out <- MakePacket(errorPkt, []byte(`{msg":"internal server error"}`))
+						ch2Out <- MakePacket(errorPkt, []byte(`{msg":"internal server error"}`))
 						c1.conn.Close()
 						c2.conn.Close()
 						return
 					}
-					ch1Out <- r1
+					ch1Out <- MakePacket(moveOutcomePkt, r)
 					if done1 {
-						ch2Out <- r2
+						ch2Out <- MakePacket(opponentDonePkt, []byte{})
 					}
 				}
 			}
 
-		case msg2 := <-ch2In:
+		case p2 := <-ch2In:
 			{
-				json.Unmarshal([]byte(msg2), &decodedMsg)
-				switch decodedMsg.Type {
-				case "move":
-					r1, r2, done2, err := handleMoveMsg(&sudokuBoard2, decodedMsg)
+				json.Unmarshal([]byte(p2.Payload), &moveDecoded)
+				switch p2.Type {
+				case movePkt:
+					r, done2, err := handleMoveMsg(&sudokuBoard2, moveDecoded)
 					if err != nil {
-						ch1Out <- []byte(`{"type":"error", "msg":"internal server error"}`)
-						ch2Out <- []byte(`{"type":"error", "msg":"internal server error"}`)
+						ch1Out <- MakePacket(errorPkt, []byte(`{msg":"internal server error"}`))
+						ch2Out <- MakePacket(errorPkt, []byte(`{msg":"internal server error"}`))
 						c1.conn.Close()
 						c2.conn.Close()
 						return
 					}
-					ch2Out <- r1
+					ch2Out <- MakePacket(moveOutcomePkt, r)
 					if done2 {
-						ch1Out <- r2
+						ch1Out <- MakePacket(opponentDonePkt, []byte{})
 					}
 				}
 			}
@@ -238,19 +266,14 @@ func gameServerCollaborative(c1 matchRequestMsg, c2 matchRequestMsg) {
 
 }
 
-func handleMoveMsg(s *SudokuBoard, m moveMsg) (r1 []byte, r2 []byte, done bool, err error) {
+func handleMoveMsg(s *SudokuBoard, m moveMsg) (r []byte, done bool, err error) {
 	done = false
 	legal, remaining := (*s).Move(m.Row, m.Col, m.Value)
 
-	r2 = make([]byte, 0)
 	if remaining == 0 {
 		done = true
-		r2, err := json.Marshal(doneMsg{Type: "done", OpponentDone: true})
-		if err != nil {
-			return r1, r2, done, err
-		}
 	}
 
-	r1, err = json.Marshal(moveOutcomeMsg{IsLegal: legal, Done: done})
+	r, err = json.Marshal(moveOutcomeMsg{IsLegal: legal, Done: done})
 	return
 }
