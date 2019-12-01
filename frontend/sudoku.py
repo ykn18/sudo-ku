@@ -1,8 +1,10 @@
 from sudoku_UI import *
-from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog
+from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog, QLabel, QHBoxLayout
 from authentication import *
 import sys
 import ast
+from communication import *
+import json
 
 class sudokuController:
     #view
@@ -13,6 +15,14 @@ class sudokuController:
     #item_col
     def __init__(self, view):
         self.view = view
+        status_txt = QLabel(self.view.page_6)
+        status_txt.setAlignment(QtCore.Qt.AlignCenter)
+        movie = QtGui.QMovie("loading1.gif")
+        status_txt.setMovie(movie)
+        movie.start()
+        layout = QHBoxLayout()
+        layout.addWidget(status_txt)
+        self.view.page_6.setLayout(layout)
         self.connectSignals()
 
     #connects signals of buttons to slots
@@ -69,10 +79,10 @@ class sudokuController:
             msg.setWindowTitle("Bad credentials")
             msg.exec_()
     
-    def fillBoard(self):
-        board = "[[0 0 0 1 2 0 4 0 0] [2 7 0 0 6 0 5 3 0] [0 5 4 0 0 0 0 0 0] [0 0 2 6 9 1 0 0 0] [0 1 8 3 0 0 0 0 4] [0 0 0 4 8 7 0 2 3] [9 0 0 0 0 8 0 0 0] [6 0 5 0 0 9 0 4 0] [0 0 1 0 3 0 0 8 0]]"
-        board = board.replace(" ", ", ")
-        board = ast.literal_eval(board)
+    def fillBoard(self, board):
+        #board = "[[0 0 0 1 2 0 4 0 0] [2 7 0 0 6 0 5 3 0] [0 5 4 0 0 0 0 0 0] [0 0 2 6 9 1 0 0 0] [0 1 8 3 0 0 0 0 4] [0 0 0 4 8 7 0 2 3] [9 0 0 0 0 8 0 0 0] [6 0 5 0 0 9 0 4 0] [0 0 1 0 3 0 0 8 0]]"
+        #board = board.replace(" ", ", ")
+        #oard = ast.literal_eval(board)
         for r in range(0,9):
             for c in range(0,9):
                 box_grid = self.view.gridLayout.itemAtPosition(r//3,(c//3)+1)
@@ -114,7 +124,6 @@ class sudokuController:
 
 
     def onKeyPad(self, value, keypad):
-        print(value)
         box_grid = self.view.gridLayout.itemAtPosition(self.box_grid_row,self.box_grid_col)
         item = box_grid.itemAtPosition(self.item_row, self.item_col)        
         tool_button = item.widget()
@@ -124,10 +133,42 @@ class sudokuController:
         keypad.close()
 
     def setMode(self, mode):
+        self.mode = mode
         self.view.stackedWidget.setCurrentIndex(3)
 
-    def setDifficulty(self, difficulty):
-        self.view.stackedWidget.setCurrentIndex(4)  
+    def setDifficulty(self, difficulty):  
+        self.view.stackedWidget.setCurrentIndex(4)
+        self.difficulty = difficulty
+        self.sendMatchRequest()
+        
+
+    def sendMatchRequest(self):
+        print("send match request") 
+        match_request = {"token" : self.token, "mode" : self.mode, "difficulty" : self.difficulty}
+        conn = createConnection()
+        sendPacket(conn, 0, json.dumps(match_request))
+        packet_type, payload = receivePacket(conn)
+        print(packet_type)
+        print(payload)
+        payload = json.loads(payload)
+        if (packet_type is not 1) and (payload["status"] is not 0):
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Information)
+            msg.setText("Error in the match request")
+            msg.setWindowTitle("Error")
+            msg.exec_()
+            self.view.stackedWidget.setCurrentIndex(2)
+        else:
+            self.waitMatchFound(conn)
+    
+    def waitMatchFound(self, conn):
+        print("wait match found")
+        packet_type, payload = receivePacket(conn)
+        if packet_type == 2:
+            payload = json.loads(payload)
+            self.fillBoard(payload["board"])
+            self.view.stackedWidget.setCurrentIndex(5)
+
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self):
