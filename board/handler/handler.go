@@ -39,8 +39,8 @@ func (s *SudokuBoard) UnmarshalJSON(b []byte) error {
 	}
 	return nil
 }
-func (s SudokuBoard) CheckSolution() bool {
-	return s.board == s.solution
+func (s SudokuBoard) CheckSolution(board [9][9]int) bool {
+	return board == s.solution
 }
 
 func (s *SudokuBoard) Move(r, c, val int) (bool, int) {

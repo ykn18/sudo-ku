@@ -52,7 +52,6 @@ func handleMatchInit(conn net.Conn, matchChannel chan matchRequestMsg) {
 	var decodedReq ClientMatchRequestMsg
 	json.Unmarshal(p.Payload, &decodedReq)
 
-	fmt.Println(decodedReq)
 	valid, err := utils.VerifyToken(decodedReq.Token)
 	if valid && (err == nil) {
 		payload, err := utils.DecodeToken(decodedReq.Token)
@@ -134,7 +133,6 @@ func handleConnectionOut(c net.Conn, ch <-chan Packet) {
 	for {
 		p := <-ch
 		err := WritePacket(c, p)
-		fmt.Println(p)
 		if err != nil {
 			fmt.Println("", err)
 		}
@@ -191,25 +189,21 @@ func gameServerChallenge(c1 matchRequestMsg, c2 matchRequestMsg) {
 	ch1Out <- MakePacket(MatchFoundPkt, startMatchMsg1)
 	ch2Out <- MakePacket(MatchFoundPkt, startMatchMsg2)
 
-	var moveDecoded MoveMsg
+	var solutionDecoded CheckSolutionMsg
+
 	for {
 		select {
 		case p1 := <-ch1In:
 			{
+				fmt.Println("TIPO", p1.Type)
 				switch p1.Type {
-				case MovePkt:
-					json.Unmarshal([]byte(p1.Payload), &moveDecoded)
-
-					r, done1, err := handleMoveMsgChallenge(&sudokuBoard1, moveDecoded)
-					if err != nil {
-						ch1Out <- MakePacket(ErrorPkt, []byte(`{msg":"internal server error"}`))
-						ch2Out <- MakePacket(ErrorPkt, []byte(`{msg":"internal server error"}`))
-						c1.conn.Close()
-						c2.conn.Close()
-						return
-					}
-					ch1Out <- MakePacket(MoveOutcomePkt, r)
-					if done1 {
+				case CheckSolutionPkt:
+					fmt.Println("ci sono")
+					json.Unmarshal([]byte(p1.Payload), &solutionDecoded)
+					v := sudokuBoard1.CheckSolution(solutionDecoded.Board)
+					r, _ := json.Marshal(ValidSolutionMsg{Valid: v})
+					ch1Out <- MakePacket(ValidSolutionPkt, r)
+					if v {
 						ch2Out <- MakePacket(OpponentDonePkt, []byte{})
 					}
 				}
@@ -217,19 +211,13 @@ func gameServerChallenge(c1 matchRequestMsg, c2 matchRequestMsg) {
 
 		case p2 := <-ch2In:
 			{
-				json.Unmarshal([]byte(p2.Payload), &moveDecoded)
 				switch p2.Type {
-				case MovePkt:
-					r, done2, err := handleMoveMsgChallenge(&sudokuBoard2, moveDecoded)
-					if err != nil {
-						ch1Out <- MakePacket(ErrorPkt, []byte(`{msg":"internal server error"}`))
-						ch2Out <- MakePacket(ErrorPkt, []byte(`{msg":"internal server error"}`))
-						c1.conn.Close()
-						c2.conn.Close()
-						return
-					}
-					ch2Out <- MakePacket(MoveOutcomePkt, r)
-					if done2 {
+				case CheckSolutionPkt:
+					json.Unmarshal([]byte(p2.Payload), &solutionDecoded)
+					v := sudokuBoard2.CheckSolution(solutionDecoded.Board)
+					r, _ := json.Marshal(ValidSolutionMsg{Valid: v})
+					ch2Out <- MakePacket(ValidSolutionPkt, r)
+					if v {
 						ch1Out <- MakePacket(OpponentDonePkt, []byte{})
 					}
 				}
@@ -333,18 +321,6 @@ func gameServerCollaborative(c1 matchRequestMsg, c2 matchRequestMsg) {
 			}
 		}
 	}
-}
-
-func handleMoveMsgChallenge(s *SudokuBoard, m MoveMsg) (r []byte, done bool, err error) {
-	done = false
-	legal, remaining := (*s).Move(m.Row, m.Col, m.Value)
-
-	if remaining == 0 {
-		done = true
-	}
-
-	r, err = json.Marshal(MoveOutcomeMsg{IsLegal: legal, Done: done})
-	return
 }
 
 func handleMoveMsgCollaborative(s *SudokuBoard, m MoveMsg) (r, r2 []byte, done bool, err error) {
