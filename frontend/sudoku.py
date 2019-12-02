@@ -80,9 +80,6 @@ class sudokuController:
             msg.exec_()
     
     def fillBoard(self, board):
-        #board = "[[0 0 0 1 2 0 4 0 0] [2 7 0 0 6 0 5 3 0] [0 5 4 0 0 0 0 0 0] [0 0 2 6 9 1 0 0 0] [0 1 8 3 0 0 0 0 4] [0 0 0 4 8 7 0 2 3] [9 0 0 0 0 8 0 0 0] [6 0 5 0 0 9 0 4 0] [0 0 1 0 3 0 0 8 0]]"
-        #board = board.replace(" ", ", ")
-        #oard = ast.literal_eval(board)
         for r in range(0,9):
             for c in range(0,9):
                 box_grid = self.view.gridLayout.itemAtPosition(r//3,(c//3)+1)
@@ -140,7 +137,6 @@ class sudokuController:
         self.view.stackedWidget.setCurrentIndex(4)
         self.difficulty = difficulty
         self.sendMatchRequest()
-        
 
     def sendMatchRequest(self):
         print("send match request") 
