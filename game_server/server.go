@@ -204,7 +204,8 @@ func gameServerChallenge(c1 matchRequestMsg, c2 matchRequestMsg) {
 					r, _ := json.Marshal(ValidSolutionMsg{Valid: v})
 					ch1Out <- MakePacket(ValidSolutionPkt, r)
 					if v {
-						ch2Out <- MakePacket(OpponentDonePkt, []byte{})
+						msg, _ := json.Marshal(OpponentDoneMsg{Done: true})
+						ch2Out <- MakePacket(OpponentDonePkt, msg)
 					}
 				}
 			}
@@ -218,7 +219,8 @@ func gameServerChallenge(c1 matchRequestMsg, c2 matchRequestMsg) {
 					r, _ := json.Marshal(ValidSolutionMsg{Valid: v})
 					ch2Out <- MakePacket(ValidSolutionPkt, r)
 					if v {
-						ch1Out <- MakePacket(OpponentDonePkt, []byte{})
+						msg, _ := json.Marshal(OpponentDoneMsg{Done: true})
+						ch1Out <- MakePacket(OpponentDonePkt, msg)
 					}
 				}
 			}

@@ -114,6 +114,10 @@ type CheckSolutionMsg struct {
 	Board [9][9]int `json:"board"`
 }
 
+type OpponentDoneMsg struct {
+	Done bool `json:"done"`
+}
+
 type ValidSolutionMsg struct {
 	Valid bool `json:"valid"`
 }
