@@ -141,9 +141,9 @@ class sudokuController:
     def sendMatchRequest(self):
         print("send match request") 
         match_request = {"token" : self.token, "mode" : self.mode, "difficulty" : self.difficulty}
-        conn = createConnection()
-        sendPacket(conn, 0, json.dumps(match_request))
-        packet_type, payload = receivePacket(conn)
+        self.conn = createConnection()
+        sendPacket(self.conn, 0, json.dumps(match_request))
+        packet_type, payload = receivePacket(self.conn)
         print(packet_type)
         print(payload)
         payload = json.loads(payload)
@@ -155,11 +155,11 @@ class sudokuController:
             msg.exec_()
             self.view.stackedWidget.setCurrentIndex(2)
         else:
-            self.waitMatchFound(conn)
+            self.waitMatchFound(self.conn)
     
     def waitMatchFound(self, conn):
         print("wait match found")
-        packet_type, payload = receivePacket(conn)
+        packet_type, payload = receivePacket(self.conn)
         if packet_type == 2:
             payload = json.loads(payload)
             self.fillBoard(payload["board"])
