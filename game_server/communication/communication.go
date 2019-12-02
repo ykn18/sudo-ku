@@ -15,7 +15,9 @@ const (
 	MoveOutcomePkt     byte = 4
 	OpponentDonePkt    byte = 5
 	ChangeValuePkt     byte = 6
-	ErrorPkt           byte = 7
+	CheckSolutionPkt   byte = 7
+	ValidSolutionPkt   byte = 8
+	ErrorPkt           byte = 9
 )
 
 type Packet struct {
@@ -106,4 +108,12 @@ type ChangeValueMsg struct {
 
 type ErrorMsg struct {
 	Msg string `json:"msg"`
+}
+
+type CheckSolutionMsg struct {
+	Board [9][9]int `json:"board"`
+}
+
+type ValidSolutionMsg struct {
+	Valid bool `json:"valid"`
 }
