@@ -162,7 +162,7 @@ class sudokuController:
             print(m)    
         
         if self.count == 0:        
-            res = False in map(lambda x: False in x, self.mask)
+            res = not True in map(lambda x: False in x, self.mask)
             if res:
                 payload = {"board" : self.board}
                 sendPacket(self.conn, 7, json.dumps(payload).replace(" ", "", -1))
