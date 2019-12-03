@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog, QLabel, QHBoxLay
 from authentication import *
 import sys
 from communication import *
-from board import isLegal, isDone
+from board import isLegal, isDone, verify
 import json
 
 
@@ -100,17 +100,8 @@ class sudokuController:
     def fillBoard(self, board):
         self.board = board  
         self.count = 0
-        self.mask = [
-            [False, False, False, False, False, False, False, False, False],
-            [False, False, False, False, False, False, False, False, False],
-            [False, False, False, False, False, False, False, False, False],
-            [False, False, False, False, False, False, False, False, False],
-            [False, False, False, False, False, False, False, False, False],
-            [False, False, False, False, False, False, False, False, False],
-            [False, False, False, False, False, False, False, False, False],
-            [False, False, False, False, False, False, False, False, False],
-            [False, False, False, False, False, False, False, False, False]
-        ]
+        self.mask = [[True for j in range(9)] for i in range(9)]
+
         for r in range(0,9):
             for c in range(0,9):
                 box_grid = self.view.gridLayout.itemAtPosition(r//3,(c//3)+1)
@@ -120,7 +111,6 @@ class sudokuController:
                     tool_button.setText(str(board[r][c]))
                     style = tool_button.styleSheet().replace("background-color: white;", "background-color: #f5f5f5;")
                     tool_button.setStyleSheet(style)
-                    self.mask[r][c] = True
                 else:
                     self.count += 1
                     tool_button.pressed.connect(lambda pos = (r, c): self.onItem(pos[0], pos[1]))
@@ -161,20 +151,23 @@ class sudokuController:
         tool_button = item.widget()
 
         if self.board[self.row][self.col] == 0:
-            print("count :" ,self.count)
             self.count -= 1
+            print("count :" ,self.count)
 
-        self.board[self.row][self.col] = 0
-        if isLegal(self.board, self.row, self.col, int(value)): 
-            print("is legal") 
-            self.mask[self.row][self.col] = True
-        else:
-            print("is not legal")
-            self.mask[self.row][self.col] = False
-        print(self.mask)
         tool_button.setText(value)
         self.board[self.row][self.col] = int(value)
-
+        
+        verify(self.board, self.row, self.col, self.mask)
+        for m in self.mask:
+            print(m)    
+        
+        if self.count == 0:        
+            res = False in map(lambda x: False in x, self.mask)
+            if res:
+                payload = {"board" : self.board}
+                sendPacket(self.conn, 7, json.dumps(payload).replace(" ", "", -1))
+                keypad.close() 
+        """
         if self.count == 0:
             for i in range(9):
                 for j in range(9):
@@ -183,7 +176,7 @@ class sudokuController:
                         return
             payload = {"board" : self.board}
             sendPacket(self.conn, 7, json.dumps(payload).replace(" ", "", -1))
-                
+        """
         keypad.close()     
 
     def setMode(self, mode):

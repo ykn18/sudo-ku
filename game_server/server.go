@@ -153,15 +153,15 @@ func gameServerChallenge(c1 matchRequestMsg, c2 matchRequestMsg) {
 	//var sudokuBoard1 handler.SudokuBoard = handler.SudokuBoard(generator.MakeSudokuBoard(c1.difficulty))
 	sudokuBoard1g := model.SudokuBoard{
 		Board: [9][9]int{
-			{5, 0, 3, 4, 7, 1, 2, 6, 0},
-			{4, 0, 0, 0, 5, 0, 0, 0, 0},
-			{9, 0, 0, 0, 6, 0, 5, 0, 0},
-			{0, 0, 0, 0, 3, 0, 0, 0, 2},
-			{1, 0, 5, 0, 0, 0, 0, 0, 0},
-			{6, 0, 9, 1, 8, 0, 0, 5, 0},
-			{0, 0, 0, 0, 2, 0, 0, 8, 3},
-			{3, 4, 6, 0, 9, 0, 0, 0, 0},
-			{0, 0, 8, 7, 0, 0, 6, 0, 5}},
+			{5, 8, 3, 4, 7, 1, 2, 6, 9},
+			{4, 6, 7, 2, 5, 9, 0, 0, 8},
+			{9, 1, 2, 3, 6, 8, 0, 0, 4},
+			{8, 7, 4, 5, 3, 6, 1, 9, 2},
+			{1, 2, 5, 9, 4, 7, 8, 3, 6},
+			{6, 3, 9, 1, 8, 2, 4, 5, 7},
+			{7, 5, 1, 6, 2, 4, 9, 8, 3},
+			{3, 4, 6, 8, 9, 5, 7, 2, 1},
+			{2, 9, 8, 7, 1, 3, 6, 4, 5}},
 		Solution: [9][9]int{
 			{5, 8, 3, 4, 7, 1, 2, 6, 9},
 			{4, 6, 7, 2, 5, 9, 3, 1, 8},
@@ -172,7 +172,7 @@ func gameServerChallenge(c1 matchRequestMsg, c2 matchRequestMsg) {
 			{7, 5, 1, 6, 2, 4, 9, 8, 3},
 			{3, 4, 6, 8, 9, 5, 7, 2, 1},
 			{2, 9, 8, 7, 1, 3, 6, 4, 5}},
-		Blanks: 49,
+		Blanks: 7,
 	}
 	sudokuBoard1JSON, _ := json.Marshal(sudokuBoard1g)
 	var sudokuBoard1 SudokuBoard
@@ -197,10 +197,8 @@ func gameServerChallenge(c1 matchRequestMsg, c2 matchRequestMsg) {
 		select {
 		case p1 := <-ch1In:
 			{
-				fmt.Println("TIPO", p1.Type)
 				switch p1.Type {
 				case CheckSolutionPkt:
-					fmt.Println("ci sono")
 					json.Unmarshal([]byte(p1.Payload), &solutionDecoded)
 					v := sudokuBoard1.CheckSolution(solutionDecoded.Board)
 					r, _ := json.Marshal(ValidSolutionMsg{Valid: v})
