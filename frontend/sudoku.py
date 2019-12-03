@@ -2,9 +2,25 @@ from sudoku_UI import *
 from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog, QLabel, QHBoxLayout
 from authentication import *
 import sys
-import ast
 from communication import *
+from board import isLegal, isDone
 import json
+
+
+class WorkerSignals(QtCore.QObject):
+    result = QtCore.pyqtSignal(tuple)
+    
+class Worker(QtCore.QRunnable):
+    def __init__(self, fn, conn):
+        super(Worker, self).__init__()
+        self.fn = fn
+        self.conn = conn
+        self.signals = WorkerSignals()  
+
+    def run(self):
+        while(True):
+            result = self.fn(self.conn)
+            self.signals.result.emit(result) 
 
 class sudokuController:
     #view
@@ -13,6 +29,7 @@ class sudokuController:
     #box_grid_col
     #item_row
     #item_col
+    #board
     def __init__(self, view):
         self.view = view
         status_txt = QLabel(self.view.page_6)
@@ -24,6 +41,7 @@ class sudokuController:
         layout.addWidget(status_txt)
         self.view.page_6.setLayout(layout)
         self.connectSignals()
+        self.threadpool = QtCore.QThreadPool()
 
     #connects signals of buttons to slots
     def connectSignals(self):
@@ -80,6 +98,19 @@ class sudokuController:
             msg.exec_()
     
     def fillBoard(self, board):
+        self.board = board  
+        self.count = 0
+        self.mask = [
+            [False, False, False, False, False, False, False, False, False],
+            [False, False, False, False, False, False, False, False, False],
+            [False, False, False, False, False, False, False, False, False],
+            [False, False, False, False, False, False, False, False, False],
+            [False, False, False, False, False, False, False, False, False],
+            [False, False, False, False, False, False, False, False, False],
+            [False, False, False, False, False, False, False, False, False],
+            [False, False, False, False, False, False, False, False, False],
+            [False, False, False, False, False, False, False, False, False]
+        ]
         for r in range(0,9):
             for c in range(0,9):
                 box_grid = self.view.gridLayout.itemAtPosition(r//3,(c//3)+1)
@@ -89,10 +120,14 @@ class sudokuController:
                     tool_button.setText(str(board[r][c]))
                     style = tool_button.styleSheet().replace("background-color: white;", "background-color: #f5f5f5;")
                     tool_button.setStyleSheet(style)
+                    self.mask[r][c] = True
                 else:
+                    self.count += 1
                     tool_button.pressed.connect(lambda pos = (r, c): self.onItem(pos[0], pos[1]))
     
     def onItem(self, row, col):
+        self.row = row
+        self.col = col
         self.box_grid_row = row // 3
         self.box_grid_col = (col // 3) + 1
         self.item_row = row % 3
@@ -124,10 +159,32 @@ class sudokuController:
         box_grid = self.view.gridLayout.itemAtPosition(self.box_grid_row,self.box_grid_col)
         item = box_grid.itemAtPosition(self.item_row, self.item_col)        
         tool_button = item.widget()
+
+        if self.board[self.row][self.col] == 0:
+            print("count :" ,self.count)
+            self.count -= 1
+
+        self.board[self.row][self.col] = 0
+        if isLegal(self.board, self.row, self.col, int(value)): 
+            print("is legal") 
+            self.mask[self.row][self.col] = True
+        else:
+            print("is not legal")
+            self.mask[self.row][self.col] = False
+        print(self.mask)
         tool_button.setText(value)
-        style = tool_button.styleSheet().replace("background-color: white;", "background-color: #f5f5f5;")
-        tool_button.setStyleSheet(style)
-        keypad.close()
+        self.board[self.row][self.col] = int(value)
+
+        if self.count == 0:
+            for i in range(9):
+                for j in range(9):
+                    if self.mask[i][j] == False:
+                        keypad.close() 
+                        return
+            payload = {"board" : self.board}
+            sendPacket(self.conn, 7, json.dumps(payload).replace(" ", "", -1))
+                
+        keypad.close()     
 
     def setMode(self, mode):
         self.mode = mode
@@ -139,31 +196,42 @@ class sudokuController:
         self.sendMatchRequest()
 
     def sendMatchRequest(self):
-        print("send match request") 
         match_request = {"token" : self.token, "mode" : self.mode, "difficulty" : self.difficulty}
         self.conn = createConnection()
         sendPacket(self.conn, 0, json.dumps(match_request))
-        packet_type, payload = receivePacket(self.conn)
-        print(packet_type)
-        print(payload)
-        payload = json.loads(payload)
-        if (packet_type is not 1) and (payload["status"] is not 0):
-            msg = QMessageBox()
-            msg.setIcon(QMessageBox.Information)
-            msg.setText("Error in the match request")
-            msg.setWindowTitle("Error")
-            msg.exec_()
-            self.view.stackedWidget.setCurrentIndex(2)
-        else:
-            self.waitMatchFound(self.conn)
+        
+        worker = Worker(receivePacket,self.conn)
+        worker.signals.result.connect(self.packed_received)
+        self.threadpool.start(worker)
     
-    def waitMatchFound(self, conn):
-        print("wait match found")
-        packet_type, payload = receivePacket(self.conn)
-        if packet_type == 2:
-            payload = json.loads(payload)
+    def packed_received(self, res):
+        packet_type = res[0]
+        payload = res[1]
+        payload = json.loads(payload)
+        if packet_type == 1:
+            if payload["status"] is not 0:
+                msg = QMessageBox()
+                msg.setIcon(QMessageBox.Information)
+                msg.setText("Error in the match request")
+                msg.setWindowTitle("Error")
+                msg.exec_()
+                self.view.stackedWidget.setCurrentIndex(2)
+        elif packet_type == 2:
             self.fillBoard(payload["board"])
             self.view.stackedWidget.setCurrentIndex(5)
+        elif packet_type == 8:
+            if payload["valid"]:
+                '''msg = QMessageBox()
+                msg.setIcon(QMessageBox.Information)
+                msg.setText("congratulations, you won")
+                msg.setWindowTitle("Match finished")
+                msg.exec_()'''
+                print("congratulation")
+        elif packet_type == 5:
+            print("opponent done")
+
+
+        
 
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):

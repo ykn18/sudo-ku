@@ -152,7 +152,8 @@ func gameServerChallenge(c1 matchRequestMsg, c2 matchRequestMsg) {
 
 	//var sudokuBoard1 handler.SudokuBoard = handler.SudokuBoard(generator.MakeSudokuBoard(c1.difficulty))
 	sudokuBoard1g := model.SudokuBoard{
-		Board: [9][9]int{{5, 0, 3, 4, 7, 1, 2, 6, 0},
+		Board: [9][9]int{
+			{5, 0, 3, 4, 7, 1, 2, 6, 0},
 			{4, 0, 0, 0, 5, 0, 0, 0, 0},
 			{9, 0, 0, 0, 6, 0, 5, 0, 0},
 			{0, 0, 0, 0, 3, 0, 0, 0, 2},
@@ -161,7 +162,8 @@ func gameServerChallenge(c1 matchRequestMsg, c2 matchRequestMsg) {
 			{0, 0, 0, 0, 2, 0, 0, 8, 3},
 			{3, 4, 6, 0, 9, 0, 0, 0, 0},
 			{0, 0, 8, 7, 0, 0, 6, 0, 5}},
-		Solution: [9][9]int{{5, 8, 3, 4, 7, 1, 2, 6, 9},
+		Solution: [9][9]int{
+			{5, 8, 3, 4, 7, 1, 2, 6, 9},
 			{4, 6, 7, 2, 5, 9, 3, 1, 8},
 			{9, 1, 2, 3, 6, 8, 5, 7, 4},
 			{8, 7, 4, 5, 3, 6, 1, 9, 2},
@@ -241,7 +243,8 @@ func gameServerCollaborative(c1 matchRequestMsg, c2 matchRequestMsg) {
 
 	//var sudokuBoard1 handler.SudokuBoard = handler.SudokuBoard(generator.MakeSudokuBoard(c1.difficulty))
 	sudokuBoardg := model.SudokuBoard{
-		Board: [9][9]int{{5, 0, 3, 4, 7, 1, 2, 6, 0},
+		Board: [9][9]int{
+			{5, 0, 3, 4, 7, 1, 2, 6, 0},
 			{4, 0, 0, 0, 5, 0, 0, 0, 0},
 			{9, 0, 0, 0, 6, 0, 5, 0, 0},
 			{0, 0, 0, 0, 3, 0, 0, 0, 2},
@@ -250,7 +253,8 @@ func gameServerCollaborative(c1 matchRequestMsg, c2 matchRequestMsg) {
 			{0, 0, 0, 0, 2, 0, 0, 8, 3},
 			{3, 4, 6, 0, 9, 0, 0, 0, 0},
 			{0, 0, 8, 7, 0, 0, 6, 0, 5}},
-		Solution: [9][9]int{{5, 8, 3, 4, 7, 1, 2, 6, 9},
+		Solution: [9][9]int{
+			{5, 8, 3, 4, 7, 1, 2, 6, 9},
 			{4, 6, 7, 2, 5, 9, 3, 1, 8},
 			{9, 1, 2, 3, 6, 8, 5, 7, 4},
 			{8, 7, 4, 5, 3, 6, 1, 9, 2},

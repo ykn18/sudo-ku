@@ -19,9 +19,12 @@ def receivePacket(conn):
     return packet_type, payload
 
 def sendPacket(conn, packet_type, payload):
-    payload_length = len(bytes(payload,'utf-8'))
-    packet = bytes([packet_type]) + bytes([payload_length]) + bytes(payload,'utf-8')
+    payload_length = len(payload.encode('utf-8'))
+    packet = bytes([packet_type]) + bytes([payload_length]) + payload.encode('utf-8')
     conn.sendall(packet)
+
+
+
 
 
 
