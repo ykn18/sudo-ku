@@ -511,7 +511,26 @@
         </layout>
        </widget>
       </widget>
-      <widget class="QWidget" name="page_6"/>
+      <widget class="QWidget" name="page_6">
+       <widget class="QLabel" name="label_5">
+        <property name="geometry">
+         <rect>
+          <x>156</x>
+          <y>39</y>
+          <width>231</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Waiting opponent</string>
+        </property>
+       </widget>
+      </widget>
       <widget class="QWidget" name="page_5">
        <layout class="QGridLayout" name="gridLayout_12">
         <item row="0" column="0">
@@ -524,6 +543,28 @@
             <property name="spacing">
              <number>0</number>
             </property>
+            <item row="0" column="2">
+             <widget class="QToolButton" name="toolButton_4">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QToolButton {
+	background-color: white;
+	border: 1px solid #c8ccc8;	
+	border-right: 2px solid #8b8f8b;	
+	border-top: 4px solid #8b8f8b;	
+	color:black;
+}</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
             <item row="2" column="0">
              <widget class="QToolButton" name="toolButton_7">
               <property name="sizePolicy">
@@ -543,6 +584,33 @@
               </property>
               <property name="text">
                <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QToolButton" name="toolButton_2">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QToolButton {
+	background-color: white;
+	border: 1px solid #c8ccc8;	
+	border-left: 4px solid #8b8f8b;
+	color:black;	
+}</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="col" stdset="0">
+               <number>1</number>
+              </property>
+              <property name="row" stdset="0">
+               <number>2</number>
               </property>
              </widget>
             </item>
@@ -567,26 +635,6 @@
               </property>
              </widget>
             </item>
-            <item row="1" column="1">
-             <widget class="QToolButton" name="toolButton_5">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QToolButton {
-	background-color: white;
-	border: 1px solid #c8ccc8;
-	color:black;
-}</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
             <item row="2" column="2">
              <widget class="QToolButton" name="toolButton_9">
               <property name="sizePolicy">
@@ -602,6 +650,48 @@
 	border-right: 2px solid #8b8f8b;	
 	border-bottom: 2px solid #8b8f8b;	
 	color:black;
+}</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QToolButton" name="toolButton_3">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QToolButton {
+	background-color: white;
+	border: 1px solid #c8ccc8;	
+	border-top: 4px solid #8b8f8b;
+	color:black;
+}</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="2">
+             <widget class="QToolButton" name="toolButton_6">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QToolButton {
+	background-color: white;
+	border: 1px solid #c8ccc8;	
+	border-right: 2px solid #8b8f8b;
+	color:black;	
 }</string>
               </property>
               <property name="text">
@@ -640,8 +730,8 @@
               </property>
              </widget>
             </item>
-            <item row="1" column="2">
-             <widget class="QToolButton" name="toolButton_6">
+            <item row="1" column="1">
+             <widget class="QToolButton" name="toolButton_5">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                 <horstretch>0</horstretch>
@@ -651,78 +741,7 @@
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
-	border: 1px solid #c8ccc8;	
-	border-right: 2px solid #8b8f8b;
-	color:black;	
-}</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="2">
-             <widget class="QToolButton" name="toolButton_4">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QToolButton {
-	background-color: white;
-	border: 1px solid #c8ccc8;	
-	border-right: 2px solid #8b8f8b;	
-	border-top: 4px solid #8b8f8b;	
-	color:black;
-}</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QToolButton" name="toolButton_2">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QToolButton {
-	background-color: white;
-	border: 1px solid #c8ccc8;	
-	border-left: 4px solid #8b8f8b;
-	color:black;	
-}</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="col" stdset="0">
-               <number>1</number>
-              </property>
-              <property name="row" stdset="0">
-               <number>2</number>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QToolButton" name="toolButton_3">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QToolButton {
-	background-color: white;
-	border: 1px solid #c8ccc8;	
-	border-top: 4px solid #8b8f8b;
+	border: 1px solid #c8ccc8;
 	color:black;
 }</string>
               </property>
@@ -902,6 +921,7 @@
 	border: 1px solid #c8ccc8;	
 	border-left: 2px solid #8b8f8b;	
 	border-top: 2px solid #8b8f8b;	
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -975,6 +995,7 @@
 	border: 1px solid #c8ccc8;	
 	border-left: 4px solid #8b8f8b;	
 	border-top: 2px solid #8b8f8b;	
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -996,6 +1017,7 @@
 	border: 1px solid #c8ccc8;	
 	border-right: 2px solid #8b8f8b;	
 	border-top: 2px solid #8b8f8b;	
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -1170,7 +1192,8 @@
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-top: 2px solid #8b8f8b;	
+	border-top: 2px solid #8b8f8b;
+	color:black;	
 }
 
 </string>
@@ -1278,7 +1301,8 @@
 	background-color: white;
 	border: 1px solid #c8ccc8;	
 	border-right: 4px solid #8b8f8b;	
-	border-top: 2px solid #8b8f8b;	
+	border-top: 2px solid #8b8f8b;
+	color:black;	
 }</string>
               </property>
               <property name="text">
@@ -1350,6 +1374,7 @@
 	border: 1px solid #c8ccc8;	
 	border-right: 2px solid #8b8f8b;	
 	border-top: 2px solid #8b8f8b;	
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -1357,8 +1382,8 @@
               </property>
              </widget>
             </item>
-            <item row="1" column="0">
-             <widget class="QToolButton" name="toolButton_58">
+            <item row="0" column="0">
+             <widget class="QToolButton" name="toolButton_55">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                 <horstretch>0</horstretch>
@@ -1370,6 +1395,7 @@
 	background-color: white;
 	border: 1px solid #c8ccc8;	
 	border-left: 4px solid #8b8f8b;	
+	border-top: 2px solid #8b8f8b;	
 	color:black;
 }</string>
               </property>
@@ -1398,8 +1424,8 @@
               </property>
              </widget>
             </item>
-            <item row="0" column="0">
-             <widget class="QToolButton" name="toolButton_55">
+            <item row="2" column="1">
+             <widget class="QToolButton" name="toolButton_62">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                 <horstretch>0</horstretch>
@@ -1410,9 +1436,32 @@
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-left: 4px solid #8b8f8b;	
-	border-top: 2px solid #8b8f8b;	
+	border-bottom: 4px solid #8b8f8b;
+	color:black;	
 }</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QToolButton" name="toolButton_56">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QToolButton {
+	background-color: white;
+	border: 1px solid #c8ccc8;	
+	border-top: 2px solid #8b8f8b;	
+	color:black;
+}
+
+</string>
               </property>
               <property name="text">
                <string/>
@@ -1440,8 +1489,8 @@
               </property>
              </widget>
             </item>
-            <item row="0" column="1">
-             <widget class="QToolButton" name="toolButton_56">
+            <item row="1" column="0">
+             <widget class="QToolButton" name="toolButton_58">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                 <horstretch>0</horstretch>
@@ -1452,10 +1501,9 @@
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-top: 2px solid #8b8f8b;	
-}
-
-</string>
+	border-left: 4px solid #8b8f8b;	
+	color:black;
+}</string>
               </property>
               <property name="text">
                <string/>
@@ -1477,27 +1525,6 @@
 	border-left: 4px solid #8b8f8b;	
 	border-bottom: 4px solid #8b8f8b;	
 	color:black;
-}</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="1">
-             <widget class="QToolButton" name="toolButton_62">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QToolButton {
-	background-color: white;
-	border: 1px solid #c8ccc8;	
-	border-bottom: 4px solid #8b8f8b;
-	color:black;	
 }</string>
               </property>
               <property name="text">
@@ -1655,7 +1682,8 @@
 	background-color: white;
 	border: 1px solid #c8ccc8;	
 	border-right: 4px solid #8b8f8b;	
-	border-top: 2px solid #8b8f8b;	
+	border-top: 2px solid #8b8f8b;
+	color:black;	
 }</string>
               </property>
               <property name="text">
@@ -1676,6 +1704,7 @@
 	background-color: white;
 	border: 1px solid #c8ccc8;	
 	border-top: 2px solid #8b8f8b;	
+	color:black;
 }
 
 </string>
@@ -1854,6 +1883,7 @@
 	border: 1px solid #c8ccc8;	
 	border-left: 2px solid #8b8f8b;	
 	border-top: 2px solid #8b8f8b;	
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -1933,92 +1963,6 @@
             <property name="spacing">
              <number>0</number>
             </property>
-            <item row="0" column="2">
-             <widget class="QToolButton" name="toolButton_21">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QToolButton {
-	background-color: white;
-	border: 1px solid #c8ccc8;	
-	border-top: 4px solid #8b8f8b;
-	border-right: 4px solid #8b8f8b;	
- 	color:black;
-}</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QToolButton" name="toolButton_22">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QToolButton {
-	background-color: white;
-	border: 1px solid #c8ccc8;	
-	border-left: 2px solid #8b8f8b;	
-	color:black;
-}</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="2">
-             <widget class="QToolButton" name="toolButton_24">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QToolButton {
-	background-color: white;
-	border: 1px solid #c8ccc8;	
-	border-right: 4px solid #8b8f8b;
-	color:black;	
-}</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <widget class="QToolButton" name="toolButton_25">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QToolButton {
-	background-color: white;
-	border: 1px solid #c8ccc8;	
-	border-left: 2px solid #8b8f8b;	
-	border-bottom: 2px solid #8b8f8b;	
-	color:black;
-}</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
             <item row="1" column="1">
              <widget class="QToolButton" name="toolButton_23">
               <property name="sizePolicy">
@@ -2060,6 +2004,27 @@
               </property>
              </widget>
             </item>
+            <item row="1" column="2">
+             <widget class="QToolButton" name="toolButton_24">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QToolButton {
+	background-color: white;
+	border: 1px solid #c8ccc8;	
+	border-right: 4px solid #8b8f8b;
+	color:black;	
+}</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
             <item row="0" column="1">
              <widget class="QToolButton" name="toolButton_20">
               <property name="sizePolicy">
@@ -2074,6 +2039,92 @@
 	border: 1px solid #c8ccc8;	
 	border-top: 4px solid #8b8f8b;
 	color:black;
+}</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QToolButton" name="toolButton_26">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QToolButton {
+	background-color: white;
+	border: 1px solid #c8ccc8;	
+	border-bottom: 2px solid #8b8f8b;	
+	color:black;
+}</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QToolButton" name="toolButton_22">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QToolButton {
+	background-color: white;
+	border: 1px solid #c8ccc8;	
+	border-left: 2px solid #8b8f8b;	
+	color:black;
+}</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QToolButton" name="toolButton_25">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QToolButton {
+	background-color: white;
+	border: 1px solid #c8ccc8;	
+	border-left: 2px solid #8b8f8b;	
+	border-bottom: 2px solid #8b8f8b;	
+	color:black;
+}</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="2">
+             <widget class="QToolButton" name="toolButton_21">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QToolButton {
+	background-color: white;
+	border: 1px solid #c8ccc8;	
+	border-top: 4px solid #8b8f8b;
+	border-right: 4px solid #8b8f8b;	
+ 	color:black;
 }</string>
               </property>
               <property name="text">
@@ -2096,27 +2147,6 @@
 	border-left: 2px solid #8b8f8b;	
 	border-top: 4px solid #8b8f8b; 
 	color:black;	
-}</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="1">
-             <widget class="QToolButton" name="toolButton_26">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QToolButton {
-	background-color: white;
-	border: 1px solid #c8ccc8;	
-	border-bottom: 2px solid #8b8f8b;	
-	color:black;
 }</string>
               </property>
               <property name="text">

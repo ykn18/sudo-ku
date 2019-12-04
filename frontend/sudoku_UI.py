@@ -277,6 +277,12 @@ class Ui_MainWindow(object):
         self.stackedWidget.addWidget(self.page_4)
         self.page_6 = QtWidgets.QWidget()
         self.page_6.setObjectName("page_6")
+        self.label_5 = QtWidgets.QLabel(self.page_6)
+        self.label_5.setGeometry(QtCore.QRect(156, 39, 231, 51))
+        font = QtGui.QFont()
+        font.setPointSize(20)
+        self.label_5.setFont(font)
+        self.label_5.setObjectName("label_5")
         self.stackedWidget.addWidget(self.page_6)
         self.page_5 = QtWidgets.QWidget()
         self.page_5.setObjectName("page_5")
@@ -288,6 +294,22 @@ class Ui_MainWindow(object):
         self.gridLayout00 = QtWidgets.QGridLayout()
         self.gridLayout00.setSpacing(0)
         self.gridLayout00.setObjectName("gridLayout00")
+        self.toolButton_4 = QtWidgets.QToolButton(self.page_5)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.toolButton_4.sizePolicy().hasHeightForWidth())
+        self.toolButton_4.setSizePolicy(sizePolicy)
+        self.toolButton_4.setStyleSheet("QToolButton {\n"
+"    background-color: white;\n"
+"    border: 1px solid #c8ccc8;    \n"
+"    border-right: 2px solid #8b8f8b;    \n"
+"    border-top: 4px solid #8b8f8b;    \n"
+"    color:black;\n"
+"}")
+        self.toolButton_4.setText("")
+        self.toolButton_4.setObjectName("toolButton_4")
+        self.gridLayout00.addWidget(self.toolButton_4, 0, 2, 1, 1)
         self.toolButton_7 = QtWidgets.QToolButton(self.page_5)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -304,6 +326,23 @@ class Ui_MainWindow(object):
         self.toolButton_7.setText("")
         self.toolButton_7.setObjectName("toolButton_7")
         self.gridLayout00.addWidget(self.toolButton_7, 2, 0, 1, 1)
+        self.toolButton_2 = QtWidgets.QToolButton(self.page_5)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.toolButton_2.sizePolicy().hasHeightForWidth())
+        self.toolButton_2.setSizePolicy(sizePolicy)
+        self.toolButton_2.setStyleSheet("QToolButton {\n"
+"    background-color: white;\n"
+"    border: 1px solid #c8ccc8;    \n"
+"    border-left: 4px solid #8b8f8b;\n"
+"    color:black;    \n"
+"}")
+        self.toolButton_2.setText("")
+        self.toolButton_2.setProperty("col", 1)
+        self.toolButton_2.setProperty("row", 2)
+        self.toolButton_2.setObjectName("toolButton_2")
+        self.gridLayout00.addWidget(self.toolButton_2, 1, 0, 1, 1)
         self.toolButton_8 = QtWidgets.QToolButton(self.page_5)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -319,20 +358,6 @@ class Ui_MainWindow(object):
         self.toolButton_8.setText("")
         self.toolButton_8.setObjectName("toolButton_8")
         self.gridLayout00.addWidget(self.toolButton_8, 2, 1, 1, 1)
-        self.toolButton_5 = QtWidgets.QToolButton(self.page_5)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.toolButton_5.sizePolicy().hasHeightForWidth())
-        self.toolButton_5.setSizePolicy(sizePolicy)
-        self.toolButton_5.setStyleSheet("QToolButton {\n"
-"    background-color: white;\n"
-"    border: 1px solid #c8ccc8;\n"
-"    color:black;\n"
-"}")
-        self.toolButton_5.setText("")
-        self.toolButton_5.setObjectName("toolButton_5")
-        self.gridLayout00.addWidget(self.toolButton_5, 1, 1, 1, 1)
         self.toolButton_9 = QtWidgets.QToolButton(self.page_5)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -349,6 +374,36 @@ class Ui_MainWindow(object):
         self.toolButton_9.setText("")
         self.toolButton_9.setObjectName("toolButton_9")
         self.gridLayout00.addWidget(self.toolButton_9, 2, 2, 1, 1)
+        self.toolButton_3 = QtWidgets.QToolButton(self.page_5)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.toolButton_3.sizePolicy().hasHeightForWidth())
+        self.toolButton_3.setSizePolicy(sizePolicy)
+        self.toolButton_3.setStyleSheet("QToolButton {\n"
+"    background-color: white;\n"
+"    border: 1px solid #c8ccc8;    \n"
+"    border-top: 4px solid #8b8f8b;\n"
+"    color:black;\n"
+"}")
+        self.toolButton_3.setText("")
+        self.toolButton_3.setObjectName("toolButton_3")
+        self.gridLayout00.addWidget(self.toolButton_3, 0, 1, 1, 1)
+        self.toolButton_6 = QtWidgets.QToolButton(self.page_5)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.toolButton_6.sizePolicy().hasHeightForWidth())
+        self.toolButton_6.setSizePolicy(sizePolicy)
+        self.toolButton_6.setStyleSheet("QToolButton {\n"
+"    background-color: white;\n"
+"    border: 1px solid #c8ccc8;    \n"
+"    border-right: 2px solid #8b8f8b;\n"
+"    color:black;    \n"
+"}")
+        self.toolButton_6.setText("")
+        self.toolButton_6.setObjectName("toolButton_6")
+        self.gridLayout00.addWidget(self.toolButton_6, 1, 2, 1, 1)
         self.toolButton_1 = QtWidgets.QToolButton(self.page_5)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -368,69 +423,20 @@ class Ui_MainWindow(object):
         self.toolButton_1.setProperty("color", False)
         self.toolButton_1.setObjectName("toolButton_1")
         self.gridLayout00.addWidget(self.toolButton_1, 0, 0, 1, 1)
-        self.toolButton_6 = QtWidgets.QToolButton(self.page_5)
+        self.toolButton_5 = QtWidgets.QToolButton(self.page_5)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.toolButton_6.sizePolicy().hasHeightForWidth())
-        self.toolButton_6.setSizePolicy(sizePolicy)
-        self.toolButton_6.setStyleSheet("QToolButton {\n"
+        sizePolicy.setHeightForWidth(self.toolButton_5.sizePolicy().hasHeightForWidth())
+        self.toolButton_5.setSizePolicy(sizePolicy)
+        self.toolButton_5.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
-"    border: 1px solid #c8ccc8;    \n"
-"    border-right: 2px solid #8b8f8b;\n"
-"    color:black;    \n"
-"}")
-        self.toolButton_6.setText("")
-        self.toolButton_6.setObjectName("toolButton_6")
-        self.gridLayout00.addWidget(self.toolButton_6, 1, 2, 1, 1)
-        self.toolButton_4 = QtWidgets.QToolButton(self.page_5)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.toolButton_4.sizePolicy().hasHeightForWidth())
-        self.toolButton_4.setSizePolicy(sizePolicy)
-        self.toolButton_4.setStyleSheet("QToolButton {\n"
-"    background-color: white;\n"
-"    border: 1px solid #c8ccc8;    \n"
-"    border-right: 2px solid #8b8f8b;    \n"
-"    border-top: 4px solid #8b8f8b;    \n"
+"    border: 1px solid #c8ccc8;\n"
 "    color:black;\n"
 "}")
-        self.toolButton_4.setText("")
-        self.toolButton_4.setObjectName("toolButton_4")
-        self.gridLayout00.addWidget(self.toolButton_4, 0, 2, 1, 1)
-        self.toolButton_2 = QtWidgets.QToolButton(self.page_5)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.toolButton_2.sizePolicy().hasHeightForWidth())
-        self.toolButton_2.setSizePolicy(sizePolicy)
-        self.toolButton_2.setStyleSheet("QToolButton {\n"
-"    background-color: white;\n"
-"    border: 1px solid #c8ccc8;    \n"
-"    border-left: 4px solid #8b8f8b;\n"
-"    color:black;    \n"
-"}")
-        self.toolButton_2.setText("")
-        self.toolButton_2.setProperty("col", 1)
-        self.toolButton_2.setProperty("row", 2)
-        self.toolButton_2.setObjectName("toolButton_2")
-        self.gridLayout00.addWidget(self.toolButton_2, 1, 0, 1, 1)
-        self.toolButton_3 = QtWidgets.QToolButton(self.page_5)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.toolButton_3.sizePolicy().hasHeightForWidth())
-        self.toolButton_3.setSizePolicy(sizePolicy)
-        self.toolButton_3.setStyleSheet("QToolButton {\n"
-"    background-color: white;\n"
-"    border: 1px solid #c8ccc8;    \n"
-"    border-top: 4px solid #8b8f8b;\n"
-"    color:black;\n"
-"}")
-        self.toolButton_3.setText("")
-        self.toolButton_3.setObjectName("toolButton_3")
-        self.gridLayout00.addWidget(self.toolButton_3, 0, 1, 1, 1)
+        self.toolButton_5.setText("")
+        self.toolButton_5.setObjectName("toolButton_5")
+        self.gridLayout00.addWidget(self.toolButton_5, 1, 1, 1, 1)
         self.gridLayout.addLayout(self.gridLayout00, 0, 1, 1, 1)
         self.gridLayout21 = QtWidgets.QGridLayout()
         self.gridLayout21.setSpacing(0)
@@ -554,6 +560,7 @@ class Ui_MainWindow(object):
 "    border: 1px solid #c8ccc8;    \n"
 "    border-left: 2px solid #8b8f8b;    \n"
 "    border-top: 2px solid #8b8f8b;    \n"
+"    color:black;\n"
 "}")
         self.toolButton_64.setText("")
         self.toolButton_64.setObjectName("toolButton_64")
@@ -606,6 +613,7 @@ class Ui_MainWindow(object):
 "    border: 1px solid #c8ccc8;    \n"
 "    border-left: 4px solid #8b8f8b;    \n"
 "    border-top: 2px solid #8b8f8b;    \n"
+"    color:black;\n"
 "}")
         self.toolButton_28.setText("")
         self.toolButton_28.setObjectName("toolButton_28")
@@ -621,6 +629,7 @@ class Ui_MainWindow(object):
 "    border: 1px solid #c8ccc8;    \n"
 "    border-right: 2px solid #8b8f8b;    \n"
 "    border-top: 2px solid #8b8f8b;    \n"
+"    color:black;\n"
 "}")
         self.toolButton_29.setText("")
         self.toolButton_29.setObjectName("toolButton_29")
@@ -744,7 +753,8 @@ class Ui_MainWindow(object):
         self.toolButton_49.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-top: 2px solid #8b8f8b;    \n"
+"    border-top: 2px solid #8b8f8b;\n"
+"    color:black;    \n"
 "}\n"
 "\n"
 "")
@@ -822,7 +832,8 @@ class Ui_MainWindow(object):
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
 "    border-right: 4px solid #8b8f8b;    \n"
-"    border-top: 2px solid #8b8f8b;    \n"
+"    border-top: 2px solid #8b8f8b;\n"
+"    color:black;    \n"
 "}")
         self.toolButton_52.setText("")
         self.toolButton_52.setObjectName("toolButton_52")
@@ -873,25 +884,27 @@ class Ui_MainWindow(object):
 "    border: 1px solid #c8ccc8;    \n"
 "    border-right: 2px solid #8b8f8b;    \n"
 "    border-top: 2px solid #8b8f8b;    \n"
+"    color:black;\n"
 "}")
         self.toolButton_57.setText("")
         self.toolButton_57.setObjectName("toolButton_57")
         self.gridLayout20.addWidget(self.toolButton_57, 0, 2, 1, 1)
-        self.toolButton_58 = QtWidgets.QToolButton(self.page_5)
+        self.toolButton_55 = QtWidgets.QToolButton(self.page_5)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.toolButton_58.sizePolicy().hasHeightForWidth())
-        self.toolButton_58.setSizePolicy(sizePolicy)
-        self.toolButton_58.setStyleSheet("QToolButton {\n"
+        sizePolicy.setHeightForWidth(self.toolButton_55.sizePolicy().hasHeightForWidth())
+        self.toolButton_55.setSizePolicy(sizePolicy)
+        self.toolButton_55.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
 "    border-left: 4px solid #8b8f8b;    \n"
+"    border-top: 2px solid #8b8f8b;    \n"
 "    color:black;\n"
 "}")
-        self.toolButton_58.setText("")
-        self.toolButton_58.setObjectName("toolButton_58")
-        self.gridLayout20.addWidget(self.toolButton_58, 1, 0, 1, 1)
+        self.toolButton_55.setText("")
+        self.toolButton_55.setObjectName("toolButton_55")
+        self.gridLayout20.addWidget(self.toolButton_55, 0, 0, 1, 1)
         self.toolButton_59 = QtWidgets.QToolButton(self.page_5)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -906,21 +919,38 @@ class Ui_MainWindow(object):
         self.toolButton_59.setText("")
         self.toolButton_59.setObjectName("toolButton_59")
         self.gridLayout20.addWidget(self.toolButton_59, 1, 1, 1, 1)
-        self.toolButton_55 = QtWidgets.QToolButton(self.page_5)
+        self.toolButton_62 = QtWidgets.QToolButton(self.page_5)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.toolButton_55.sizePolicy().hasHeightForWidth())
-        self.toolButton_55.setSizePolicy(sizePolicy)
-        self.toolButton_55.setStyleSheet("QToolButton {\n"
+        sizePolicy.setHeightForWidth(self.toolButton_62.sizePolicy().hasHeightForWidth())
+        self.toolButton_62.setSizePolicy(sizePolicy)
+        self.toolButton_62.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-left: 4px solid #8b8f8b;    \n"
-"    border-top: 2px solid #8b8f8b;    \n"
+"    border-bottom: 4px solid #8b8f8b;\n"
+"    color:black;    \n"
 "}")
-        self.toolButton_55.setText("")
-        self.toolButton_55.setObjectName("toolButton_55")
-        self.gridLayout20.addWidget(self.toolButton_55, 0, 0, 1, 1)
+        self.toolButton_62.setText("")
+        self.toolButton_62.setObjectName("toolButton_62")
+        self.gridLayout20.addWidget(self.toolButton_62, 2, 1, 1, 1)
+        self.toolButton_56 = QtWidgets.QToolButton(self.page_5)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.toolButton_56.sizePolicy().hasHeightForWidth())
+        self.toolButton_56.setSizePolicy(sizePolicy)
+        self.toolButton_56.setStyleSheet("QToolButton {\n"
+"    background-color: white;\n"
+"    border: 1px solid #c8ccc8;    \n"
+"    border-top: 2px solid #8b8f8b;    \n"
+"    color:black;\n"
+"}\n"
+"\n"
+"")
+        self.toolButton_56.setText("")
+        self.toolButton_56.setObjectName("toolButton_56")
+        self.gridLayout20.addWidget(self.toolButton_56, 0, 1, 1, 1)
         self.toolButton_60 = QtWidgets.QToolButton(self.page_5)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -936,22 +966,21 @@ class Ui_MainWindow(object):
         self.toolButton_60.setText("")
         self.toolButton_60.setObjectName("toolButton_60")
         self.gridLayout20.addWidget(self.toolButton_60, 1, 2, 1, 1)
-        self.toolButton_56 = QtWidgets.QToolButton(self.page_5)
+        self.toolButton_58 = QtWidgets.QToolButton(self.page_5)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.toolButton_56.sizePolicy().hasHeightForWidth())
-        self.toolButton_56.setSizePolicy(sizePolicy)
-        self.toolButton_56.setStyleSheet("QToolButton {\n"
+        sizePolicy.setHeightForWidth(self.toolButton_58.sizePolicy().hasHeightForWidth())
+        self.toolButton_58.setSizePolicy(sizePolicy)
+        self.toolButton_58.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-top: 2px solid #8b8f8b;    \n"
-"}\n"
-"\n"
-"")
-        self.toolButton_56.setText("")
-        self.toolButton_56.setObjectName("toolButton_56")
-        self.gridLayout20.addWidget(self.toolButton_56, 0, 1, 1, 1)
+"    border-left: 4px solid #8b8f8b;    \n"
+"    color:black;\n"
+"}")
+        self.toolButton_58.setText("")
+        self.toolButton_58.setObjectName("toolButton_58")
+        self.gridLayout20.addWidget(self.toolButton_58, 1, 0, 1, 1)
         self.toolButton_61 = QtWidgets.QToolButton(self.page_5)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -968,21 +997,6 @@ class Ui_MainWindow(object):
         self.toolButton_61.setText("")
         self.toolButton_61.setObjectName("toolButton_61")
         self.gridLayout20.addWidget(self.toolButton_61, 2, 0, 1, 1)
-        self.toolButton_62 = QtWidgets.QToolButton(self.page_5)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.toolButton_62.sizePolicy().hasHeightForWidth())
-        self.toolButton_62.setSizePolicy(sizePolicy)
-        self.toolButton_62.setStyleSheet("QToolButton {\n"
-"    background-color: white;\n"
-"    border: 1px solid #c8ccc8;    \n"
-"    border-bottom: 4px solid #8b8f8b;\n"
-"    color:black;    \n"
-"}")
-        self.toolButton_62.setText("")
-        self.toolButton_62.setObjectName("toolButton_62")
-        self.gridLayout20.addWidget(self.toolButton_62, 2, 1, 1, 1)
         self.toolButton_63 = QtWidgets.QToolButton(self.page_5)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -1091,7 +1105,8 @@ class Ui_MainWindow(object):
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
 "    border-right: 4px solid #8b8f8b;    \n"
-"    border-top: 2px solid #8b8f8b;    \n"
+"    border-top: 2px solid #8b8f8b;\n"
+"    color:black;    \n"
 "}")
         self.toolButton_75.setText("")
         self.toolButton_75.setObjectName("toolButton_75")
@@ -1106,6 +1121,7 @@ class Ui_MainWindow(object):
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
 "    border-top: 2px solid #8b8f8b;    \n"
+"    color:black;\n"
 "}\n"
 "\n"
 "")
@@ -1233,6 +1249,7 @@ class Ui_MainWindow(object):
 "    border: 1px solid #c8ccc8;    \n"
 "    border-left: 2px solid #8b8f8b;    \n"
 "    border-top: 2px solid #8b8f8b;    \n"
+"    color:black;\n"
 "}")
         self.toolButton_37.setText("")
         self.toolButton_37.setObjectName("toolButton_37")
@@ -1288,68 +1305,6 @@ class Ui_MainWindow(object):
         self.gridLayout02 = QtWidgets.QGridLayout()
         self.gridLayout02.setSpacing(0)
         self.gridLayout02.setObjectName("gridLayout02")
-        self.toolButton_21 = QtWidgets.QToolButton(self.page_5)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.toolButton_21.sizePolicy().hasHeightForWidth())
-        self.toolButton_21.setSizePolicy(sizePolicy)
-        self.toolButton_21.setStyleSheet("QToolButton {\n"
-"    background-color: white;\n"
-"    border: 1px solid #c8ccc8;    \n"
-"    border-top: 4px solid #8b8f8b;\n"
-"    border-right: 4px solid #8b8f8b;    \n"
-"     color:black;\n"
-"}")
-        self.toolButton_21.setText("")
-        self.toolButton_21.setObjectName("toolButton_21")
-        self.gridLayout02.addWidget(self.toolButton_21, 0, 2, 1, 1)
-        self.toolButton_22 = QtWidgets.QToolButton(self.page_5)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.toolButton_22.sizePolicy().hasHeightForWidth())
-        self.toolButton_22.setSizePolicy(sizePolicy)
-        self.toolButton_22.setStyleSheet("QToolButton {\n"
-"    background-color: white;\n"
-"    border: 1px solid #c8ccc8;    \n"
-"    border-left: 2px solid #8b8f8b;    \n"
-"    color:black;\n"
-"}")
-        self.toolButton_22.setText("")
-        self.toolButton_22.setObjectName("toolButton_22")
-        self.gridLayout02.addWidget(self.toolButton_22, 1, 0, 1, 1)
-        self.toolButton_24 = QtWidgets.QToolButton(self.page_5)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.toolButton_24.sizePolicy().hasHeightForWidth())
-        self.toolButton_24.setSizePolicy(sizePolicy)
-        self.toolButton_24.setStyleSheet("QToolButton {\n"
-"    background-color: white;\n"
-"    border: 1px solid #c8ccc8;    \n"
-"    border-right: 4px solid #8b8f8b;\n"
-"    color:black;    \n"
-"}")
-        self.toolButton_24.setText("")
-        self.toolButton_24.setObjectName("toolButton_24")
-        self.gridLayout02.addWidget(self.toolButton_24, 1, 2, 1, 1)
-        self.toolButton_25 = QtWidgets.QToolButton(self.page_5)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.toolButton_25.sizePolicy().hasHeightForWidth())
-        self.toolButton_25.setSizePolicy(sizePolicy)
-        self.toolButton_25.setStyleSheet("QToolButton {\n"
-"    background-color: white;\n"
-"    border: 1px solid #c8ccc8;    \n"
-"    border-left: 2px solid #8b8f8b;    \n"
-"    border-bottom: 2px solid #8b8f8b;    \n"
-"    color:black;\n"
-"}")
-        self.toolButton_25.setText("")
-        self.toolButton_25.setObjectName("toolButton_25")
-        self.gridLayout02.addWidget(self.toolButton_25, 2, 0, 1, 1)
         self.toolButton_23 = QtWidgets.QToolButton(self.page_5)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -1379,6 +1334,21 @@ class Ui_MainWindow(object):
         self.toolButton_27.setText("")
         self.toolButton_27.setObjectName("toolButton_27")
         self.gridLayout02.addWidget(self.toolButton_27, 2, 2, 1, 1)
+        self.toolButton_24 = QtWidgets.QToolButton(self.page_5)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.toolButton_24.sizePolicy().hasHeightForWidth())
+        self.toolButton_24.setSizePolicy(sizePolicy)
+        self.toolButton_24.setStyleSheet("QToolButton {\n"
+"    background-color: white;\n"
+"    border: 1px solid #c8ccc8;    \n"
+"    border-right: 4px solid #8b8f8b;\n"
+"    color:black;    \n"
+"}")
+        self.toolButton_24.setText("")
+        self.toolButton_24.setObjectName("toolButton_24")
+        self.gridLayout02.addWidget(self.toolButton_24, 1, 2, 1, 1)
         self.toolButton_20 = QtWidgets.QToolButton(self.page_5)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -1394,6 +1364,68 @@ class Ui_MainWindow(object):
         self.toolButton_20.setText("")
         self.toolButton_20.setObjectName("toolButton_20")
         self.gridLayout02.addWidget(self.toolButton_20, 0, 1, 1, 1)
+        self.toolButton_26 = QtWidgets.QToolButton(self.page_5)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.toolButton_26.sizePolicy().hasHeightForWidth())
+        self.toolButton_26.setSizePolicy(sizePolicy)
+        self.toolButton_26.setStyleSheet("QToolButton {\n"
+"    background-color: white;\n"
+"    border: 1px solid #c8ccc8;    \n"
+"    border-bottom: 2px solid #8b8f8b;    \n"
+"    color:black;\n"
+"}")
+        self.toolButton_26.setText("")
+        self.toolButton_26.setObjectName("toolButton_26")
+        self.gridLayout02.addWidget(self.toolButton_26, 2, 1, 1, 1)
+        self.toolButton_22 = QtWidgets.QToolButton(self.page_5)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.toolButton_22.sizePolicy().hasHeightForWidth())
+        self.toolButton_22.setSizePolicy(sizePolicy)
+        self.toolButton_22.setStyleSheet("QToolButton {\n"
+"    background-color: white;\n"
+"    border: 1px solid #c8ccc8;    \n"
+"    border-left: 2px solid #8b8f8b;    \n"
+"    color:black;\n"
+"}")
+        self.toolButton_22.setText("")
+        self.toolButton_22.setObjectName("toolButton_22")
+        self.gridLayout02.addWidget(self.toolButton_22, 1, 0, 1, 1)
+        self.toolButton_25 = QtWidgets.QToolButton(self.page_5)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.toolButton_25.sizePolicy().hasHeightForWidth())
+        self.toolButton_25.setSizePolicy(sizePolicy)
+        self.toolButton_25.setStyleSheet("QToolButton {\n"
+"    background-color: white;\n"
+"    border: 1px solid #c8ccc8;    \n"
+"    border-left: 2px solid #8b8f8b;    \n"
+"    border-bottom: 2px solid #8b8f8b;    \n"
+"    color:black;\n"
+"}")
+        self.toolButton_25.setText("")
+        self.toolButton_25.setObjectName("toolButton_25")
+        self.gridLayout02.addWidget(self.toolButton_25, 2, 0, 1, 1)
+        self.toolButton_21 = QtWidgets.QToolButton(self.page_5)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.toolButton_21.sizePolicy().hasHeightForWidth())
+        self.toolButton_21.setSizePolicy(sizePolicy)
+        self.toolButton_21.setStyleSheet("QToolButton {\n"
+"    background-color: white;\n"
+"    border: 1px solid #c8ccc8;    \n"
+"    border-top: 4px solid #8b8f8b;\n"
+"    border-right: 4px solid #8b8f8b;    \n"
+"     color:black;\n"
+"}")
+        self.toolButton_21.setText("")
+        self.toolButton_21.setObjectName("toolButton_21")
+        self.gridLayout02.addWidget(self.toolButton_21, 0, 2, 1, 1)
         self.toolButton_19 = QtWidgets.QToolButton(self.page_5)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -1410,21 +1442,6 @@ class Ui_MainWindow(object):
         self.toolButton_19.setText("")
         self.toolButton_19.setObjectName("toolButton_19")
         self.gridLayout02.addWidget(self.toolButton_19, 0, 0, 1, 1)
-        self.toolButton_26 = QtWidgets.QToolButton(self.page_5)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.toolButton_26.sizePolicy().hasHeightForWidth())
-        self.toolButton_26.setSizePolicy(sizePolicy)
-        self.toolButton_26.setStyleSheet("QToolButton {\n"
-"    background-color: white;\n"
-"    border: 1px solid #c8ccc8;    \n"
-"    border-bottom: 2px solid #8b8f8b;    \n"
-"    color:black;\n"
-"}")
-        self.toolButton_26.setText("")
-        self.toolButton_26.setObjectName("toolButton_26")
-        self.gridLayout02.addWidget(self.toolButton_26, 2, 1, 1, 1)
         self.gridLayout.addLayout(self.gridLayout02, 0, 3, 1, 1)
         self.gridLayout_2 = QtWidgets.QGridLayout()
         self.gridLayout_2.setSpacing(0)
@@ -1596,3 +1613,4 @@ class Ui_MainWindow(object):
         self.easyButton.setText(_translate("MainWindow", "Easy"))
         self.mediumButton.setText(_translate("MainWindow", "Medium"))
         self.hardButton.setText(_translate("MainWindow", "Hard"))
+        self.label_5.setText(_translate("MainWindow", "Waiting opponent"))
