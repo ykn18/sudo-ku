@@ -179,6 +179,16 @@ class sudokuController:
                         tool_button.setStyleSheet(style)
 
 
+        for m in self.mask:
+            print(m)    
+        
+        if self.count == 0:        
+            res = not True in map(lambda x: False in x, self.mask)
+            if res:
+                payload = {"board" : self.board}
+                sendPacket(self.conn, 7, json.dumps(payload).replace(" ", "", -1))
+                keypad.close() 
+        """
         if self.count == 0:
             for i in range(9):
                 for j in range(9):
@@ -187,7 +197,7 @@ class sudokuController:
                         return
             payload = {"board" : self.board}
             sendPacket(self.conn, 7, json.dumps(payload).replace(" ", "", -1))
-        keypad.close()     
+        keypad.close()     """
 
 
     def setMode(self, mode):
