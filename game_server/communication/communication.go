@@ -13,7 +13,7 @@ const (
 	MatchFoundPkt      byte = 2
 	MovePkt            byte = 3
 	MoveOutcomePkt     byte = 4
-	OpponentDonePkt    byte = 5
+	DonePkt            byte = 5
 	ChangeValuePkt     byte = 6
 	CheckSolutionPkt   byte = 7
 	ValidSolutionPkt   byte = 8
@@ -41,21 +41,21 @@ func ReadPacket(conn net.Conn) (Packet, error) {
 
 	t, err := r.ReadByte()
 	if err != nil {
-		fmt.Println("tcp connection error:", err)
+		fmt.Println("closing connection:", err)
 		conn.Close()
 		return p, err
 	}
 
 	size, err := r.ReadByte()
 	if err != nil {
-		fmt.Println("tcp connection error:", err)
+		fmt.Println("closing connection:", err)
 		conn.Close()
 		return p, err
 	}
 
 	_, err = io.ReadFull(r, payload[:int(size)])
 	if err != nil {
-		fmt.Println("tcp connection error:", err)
+		fmt.Println("closing connection:", err)
 		conn.Close()
 		return p, err
 	}
@@ -96,7 +96,6 @@ type MoveMsg struct {
 
 type MoveOutcomeMsg struct {
 	IsLegal bool `json:"isLegal"`
-	Done    bool `json:"done"`
 }
 
 type ChangeValueMsg struct {
@@ -114,7 +113,7 @@ type CheckSolutionMsg struct {
 	Board [9][9]int `json:"board"`
 }
 
-type OpponentDoneMsg struct {
+type DoneMsg struct {
 	Done bool `json:"done"`
 }
 

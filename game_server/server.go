@@ -121,7 +121,6 @@ func handleConnectionIn(c net.Conn, ch chan<- Packet) {
 	for {
 		p, err := ReadPacket(c)
 		if err != nil {
-			fmt.Println("", err)
 			c.Close()
 			return
 		}
@@ -134,7 +133,8 @@ func handleConnectionOut(c net.Conn, ch <-chan Packet) {
 		p := <-ch
 		err := WritePacket(c, p)
 		if err != nil {
-			fmt.Println("", err)
+			c.Close()
+			return
 		}
 	}
 }
@@ -204,8 +204,9 @@ func gameServerChallenge(c1 matchRequestMsg, c2 matchRequestMsg) {
 					r, _ := json.Marshal(ValidSolutionMsg{Valid: v})
 					ch1Out <- MakePacket(ValidSolutionPkt, r)
 					if v {
-						msg, _ := json.Marshal(OpponentDoneMsg{Done: true})
-						ch2Out <- MakePacket(OpponentDonePkt, msg)
+						msg, _ := json.Marshal(DoneMsg{Done: true})
+						ch2Out <- MakePacket(DonePkt, msg)
+						return
 					}
 				}
 			}
@@ -219,8 +220,9 @@ func gameServerChallenge(c1 matchRequestMsg, c2 matchRequestMsg) {
 					r, _ := json.Marshal(ValidSolutionMsg{Valid: v})
 					ch2Out <- MakePacket(ValidSolutionPkt, r)
 					if v {
-						msg, _ := json.Marshal(OpponentDoneMsg{Done: true})
-						ch1Out <- MakePacket(OpponentDonePkt, msg)
+						msg, _ := json.Marshal(DoneMsg{Done: true})
+						ch1Out <- MakePacket(DonePkt, msg)
+						return
 					}
 				}
 			}
@@ -242,15 +244,15 @@ func gameServerCollaborative(c1 matchRequestMsg, c2 matchRequestMsg) {
 	//var sudokuBoard1 handler.SudokuBoard = handler.SudokuBoard(generator.MakeSudokuBoard(c1.difficulty))
 	sudokuBoardg := model.SudokuBoard{
 		Board: [9][9]int{
-			{5, 0, 3, 4, 7, 1, 2, 6, 0},
-			{4, 0, 0, 0, 5, 0, 0, 0, 0},
-			{9, 0, 0, 0, 6, 0, 5, 0, 0},
-			{0, 0, 0, 0, 3, 0, 0, 0, 2},
-			{1, 0, 5, 0, 0, 0, 0, 0, 0},
-			{6, 0, 9, 1, 8, 0, 0, 5, 0},
-			{0, 0, 0, 0, 2, 0, 0, 8, 3},
-			{3, 4, 6, 0, 9, 0, 0, 0, 0},
-			{0, 0, 8, 7, 0, 0, 6, 0, 5}},
+			{5, 8, 3, 4, 7, 1, 2, 6, 9},
+			{4, 6, 7, 2, 5, 9, 0, 0, 8},
+			{9, 1, 2, 3, 6, 8, 0, 0, 4},
+			{8, 7, 0, 5, 3, 6, 1, 9, 2},
+			{1, 2, 5, 9, 4, 7, 8, 3, 6},
+			{6, 3, 9, 1, 8, 2, 4, 5, 7},
+			{7, 0, 1, 6, 2, 0, 9, 8, 3},
+			{3, 4, 6, 8, 9, 5, 7, 2, 1},
+			{2, 9, 8, 7, 1, 3, 6, 4, 5}},
 		Solution: [9][9]int{
 			{5, 8, 3, 4, 7, 1, 2, 6, 9},
 			{4, 6, 7, 2, 5, 9, 3, 1, 8},
@@ -261,7 +263,7 @@ func gameServerCollaborative(c1 matchRequestMsg, c2 matchRequestMsg) {
 			{7, 5, 1, 6, 2, 4, 9, 8, 3},
 			{3, 4, 6, 8, 9, 5, 7, 2, 1},
 			{2, 9, 8, 7, 1, 3, 6, 4, 5}},
-		Blanks: 49,
+		Blanks: 7,
 	}
 	sudokuBoardJSON, _ := json.Marshal(sudokuBoardg)
 	var sudokuBoard SudokuBoard
@@ -289,17 +291,20 @@ func gameServerCollaborative(c1 matchRequestMsg, c2 matchRequestMsg) {
 				case MovePkt:
 					json.Unmarshal([]byte(p1.Payload), &moveDecoded)
 
-					r, r2, _, err := handleMoveMsgCollaborative(&sudokuBoard, moveDecoded)
-					if err != nil {
-						ch1Out <- MakePacket(ErrorPkt, []byte(`{msg":"internal server error"}`))
-						ch2Out <- MakePacket(ErrorPkt, []byte(`{msg":"internal server error"}`))
-						c1.conn.Close()
-						c2.conn.Close()
-						return
-					}
+					r, r2, done, _ := handleMoveMsgCollaborative(&sudokuBoard, moveDecoded)
+
 					ch1Out <- MakePacket(MoveOutcomePkt, r)
 					if r2 != nil {
 						ch2Out <- MakePacket(ChangeValuePkt, r2)
+					}
+					if done {
+						fmt.Println("I'm done")
+						doneMsg, _ := json.Marshal(DoneMsg{Done: true})
+						ch1Out <- MakePacket(DonePkt, doneMsg)
+						ch2Out <- MakePacket(DonePkt, doneMsg)
+						c1.conn.Close()
+						c1.conn.Close()
+						return
 					}
 				}
 			}
@@ -309,17 +314,20 @@ func gameServerCollaborative(c1 matchRequestMsg, c2 matchRequestMsg) {
 				json.Unmarshal([]byte(p2.Payload), &moveDecoded)
 				switch p2.Type {
 				case MovePkt:
-					r, r2, _, err := handleMoveMsgCollaborative(&sudokuBoard, moveDecoded)
-					if err != nil {
-						ch1Out <- MakePacket(ErrorPkt, []byte(`{msg":"internal server error"}`))
-						ch2Out <- MakePacket(ErrorPkt, []byte(`{msg":"internal server error"}`))
-						c1.conn.Close()
-						c2.conn.Close()
-						return
-					}
+					r, r2, done, _ := handleMoveMsgCollaborative(&sudokuBoard, moveDecoded)
+
 					ch2Out <- MakePacket(MoveOutcomePkt, r)
 					if r2 != nil {
 						ch1Out <- MakePacket(ChangeValuePkt, r2)
+					}
+					if done {
+						fmt.Println("I'm done")
+						doneMsg, _ := json.Marshal(DoneMsg{Done: true})
+						ch1Out <- MakePacket(DonePkt, doneMsg)
+						ch2Out <- MakePacket(DonePkt, doneMsg)
+						c1.conn.Close()
+						c2.conn.Close()
+						return
 					}
 				}
 			}
@@ -334,10 +342,10 @@ func handleMoveMsgCollaborative(s *SudokuBoard, m MoveMsg) (r, r2 []byte, done b
 	if remaining == 0 {
 		done = true
 	}
-
+	fmt.Println(remaining)
 	if legal {
 		r2, _ = json.Marshal(ChangeValueMsg{Row: m.Row, Col: m.Col, Value: m.Value, Done: done})
 	}
-	r, err = json.Marshal(MoveOutcomeMsg{IsLegal: legal, Done: done})
+	r, err = json.Marshal(MoveOutcomeMsg{IsLegal: legal})
 	return
 }
