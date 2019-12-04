@@ -301,7 +301,6 @@ func gameServerCollaborative(c1 matchRequestMsg, c2 matchRequestMsg) {
 						fmt.Println("I'm done")
 						doneMsg, _ := json.Marshal(DoneMsg{Done: true})
 						ch1Out <- MakePacket(DonePkt, doneMsg)
-						ch2Out <- MakePacket(DonePkt, doneMsg)
 						return
 					}
 				}
@@ -321,7 +320,6 @@ func gameServerCollaborative(c1 matchRequestMsg, c2 matchRequestMsg) {
 					if done {
 						fmt.Println("I'm done")
 						doneMsg, _ := json.Marshal(DoneMsg{Done: true})
-						ch1Out <- MakePacket(DonePkt, doneMsg)
 						ch2Out <- MakePacket(DonePkt, doneMsg)
 						return
 					}
