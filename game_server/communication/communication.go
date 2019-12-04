@@ -13,7 +13,7 @@ const (
 	MatchFoundPkt      byte = 2
 	MovePkt            byte = 3
 	MoveOutcomePkt     byte = 4
-	OpponentDonePkt    byte = 5
+	DonePkt            byte = 5
 	ChangeValuePkt     byte = 6
 	CheckSolutionPkt   byte = 7
 	ValidSolutionPkt   byte = 8
@@ -96,7 +96,6 @@ type MoveMsg struct {
 
 type MoveOutcomeMsg struct {
 	IsLegal bool `json:"isLegal"`
-	Done    bool `json:"done"`
 }
 
 type ChangeValueMsg struct {
@@ -114,7 +113,7 @@ type CheckSolutionMsg struct {
 	Board [9][9]int `json:"board"`
 }
 
-type OpponentDoneMsg struct {
+type DoneMsg struct {
 	Done bool `json:"done"`
 }
 
