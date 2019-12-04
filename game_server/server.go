@@ -1,6 +1,7 @@
 package main
 
 //TO DO: ADD CHECK TO SEE IF THE CLIENT IS STILL IN THE QUEUE
+//TO DO: CLOSE WRITING GOROUTINE AT THE END
 import (
 	"encoding/json"
 	"fmt"
@@ -290,7 +291,6 @@ func gameServerCollaborative(c1 matchRequestMsg, c2 matchRequestMsg) {
 				switch p1.Type {
 				case MovePkt:
 					json.Unmarshal([]byte(p1.Payload), &moveDecoded)
-
 					r, r2, done, _ := handleMoveMsgCollaborative(&sudokuBoard, moveDecoded)
 
 					ch1Out <- MakePacket(MoveOutcomePkt, r)
@@ -302,8 +302,6 @@ func gameServerCollaborative(c1 matchRequestMsg, c2 matchRequestMsg) {
 						doneMsg, _ := json.Marshal(DoneMsg{Done: true})
 						ch1Out <- MakePacket(DonePkt, doneMsg)
 						ch2Out <- MakePacket(DonePkt, doneMsg)
-						c1.conn.Close()
-						c1.conn.Close()
 						return
 					}
 				}
@@ -325,8 +323,6 @@ func gameServerCollaborative(c1 matchRequestMsg, c2 matchRequestMsg) {
 						doneMsg, _ := json.Marshal(DoneMsg{Done: true})
 						ch1Out <- MakePacket(DonePkt, doneMsg)
 						ch2Out <- MakePacket(DonePkt, doneMsg)
-						c1.conn.Close()
-						c2.conn.Close()
 						return
 					}
 				}
