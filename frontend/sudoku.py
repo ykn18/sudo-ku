@@ -21,6 +21,7 @@ class Worker(QtCore.QRunnable):
         while(True):
             try:
                 result = self.fn(self.conn)
+                print(result)
                 self.signals.result.emit(result) 
             except socket.error:
                 print("connection closed")
@@ -177,25 +178,28 @@ class sudokuController:
                     if "color:black;" in tool_button.styleSheet():
                         style = tool_button.styleSheet().replace("color:black;", "color:red;")
                         tool_button.setStyleSheet(style)
-                        
-        if self.count == 0:        
-            res = not True in map(lambda x: False in x, self.mask)
-            if res:
+        #challenge mode
+        if self.mode == "0":
+            if self.count == 0:
+                for i in range(9):
+                    for j in range(9):
+                        if self.mask[i][j] == False:
+                            keypad.close() 
+                            return
                 payload = {"board" : self.board}
                 sendPacket(self.conn, 7, json.dumps(payload).replace(" ", "", -1))
-                keypad.close() 
-        
-        keypad.close()
-        """
-        if self.count == 0:
+        #collaborative mode
+        else:
             for i in range(9):
-                for j in range(9):
-                    if self.mask[i][j] == False:
-                        keypad.close() 
-                        return
-            payload = {"board" : self.board}
-            sendPacket(self.conn, 7, json.dumps(payload).replace(" ", "", -1))
-        keypad.close()     """
+                    for j in range(9):
+                        if self.mask[i][j] == False:
+                            keypad.close() 
+                            return
+            payload = {"row" : self.row, "col" : self.col, "value" : int(value)}
+            #move
+            sendPacket(self.conn, 3, json.dumps(payload))
+            
+        keypad.close()    
 
 
     def setMode(self, mode):
@@ -233,7 +237,6 @@ class sudokuController:
                 item = box_grid.itemAtPosition(r%3, c%3)        
                 tool_button = item.widget()
                 tool_button.setText("")
-
 
     
     def onMsgButton(self):
@@ -275,8 +278,11 @@ class sudokuController:
                 msg.setWindowTitle("Match finished")
                 msg.buttonClicked.connect(lambda: self.onMsgButton())
                 msg.exec_()
+        elif packet_type == 4:
+            print(payload)
 
-        
+        elif packet_type == 6:
+            print(payload)
 
 
         
