@@ -41,21 +41,21 @@ func ReadPacket(conn net.Conn) (Packet, error) {
 
 	t, err := r.ReadByte()
 	if err != nil {
-		fmt.Println("tcp connection error:", err)
+		fmt.Println("closing connection:", err)
 		conn.Close()
 		return p, err
 	}
 
 	size, err := r.ReadByte()
 	if err != nil {
-		fmt.Println("tcp connection error:", err)
+		fmt.Println("closing connection:", err)
 		conn.Close()
 		return p, err
 	}
 
 	_, err = io.ReadFull(r, payload[:int(size)])
 	if err != nil {
-		fmt.Println("tcp connection error:", err)
+		fmt.Println("closing connection:", err)
 		conn.Close()
 		return p, err
 	}

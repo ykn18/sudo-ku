@@ -121,7 +121,6 @@ func handleConnectionIn(c net.Conn, ch chan<- Packet) {
 	for {
 		p, err := ReadPacket(c)
 		if err != nil {
-			fmt.Println("", err)
 			c.Close()
 			return
 		}
@@ -134,7 +133,8 @@ func handleConnectionOut(c net.Conn, ch <-chan Packet) {
 		p := <-ch
 		err := WritePacket(c, p)
 		if err != nil {
-			fmt.Println("", err)
+			c.Close()
+			return
 		}
 	}
 }
@@ -206,8 +206,6 @@ func gameServerChallenge(c1 matchRequestMsg, c2 matchRequestMsg) {
 					if v {
 						msg, _ := json.Marshal(DoneMsg{Done: true})
 						ch2Out <- MakePacket(DonePkt, msg)
-						c1.conn.Close()
-						c2.conn.Close()
 						return
 					}
 				}
@@ -224,8 +222,6 @@ func gameServerChallenge(c1 matchRequestMsg, c2 matchRequestMsg) {
 					if v {
 						msg, _ := json.Marshal(DoneMsg{Done: true})
 						ch1Out <- MakePacket(DonePkt, msg)
-						c1.conn.Close()
-						c2.conn.Close()
 						return
 					}
 				}
@@ -295,14 +291,8 @@ func gameServerCollaborative(c1 matchRequestMsg, c2 matchRequestMsg) {
 				case MovePkt:
 					json.Unmarshal([]byte(p1.Payload), &moveDecoded)
 
-					r, r2, done, err := handleMoveMsgCollaborative(&sudokuBoard, moveDecoded)
-					if err != nil {
-						ch1Out <- MakePacket(ErrorPkt, []byte(`{msg":"internal server error"}`))
-						ch2Out <- MakePacket(ErrorPkt, []byte(`{msg":"internal server error"}`))
-						c1.conn.Close()
-						c2.conn.Close()
-						return
-					}
+					r, r2, done, _ := handleMoveMsgCollaborative(&sudokuBoard, moveDecoded)
+
 					ch1Out <- MakePacket(MoveOutcomePkt, r)
 					if r2 != nil {
 						ch2Out <- MakePacket(ChangeValuePkt, r2)
@@ -324,14 +314,8 @@ func gameServerCollaborative(c1 matchRequestMsg, c2 matchRequestMsg) {
 				json.Unmarshal([]byte(p2.Payload), &moveDecoded)
 				switch p2.Type {
 				case MovePkt:
-					r, r2, done, err := handleMoveMsgCollaborative(&sudokuBoard, moveDecoded)
-					if err != nil {
-						ch1Out <- MakePacket(ErrorPkt, []byte(`{msg":"internal server error"}`))
-						ch2Out <- MakePacket(ErrorPkt, []byte(`{msg":"internal server error"}`))
-						c1.conn.Close()
-						c2.conn.Close()
-						return
-					}
+					r, r2, done, _ := handleMoveMsgCollaborative(&sudokuBoard, moveDecoded)
+
 					ch2Out <- MakePacket(MoveOutcomePkt, r)
 					if r2 != nil {
 						ch1Out <- MakePacket(ChangeValuePkt, r2)
