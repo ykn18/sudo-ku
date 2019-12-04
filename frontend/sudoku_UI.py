@@ -299,6 +299,7 @@ class Ui_MainWindow(object):
 "    border: 1px solid #c8ccc8;    \n"
 "    border-left: 4px solid #8b8f8b;    \n"
 "    border-bottom: 2px solid #8b8f8b;    \n"
+"    color:black;\n"
 "}")
         self.toolButton_7.setText("")
         self.toolButton_7.setObjectName("toolButton_7")
@@ -313,6 +314,7 @@ class Ui_MainWindow(object):
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
 "    border-bottom: 2px solid #8b8f8b;    \n"
+"    color:black;\n"
 "}")
         self.toolButton_8.setText("")
         self.toolButton_8.setObjectName("toolButton_8")
@@ -325,7 +327,8 @@ class Ui_MainWindow(object):
         self.toolButton_5.setSizePolicy(sizePolicy)
         self.toolButton_5.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
-"    border: 1px solid #c8ccc8;    \n"
+"    border: 1px solid #c8ccc8;\n"
+"    color:black;\n"
 "}")
         self.toolButton_5.setText("")
         self.toolButton_5.setObjectName("toolButton_5")
@@ -341,6 +344,7 @@ class Ui_MainWindow(object):
 "    border: 1px solid #c8ccc8;    \n"
 "    border-right: 2px solid #8b8f8b;    \n"
 "    border-bottom: 2px solid #8b8f8b;    \n"
+"    color:black;\n"
 "}")
         self.toolButton_9.setText("")
         self.toolButton_9.setObjectName("toolButton_9")
@@ -351,15 +355,17 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_1.sizePolicy().hasHeightForWidth())
         self.toolButton_1.setSizePolicy(sizePolicy)
-        self.toolButton_1.setStyleSheet("QToolButton {\n"
+        self.toolButton_1.setStyleSheet("QToolButton{\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
 "    border-top: 4px solid #8b8f8b;\n"
 "    border-left: 4px solid #8b8f8b;    \n"
+"    color:black;\n"
 "}")
         self.toolButton_1.setText("")
         self.toolButton_1.setProperty("row", 1)
         self.toolButton_1.setProperty("col", 3)
+        self.toolButton_1.setProperty("color", False)
         self.toolButton_1.setObjectName("toolButton_1")
         self.gridLayout00.addWidget(self.toolButton_1, 0, 0, 1, 1)
         self.toolButton_6 = QtWidgets.QToolButton(self.page_5)
@@ -371,7 +377,8 @@ class Ui_MainWindow(object):
         self.toolButton_6.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-right: 2px solid #8b8f8b;    \n"
+"    border-right: 2px solid #8b8f8b;\n"
+"    color:black;    \n"
 "}")
         self.toolButton_6.setText("")
         self.toolButton_6.setObjectName("toolButton_6")
@@ -387,6 +394,7 @@ class Ui_MainWindow(object):
 "    border: 1px solid #c8ccc8;    \n"
 "    border-right: 2px solid #8b8f8b;    \n"
 "    border-top: 4px solid #8b8f8b;    \n"
+"    color:black;\n"
 "}")
         self.toolButton_4.setText("")
         self.toolButton_4.setObjectName("toolButton_4")
@@ -400,7 +408,8 @@ class Ui_MainWindow(object):
         self.toolButton_2.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-left: 4px solid #8b8f8b;    \n"
+"    border-left: 4px solid #8b8f8b;\n"
+"    color:black;    \n"
 "}")
         self.toolButton_2.setText("")
         self.toolButton_2.setProperty("col", 1)
@@ -417,6 +426,7 @@ class Ui_MainWindow(object):
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
 "    border-top: 4px solid #8b8f8b;\n"
+"    color:black;\n"
 "}")
         self.toolButton_3.setText("")
         self.toolButton_3.setObjectName("toolButton_3")
@@ -435,6 +445,7 @@ class Ui_MainWindow(object):
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
 "    border-left: 2px solid #8b8f8b;    \n"
+"    color:black;\n"
 "}")
         self.toolButton_67.setText("")
         self.toolButton_67.setObjectName("toolButton_67")
@@ -448,7 +459,8 @@ class Ui_MainWindow(object):
         self.toolButton_69.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-right: 2px solid #8b8f8b;    \n"
+"    border-right: 2px solid #8b8f8b;\n"
+"    color:black;    \n"
 "}")
         self.toolButton_69.setText("")
         self.toolButton_69.setObjectName("toolButton_69")
@@ -464,6 +476,7 @@ class Ui_MainWindow(object):
 "    border: 1px solid #c8ccc8;    \n"
 "    border-left: 2px solid #8b8f8b;    \n"
 "    border-bottom: 4px solid #8b8f8b;    \n"
+"    color:black;\n"
 "}")
         self.toolButton_70.setText("")
         self.toolButton_70.setObjectName("toolButton_70")
@@ -478,6 +491,7 @@ class Ui_MainWindow(object):
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
 "    border-top: 2px solid #8b8f8b;    \n"
+"    color:black;\n"
 "}\n"
 "\n"
 "")
@@ -495,6 +509,7 @@ class Ui_MainWindow(object):
 "    border: 1px solid #c8ccc8;    \n"
 "    border-right: 2px solid #8b8f8b;    \n"
 "    border-top: 2px solid #8b8f8b;    \n"
+"    color:black;\n"
 "}")
         self.toolButton_66.setText("")
         self.toolButton_66.setObjectName("toolButton_66")
@@ -507,7 +522,8 @@ class Ui_MainWindow(object):
         self.toolButton_68.setSizePolicy(sizePolicy)
         self.toolButton_68.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
-"    border: 1px solid #c8ccc8;    \n"
+"    border: 1px solid #c8ccc8;\n"
+"    color:black;\n"
 "}")
         self.toolButton_68.setText("")
         self.toolButton_68.setObjectName("toolButton_68")
@@ -521,7 +537,8 @@ class Ui_MainWindow(object):
         self.toolButton_71.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-bottom: 4px solid #8b8f8b;    \n"
+"    border-bottom: 4px solid #8b8f8b;\n"
+"    color:black;\n"
 "}")
         self.toolButton_71.setText("")
         self.toolButton_71.setObjectName("toolButton_71")
@@ -551,7 +568,8 @@ class Ui_MainWindow(object):
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
 "    border-right: 2px solid #8b8f8b;    \n"
-"    border-bottom: 4px solid #8b8f8b;    \n"
+"    border-bottom: 4px solid #8b8f8b;\n"
+"    color:black;\n"
 "}")
         self.toolButton_72.setText("")
         self.toolButton_72.setObjectName("toolButton_72")
@@ -570,6 +588,7 @@ class Ui_MainWindow(object):
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
 "    border-top: 2px solid #8b8f8b;    \n"
+"    color:black;\n"
 "}\n"
 "\n"
 "")
@@ -614,7 +633,8 @@ class Ui_MainWindow(object):
         self.toolButton_32.setSizePolicy(sizePolicy)
         self.toolButton_32.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
-"    border: 1px solid #c8ccc8;    \n"
+"    border: 1px solid #c8ccc8;\n"
+"    color:black;\n"
 "}")
         self.toolButton_32.setText("")
         self.toolButton_32.setObjectName("toolButton_32")
@@ -629,6 +649,7 @@ class Ui_MainWindow(object):
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
 "    border-left: 4px solid #8b8f8b;    \n"
+"    color:black;\n"
 "}")
         self.toolButton_31.setText("")
         self.toolButton_31.setObjectName("toolButton_31")
@@ -642,7 +663,8 @@ class Ui_MainWindow(object):
         self.toolButton_33.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-right: 2px solid #8b8f8b;    \n"
+"    border-right: 2px solid #8b8f8b;\n"
+"    color:black;    \n"
 "}")
         self.toolButton_33.setText("")
         self.toolButton_33.setObjectName("toolButton_33")
@@ -658,6 +680,7 @@ class Ui_MainWindow(object):
 "    border: 1px solid #c8ccc8;    \n"
 "    border-left: 4px solid #8b8f8b;    \n"
 "    border-bottom: 2px solid #8b8f8b;    \n"
+"    color:black;\n"
 "}")
         self.toolButton_34.setText("")
         self.toolButton_34.setObjectName("toolButton_34")
@@ -672,6 +695,7 @@ class Ui_MainWindow(object):
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
 "    border-bottom: 2px solid #8b8f8b;    \n"
+"    color:black;\n"
 "}")
         self.toolButton_35.setText("")
         self.toolButton_35.setObjectName("toolButton_35")
@@ -687,6 +711,7 @@ class Ui_MainWindow(object):
 "    border: 1px solid #c8ccc8;    \n"
 "    border-right: 2px solid #8b8f8b;    \n"
 "    border-bottom: 2px solid #8b8f8b;    \n"
+"    color:black;\n"
 "}")
         self.toolButton_36.setText("")
         self.toolButton_36.setObjectName("toolButton_36")
@@ -705,6 +730,7 @@ class Ui_MainWindow(object):
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
 "    border-left: 2px solid #8b8f8b;    \n"
+"    color:black;\n"
 "}")
         self.toolButton_47.setText("")
         self.toolButton_47.setObjectName("toolButton_47")
@@ -736,6 +762,7 @@ class Ui_MainWindow(object):
 "    border: 1px solid #c8ccc8;    \n"
 "    border-left: 2px solid #8b8f8b;    \n"
 "    border-top: 2px solid #8b8f8b;    \n"
+"    color:black;\n"
 "}")
         self.toolButton_46.setText("")
         self.toolButton_46.setObjectName("toolButton_46")
@@ -749,6 +776,7 @@ class Ui_MainWindow(object):
         self.toolButton_50.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
+"    color:black;\n"
 "}")
         self.toolButton_50.setText("")
         self.toolButton_50.setObjectName("toolButton_50")
@@ -764,6 +792,7 @@ class Ui_MainWindow(object):
 "    border: 1px solid #c8ccc8;    \n"
 "    border-left: 2px solid #8b8f8b;    \n"
 "    border-bottom: 2px solid #8b8f8b;    \n"
+"    color:black;\n"
 "}")
         self.toolButton_48.setText("")
         self.toolButton_48.setObjectName("toolButton_48")
@@ -778,6 +807,7 @@ class Ui_MainWindow(object):
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
 "    border-bottom: 2px solid #8b8f8b;    \n"
+"    color:black;\n"
 "}")
         self.toolButton_51.setText("")
         self.toolButton_51.setObjectName("toolButton_51")
@@ -806,7 +836,8 @@ class Ui_MainWindow(object):
         self.toolButton_53.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-right: 4px solid #8b8f8b;    \n"
+"    border-right: 4px solid #8b8f8b;\n"
+"    color:black;    \n"
 "}")
         self.toolButton_53.setText("")
         self.toolButton_53.setObjectName("toolButton_53")
@@ -822,6 +853,7 @@ class Ui_MainWindow(object):
 "    border: 1px solid #c8ccc8;    \n"
 "    border-right: 4px solid #8b8f8b;    \n"
 "    border-bottom: 2px solid #8b8f8b;    \n"
+"    color:black;\n"
 "}")
         self.toolButton_54.setText("")
         self.toolButton_54.setObjectName("toolButton_54")
@@ -855,6 +887,7 @@ class Ui_MainWindow(object):
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
 "    border-left: 4px solid #8b8f8b;    \n"
+"    color:black;\n"
 "}")
         self.toolButton_58.setText("")
         self.toolButton_58.setObjectName("toolButton_58")
@@ -867,7 +900,8 @@ class Ui_MainWindow(object):
         self.toolButton_59.setSizePolicy(sizePolicy)
         self.toolButton_59.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
-"    border: 1px solid #c8ccc8;    \n"
+"    border: 1px solid #c8ccc8;\n"
+"    color:black;\n"
 "}")
         self.toolButton_59.setText("")
         self.toolButton_59.setObjectName("toolButton_59")
@@ -896,7 +930,8 @@ class Ui_MainWindow(object):
         self.toolButton_60.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-right: 2px solid #8b8f8b;    \n"
+"    border-right: 2px solid #8b8f8b;\n"
+"    color:black;    \n"
 "}")
         self.toolButton_60.setText("")
         self.toolButton_60.setObjectName("toolButton_60")
@@ -928,6 +963,7 @@ class Ui_MainWindow(object):
 "    border: 1px solid #c8ccc8;    \n"
 "    border-left: 4px solid #8b8f8b;    \n"
 "    border-bottom: 4px solid #8b8f8b;    \n"
+"    color:black;\n"
 "}")
         self.toolButton_61.setText("")
         self.toolButton_61.setObjectName("toolButton_61")
@@ -941,7 +977,8 @@ class Ui_MainWindow(object):
         self.toolButton_62.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-bottom: 4px solid #8b8f8b;    \n"
+"    border-bottom: 4px solid #8b8f8b;\n"
+"    color:black;    \n"
 "}")
         self.toolButton_62.setText("")
         self.toolButton_62.setObjectName("toolButton_62")
@@ -956,7 +993,8 @@ class Ui_MainWindow(object):
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
 "    border-right: 2px solid #8b8f8b;    \n"
-"    border-bottom: 4px solid #8b8f8b;    \n"
+"    border-bottom: 4px solid #8b8f8b;\n"
+"    color:black;    \n"
 "}")
         self.toolButton_63.setText("")
         self.toolButton_63.setObjectName("toolButton_63")
@@ -975,6 +1013,7 @@ class Ui_MainWindow(object):
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
 "    border-bottom: 4px solid #8b8f8b;    \n"
+"    color:black;\n"
 "}")
         self.toolButton_80.setText("")
         self.toolButton_80.setObjectName("toolButton_80")
@@ -989,7 +1028,8 @@ class Ui_MainWindow(object):
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
 "    border-bottom: 4px solid #8b8f8b;    \n"
-"    border-right: 4px solid #8b8f8b;    \n"
+"    border-right: 4px solid #8b8f8b;\n"
+"    color:black;    \n"
 "}")
         self.toolButton_81.setText("")
         self.toolButton_81.setObjectName("toolButton_81")
@@ -1003,7 +1043,8 @@ class Ui_MainWindow(object):
         self.toolButton_78.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-right: 4px solid #8b8f8b;    \n"
+"    border-right: 4px solid #8b8f8b;\n"
+"    color:black;    \n"
 "}")
         self.toolButton_78.setText("")
         self.toolButton_78.setObjectName("toolButton_78")
@@ -1019,6 +1060,7 @@ class Ui_MainWindow(object):
 "    border: 1px solid #c8ccc8;    \n"
 "    border-left: 2px solid #8b8f8b;    \n"
 "    border-bottom: 4px solid #8b8f8b;    \n"
+"    color:black;\n"
 "}")
         self.toolButton_79.setText("")
         self.toolButton_79.setObjectName("toolButton_79")
@@ -1034,6 +1076,7 @@ class Ui_MainWindow(object):
 "    border: 1px solid #c8ccc8;    \n"
 "    border-left: 2px solid #8b8f8b;    \n"
 "    border-top: 2px solid #8b8f8b;    \n"
+"    color:black;\n"
 "}")
         self.toolButton_73.setText("")
         self.toolButton_73.setObjectName("toolButton_73")
@@ -1078,6 +1121,7 @@ class Ui_MainWindow(object):
         self.toolButton_77.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
+"    color:black;\n"
 "}")
         self.toolButton_77.setText("")
         self.toolButton_77.setObjectName("toolButton_77")
@@ -1092,6 +1136,7 @@ class Ui_MainWindow(object):
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
 "    border-left: 2px solid #8b8f8b;    \n"
+"    color:black;\n"
 "}")
         self.toolButton_76.setText("")
         self.toolButton_76.setObjectName("toolButton_76")
@@ -1110,6 +1155,7 @@ class Ui_MainWindow(object):
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
 "    border-top: 2px solid #8b8f8b;    \n"
+"    color:black;\n"
 "}\n"
 "\n"
 "")
@@ -1127,6 +1173,7 @@ class Ui_MainWindow(object):
 "    border: 1px solid #c8ccc8;    \n"
 "    border-right: 2px solid #8b8f8b;    \n"
 "    border-top: 2px solid #8b8f8b;    \n"
+"    color:black;\n"
 "}")
         self.toolButton_38.setText("")
         self.toolButton_38.setObjectName("toolButton_38")
@@ -1139,7 +1186,8 @@ class Ui_MainWindow(object):
         self.toolButton_41.setSizePolicy(sizePolicy)
         self.toolButton_41.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
-"    border: 1px solid #c8ccc8;    \n"
+"    border: 1px solid #c8ccc8;\n"
+"    color:black;\n"
 "}")
         self.toolButton_41.setText("")
         self.toolButton_41.setObjectName("toolButton_41")
@@ -1154,6 +1202,7 @@ class Ui_MainWindow(object):
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
 "    border-left: 2px solid #8b8f8b;    \n"
+"    color:black;\n"
 "}")
         self.toolButton_40.setText("")
         self.toolButton_40.setObjectName("toolButton_40")
@@ -1167,7 +1216,8 @@ class Ui_MainWindow(object):
         self.toolButton_42.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-right: 2px solid #8b8f8b;    \n"
+"    border-right: 2px solid #8b8f8b;\n"
+"    color:black;    \n"
 "}")
         self.toolButton_42.setText("")
         self.toolButton_42.setObjectName("toolButton_42")
@@ -1198,6 +1248,7 @@ class Ui_MainWindow(object):
 "    border: 1px solid #c8ccc8;    \n"
 "    border-left: 2px solid #8b8f8b;    \n"
 "    border-bottom: 2px solid #8b8f8b;    \n"
+"    color:black;\n"
 "}")
         self.toolButton_43.setText("")
         self.toolButton_43.setObjectName("toolButton_43")
@@ -1211,7 +1262,8 @@ class Ui_MainWindow(object):
         self.toolButton_44.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-bottom: 2px solid #8b8f8b;    \n"
+"    border-bottom: 2px solid #8b8f8b;\n"
+"    color:black;\n"
 "}")
         self.toolButton_44.setText("")
         self.toolButton_44.setObjectName("toolButton_44")
@@ -1226,7 +1278,8 @@ class Ui_MainWindow(object):
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
 "    border-right: 2px solid #8b8f8b;    \n"
-"    border-bottom: 2px solid #8b8f8b;    \n"
+"    border-bottom: 2px solid #8b8f8b;\n"
+"    color:black;\n"
 "}")
         self.toolButton_45.setText("")
         self.toolButton_45.setObjectName("toolButton_45")
@@ -1246,6 +1299,7 @@ class Ui_MainWindow(object):
 "    border: 1px solid #c8ccc8;    \n"
 "    border-top: 4px solid #8b8f8b;\n"
 "    border-right: 4px solid #8b8f8b;    \n"
+"     color:black;\n"
 "}")
         self.toolButton_21.setText("")
         self.toolButton_21.setObjectName("toolButton_21")
@@ -1260,6 +1314,7 @@ class Ui_MainWindow(object):
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
 "    border-left: 2px solid #8b8f8b;    \n"
+"    color:black;\n"
 "}")
         self.toolButton_22.setText("")
         self.toolButton_22.setObjectName("toolButton_22")
@@ -1273,7 +1328,8 @@ class Ui_MainWindow(object):
         self.toolButton_24.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-right: 4px solid #8b8f8b;    \n"
+"    border-right: 4px solid #8b8f8b;\n"
+"    color:black;    \n"
 "}")
         self.toolButton_24.setText("")
         self.toolButton_24.setObjectName("toolButton_24")
@@ -1289,6 +1345,7 @@ class Ui_MainWindow(object):
 "    border: 1px solid #c8ccc8;    \n"
 "    border-left: 2px solid #8b8f8b;    \n"
 "    border-bottom: 2px solid #8b8f8b;    \n"
+"    color:black;\n"
 "}")
         self.toolButton_25.setText("")
         self.toolButton_25.setObjectName("toolButton_25")
@@ -1301,7 +1358,8 @@ class Ui_MainWindow(object):
         self.toolButton_23.setSizePolicy(sizePolicy)
         self.toolButton_23.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
-"    border: 1px solid #c8ccc8;    \n"
+"    border: 1px solid #c8ccc8; \n"
+"    color:black;    \n"
 "}")
         self.toolButton_23.setText("")
         self.toolButton_23.setObjectName("toolButton_23")
@@ -1316,7 +1374,7 @@ class Ui_MainWindow(object):
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
 "    border-right: 4px solid #8b8f8b;    \n"
-"    border-bottom: 2px solid #8b8f8b;    \n"
+"    border-bottom: 2px solid #8b8f8b;    color:black;\n"
 "}")
         self.toolButton_27.setText("")
         self.toolButton_27.setObjectName("toolButton_27")
@@ -1331,6 +1389,7 @@ class Ui_MainWindow(object):
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
 "    border-top: 4px solid #8b8f8b;\n"
+"    color:black;\n"
 "}")
         self.toolButton_20.setText("")
         self.toolButton_20.setObjectName("toolButton_20")
@@ -1345,7 +1404,8 @@ class Ui_MainWindow(object):
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
 "    border-left: 2px solid #8b8f8b;    \n"
-"    border-top: 4px solid #8b8f8b;    \n"
+"    border-top: 4px solid #8b8f8b; \n"
+"    color:black;    \n"
 "}")
         self.toolButton_19.setText("")
         self.toolButton_19.setObjectName("toolButton_19")
@@ -1356,6 +1416,12 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_26.sizePolicy().hasHeightForWidth())
         self.toolButton_26.setSizePolicy(sizePolicy)
+        self.toolButton_26.setStyleSheet("QToolButton {\n"
+"    background-color: white;\n"
+"    border: 1px solid #c8ccc8;    \n"
+"    border-bottom: 2px solid #8b8f8b;    \n"
+"    color:black;\n"
+"}")
         self.toolButton_26.setText("")
         self.toolButton_26.setObjectName("toolButton_26")
         self.gridLayout02.addWidget(self.toolButton_26, 2, 1, 1, 1)
@@ -1370,12 +1436,11 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.toolButton_10.sizePolicy().hasHeightForWidth())
         self.toolButton_10.setSizePolicy(sizePolicy)
         self.toolButton_10.setStyleSheet("QToolButton {\n"
-"background-color: white;\n"
-"border: 1px solid #c8ccc8;    \n"
+"    background-color: white;\n"
+"    border: 1px solid #c8ccc8;    \n"
 "    border-left: 2px solid #8b8f8b;    \n"
 "    border-top: 4px solid #8b8f8b;\n"
-"\n"
-"\n"
+"    color:black;\n"
 "}")
         self.toolButton_10.setText("")
         self.toolButton_10.setObjectName("toolButton_10")
@@ -1387,10 +1452,10 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.toolButton_12.sizePolicy().hasHeightForWidth())
         self.toolButton_12.setSizePolicy(sizePolicy)
         self.toolButton_12.setStyleSheet("QToolButton {\n"
-"background-color: white;\n"
-"border: 1px solid #c8ccc8;    \n"
+"    background-color: white;\n"
+"    border: 1px solid #c8ccc8;    \n"
 "    border-top: 4px solid #8b8f8b;\n"
-"\n"
+"    color:black;\n"
 "}")
         self.toolButton_12.setText("")
         self.toolButton_12.setObjectName("toolButton_12")
@@ -1402,10 +1467,10 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.toolButton_11.sizePolicy().hasHeightForWidth())
         self.toolButton_11.setSizePolicy(sizePolicy)
         self.toolButton_11.setStyleSheet("QToolButton {\n"
-"background-color: white;\n"
-"border: 1px solid #c8ccc8;    \n"
+"    background-color: white;\n"
+"    border: 1px solid #c8ccc8;    \n"
 "    border-left: 2px solid #8b8f8b;    \n"
-"\n"
+"    color:black;\n"
 "}")
         self.toolButton_11.setText("")
         self.toolButton_11.setObjectName("toolButton_11")
@@ -1417,12 +1482,11 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.toolButton_14.sizePolicy().hasHeightForWidth())
         self.toolButton_14.setSizePolicy(sizePolicy)
         self.toolButton_14.setStyleSheet("QToolButton {\n"
-"background-color: white;\n"
-"border: 1px solid #c8ccc8;    \n"
+"    background-color: white;\n"
+"    border: 1px solid #c8ccc8;    \n"
 "    border-right: 2px solid #8b8f8b;    \n"
-"    border-top: 4px solid #8b8f8b;\n"
-"\n"
-"\n"
+"    border-top: 4px solid #8b8f8b; \n"
+"    color:black;\n"
 "}")
         self.toolButton_14.setText("")
         self.toolButton_14.setObjectName("toolButton_14")
@@ -1434,10 +1498,10 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.toolButton_15.sizePolicy().hasHeightForWidth())
         self.toolButton_15.setSizePolicy(sizePolicy)
         self.toolButton_15.setStyleSheet("QToolButton {\n"
-"background-color: white;\n"
-"border: 1px solid #c8ccc8;    \n"
-"    border-right: 2px solid #8b8f8b;    \n"
-"\n"
+"    background-color: white;\n"
+"    border: 1px solid #c8ccc8;    \n"
+"    border-right: 2px solid #8b8f8b;\n"
+"    color:black;    \n"
 "}")
         self.toolButton_15.setText("")
         self.toolButton_15.setObjectName("toolButton_15")
@@ -1449,8 +1513,9 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.toolButton_13.sizePolicy().hasHeightForWidth())
         self.toolButton_13.setSizePolicy(sizePolicy)
         self.toolButton_13.setStyleSheet("QToolButton {\n"
-"background-color: white;\n"
-"border: 1px solid #c8ccc8;    \n"
+"    background-color: white;\n"
+"    border: 1px solid #c8ccc8;\n"
+"    color:black;\n"
 "}")
         self.toolButton_13.setText("")
         self.toolButton_13.setObjectName("toolButton_13")
@@ -1462,11 +1527,11 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.toolButton_16.sizePolicy().hasHeightForWidth())
         self.toolButton_16.setSizePolicy(sizePolicy)
         self.toolButton_16.setStyleSheet("QToolButton {\n"
-"background-color: white;\n"
-"border: 1px solid #c8ccc8;    \n"
+"    background-color: white;\n"
+"    border: 1px solid #c8ccc8;    \n"
 "    border-left: 2px solid #8b8f8b;    \n"
 "    border-bottom: 2px solid #8b8f8b;    \n"
-"\n"
+"    color:black;\n"
 "}")
         self.toolButton_16.setText("")
         self.toolButton_16.setObjectName("toolButton_16")
@@ -1478,10 +1543,10 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.toolButton_17.sizePolicy().hasHeightForWidth())
         self.toolButton_17.setSizePolicy(sizePolicy)
         self.toolButton_17.setStyleSheet("QToolButton {\n"
-"background-color: white;\n"
-"border: 1px solid #c8ccc8;    \n"
-"    border-bottom: 2px solid #8b8f8b;    \n"
-"\n"
+"    background-color: white;\n"
+"    border: 1px solid #c8ccc8;    \n"
+"    border-bottom: 2px solid #8b8f8b;\n"
+"    color:black;\n"
 "}")
         self.toolButton_17.setText("")
         self.toolButton_17.setObjectName("toolButton_17")
@@ -1493,11 +1558,11 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.toolButton_18.sizePolicy().hasHeightForWidth())
         self.toolButton_18.setSizePolicy(sizePolicy)
         self.toolButton_18.setStyleSheet("QToolButton {\n"
-"background-color: white;\n"
-"border: 1px solid #c8ccc8;    \n"
+"    background-color: white;\n"
+"    border: 1px solid #c8ccc8;    \n"
 "    border-right: 2px solid #8b8f8b;    \n"
-"    border-bottom: 2px solid #8b8f8b;    \n"
-"\n"
+"    border-bottom: 2px solid #8b8f8b;\n"
+"    color:black;\n"
 "}")
         self.toolButton_18.setText("")
         self.toolButton_18.setObjectName("toolButton_18")
@@ -1531,8 +1596,3 @@ class Ui_MainWindow(object):
         self.easyButton.setText(_translate("MainWindow", "Easy"))
         self.mediumButton.setText(_translate("MainWindow", "Medium"))
         self.hardButton.setText(_translate("MainWindow", "Hard"))
-        self.toolButton_26.setStyleSheet(_translate("MainWindow", "QToolButton {\n"
-"    background-color: white;\n"
-"    border: 1px solid #c8ccc8;    \n"
-"    border-bottom: 2px solid #8b8f8b;    \n"
-"}"))

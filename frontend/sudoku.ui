@@ -538,6 +538,7 @@
 	border: 1px solid #c8ccc8;	
 	border-left: 4px solid #8b8f8b;	
 	border-bottom: 2px solid #8b8f8b;	
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -558,6 +559,7 @@
 	background-color: white;
 	border: 1px solid #c8ccc8;	
 	border-bottom: 2px solid #8b8f8b;	
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -576,7 +578,8 @@
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
-	border: 1px solid #c8ccc8;	
+	border: 1px solid #c8ccc8;
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -598,6 +601,7 @@
 	border: 1px solid #c8ccc8;	
 	border-right: 2px solid #8b8f8b;	
 	border-bottom: 2px solid #8b8f8b;	
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -614,11 +618,12 @@
                </sizepolicy>
               </property>
               <property name="styleSheet">
-               <string notr="true">QToolButton {
+               <string notr="true">QToolButton{
 	background-color: white;
 	border: 1px solid #c8ccc8;	
 	border-top: 4px solid #8b8f8b;
 	border-left: 4px solid #8b8f8b;	
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -629,6 +634,9 @@
               </property>
               <property name="col" stdset="0">
                <number>3</number>
+              </property>
+              <property name="color" stdset="0">
+               <bool>false</bool>
               </property>
              </widget>
             </item>
@@ -644,7 +652,8 @@
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-right: 2px solid #8b8f8b;	
+	border-right: 2px solid #8b8f8b;
+	color:black;	
 }</string>
               </property>
               <property name="text">
@@ -666,6 +675,7 @@
 	border: 1px solid #c8ccc8;	
 	border-right: 2px solid #8b8f8b;	
 	border-top: 4px solid #8b8f8b;	
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -685,7 +695,8 @@
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-left: 4px solid #8b8f8b;	
+	border-left: 4px solid #8b8f8b;
+	color:black;	
 }</string>
               </property>
               <property name="text">
@@ -712,6 +723,7 @@
 	background-color: white;
 	border: 1px solid #c8ccc8;	
 	border-top: 4px solid #8b8f8b;
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -739,6 +751,7 @@
 	background-color: white;
 	border: 1px solid #c8ccc8;	
 	border-left: 2px solid #8b8f8b;	
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -758,7 +771,8 @@
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-right: 2px solid #8b8f8b;	
+	border-right: 2px solid #8b8f8b;
+	color:black;	
 }</string>
               </property>
               <property name="text">
@@ -780,6 +794,7 @@
 	border: 1px solid #c8ccc8;	
 	border-left: 2px solid #8b8f8b;	
 	border-bottom: 4px solid #8b8f8b;	
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -800,6 +815,7 @@
 	background-color: white;
 	border: 1px solid #c8ccc8;	
 	border-top: 2px solid #8b8f8b;	
+	color:black;
 }
 
 </string>
@@ -823,6 +839,7 @@
 	border: 1px solid #c8ccc8;	
 	border-right: 2px solid #8b8f8b;	
 	border-top: 2px solid #8b8f8b;	
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -841,7 +858,8 @@
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
-	border: 1px solid #c8ccc8;	
+	border: 1px solid #c8ccc8;
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -861,7 +879,8 @@
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-bottom: 4px solid #8b8f8b;	
+	border-bottom: 4px solid #8b8f8b;
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -903,7 +922,8 @@
 	background-color: white;
 	border: 1px solid #c8ccc8;	
 	border-right: 2px solid #8b8f8b;	
-	border-bottom: 4px solid #8b8f8b;	
+	border-bottom: 4px solid #8b8f8b;
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -931,6 +951,7 @@
 	background-color: white;
 	border: 1px solid #c8ccc8;	
 	border-top: 2px solid #8b8f8b;	
+	color:black;
 }
 
 </string>
@@ -993,7 +1014,8 @@
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
-	border: 1px solid #c8ccc8;	
+	border: 1px solid #c8ccc8;
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -1014,6 +1036,7 @@
 	background-color: white;
 	border: 1px solid #c8ccc8;	
 	border-left: 4px solid #8b8f8b;	
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -1033,7 +1056,8 @@
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-right: 2px solid #8b8f8b;	
+	border-right: 2px solid #8b8f8b;
+	color:black;	
 }</string>
               </property>
               <property name="text">
@@ -1055,6 +1079,7 @@
 	border: 1px solid #c8ccc8;	
 	border-left: 4px solid #8b8f8b;	
 	border-bottom: 2px solid #8b8f8b;	
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -1075,6 +1100,7 @@
 	background-color: white;
 	border: 1px solid #c8ccc8;	
 	border-bottom: 2px solid #8b8f8b;	
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -1096,6 +1122,7 @@
 	border: 1px solid #c8ccc8;	
 	border-right: 2px solid #8b8f8b;	
 	border-bottom: 2px solid #8b8f8b;	
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -1123,6 +1150,7 @@
 	background-color: white;
 	border: 1px solid #c8ccc8;	
 	border-left: 2px solid #8b8f8b;	
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -1166,6 +1194,7 @@
 	border: 1px solid #c8ccc8;	
 	border-left: 2px solid #8b8f8b;	
 	border-top: 2px solid #8b8f8b;	
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -1185,6 +1214,7 @@
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -1206,6 +1236,7 @@
 	border: 1px solid #c8ccc8;	
 	border-left: 2px solid #8b8f8b;	
 	border-bottom: 2px solid #8b8f8b;	
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -1226,6 +1257,7 @@
 	background-color: white;
 	border: 1px solid #c8ccc8;	
 	border-bottom: 2px solid #8b8f8b;	
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -1266,7 +1298,8 @@
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-right: 4px solid #8b8f8b;	
+	border-right: 4px solid #8b8f8b;
+	color:black;	
 }</string>
               </property>
               <property name="text">
@@ -1288,6 +1321,7 @@
 	border: 1px solid #c8ccc8;	
 	border-right: 4px solid #8b8f8b;	
 	border-bottom: 2px solid #8b8f8b;	
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -1336,6 +1370,7 @@
 	background-color: white;
 	border: 1px solid #c8ccc8;	
 	border-left: 4px solid #8b8f8b;	
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -1354,7 +1389,8 @@
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
-	border: 1px solid #c8ccc8;	
+	border: 1px solid #c8ccc8;
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -1395,7 +1431,8 @@
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-right: 2px solid #8b8f8b;	
+	border-right: 2px solid #8b8f8b;
+	color:black;	
 }</string>
               </property>
               <property name="text">
@@ -1439,6 +1476,7 @@
 	border: 1px solid #c8ccc8;	
 	border-left: 4px solid #8b8f8b;	
 	border-bottom: 4px solid #8b8f8b;	
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -1458,7 +1496,8 @@
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-bottom: 4px solid #8b8f8b;	
+	border-bottom: 4px solid #8b8f8b;
+	color:black;	
 }</string>
               </property>
               <property name="text">
@@ -1479,7 +1518,8 @@
 	background-color: white;
 	border: 1px solid #c8ccc8;	
 	border-right: 2px solid #8b8f8b;	
-	border-bottom: 4px solid #8b8f8b;	
+	border-bottom: 4px solid #8b8f8b;
+	color:black;	
 }</string>
               </property>
               <property name="text">
@@ -1507,6 +1547,7 @@
 	background-color: white;
 	border: 1px solid #c8ccc8;	
 	border-bottom: 4px solid #8b8f8b;	
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -1527,7 +1568,8 @@
 	background-color: white;
 	border: 1px solid #c8ccc8;	
 	border-bottom: 4px solid #8b8f8b;	
-	border-right: 4px solid #8b8f8b;	
+	border-right: 4px solid #8b8f8b;
+	color:black;	
 }</string>
               </property>
               <property name="text">
@@ -1547,7 +1589,8 @@
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-right: 4px solid #8b8f8b;	
+	border-right: 4px solid #8b8f8b;
+	color:black;	
 }</string>
               </property>
               <property name="text">
@@ -1569,6 +1612,7 @@
 	border: 1px solid #c8ccc8;	
 	border-left: 2px solid #8b8f8b;	
 	border-bottom: 4px solid #8b8f8b;	
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -1590,6 +1634,7 @@
 	border: 1px solid #c8ccc8;	
 	border-left: 2px solid #8b8f8b;	
 	border-top: 2px solid #8b8f8b;	
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -1652,6 +1697,7 @@
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -1672,6 +1718,7 @@
 	background-color: white;
 	border: 1px solid #c8ccc8;	
 	border-left: 2px solid #8b8f8b;	
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -1699,6 +1746,7 @@
 	background-color: white;
 	border: 1px solid #c8ccc8;	
 	border-top: 2px solid #8b8f8b;	
+	color:black;
 }
 
 </string>
@@ -1722,6 +1770,7 @@
 	border: 1px solid #c8ccc8;	
 	border-right: 2px solid #8b8f8b;	
 	border-top: 2px solid #8b8f8b;	
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -1740,7 +1789,8 @@
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
-	border: 1px solid #c8ccc8;	
+	border: 1px solid #c8ccc8;
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -1761,6 +1811,7 @@
 	background-color: white;
 	border: 1px solid #c8ccc8;	
 	border-left: 2px solid #8b8f8b;	
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -1780,7 +1831,8 @@
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-right: 2px solid #8b8f8b;	
+	border-right: 2px solid #8b8f8b;
+	color:black;	
 }</string>
               </property>
               <property name="text">
@@ -1823,6 +1875,7 @@
 	border: 1px solid #c8ccc8;	
 	border-left: 2px solid #8b8f8b;	
 	border-bottom: 2px solid #8b8f8b;	
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -1842,7 +1895,8 @@
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-bottom: 2px solid #8b8f8b;	
+	border-bottom: 2px solid #8b8f8b;
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -1863,7 +1917,8 @@
 	background-color: white;
 	border: 1px solid #c8ccc8;	
 	border-right: 2px solid #8b8f8b;	
-	border-bottom: 2px solid #8b8f8b;	
+	border-bottom: 2px solid #8b8f8b;
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -1892,6 +1947,7 @@
 	border: 1px solid #c8ccc8;	
 	border-top: 4px solid #8b8f8b;
 	border-right: 4px solid #8b8f8b;	
+ 	color:black;
 }</string>
               </property>
               <property name="text">
@@ -1912,6 +1968,7 @@
 	background-color: white;
 	border: 1px solid #c8ccc8;	
 	border-left: 2px solid #8b8f8b;	
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -1931,7 +1988,8 @@
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-right: 4px solid #8b8f8b;	
+	border-right: 4px solid #8b8f8b;
+	color:black;	
 }</string>
               </property>
               <property name="text">
@@ -1953,6 +2011,7 @@
 	border: 1px solid #c8ccc8;	
 	border-left: 2px solid #8b8f8b;	
 	border-bottom: 2px solid #8b8f8b;	
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -1971,7 +2030,8 @@
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
-	border: 1px solid #c8ccc8;	
+	border: 1px solid #c8ccc8; 
+	color:black;	
 }</string>
               </property>
               <property name="text">
@@ -1992,7 +2052,7 @@
 	background-color: white;
 	border: 1px solid #c8ccc8;	
 	border-right: 4px solid #8b8f8b;	
-	border-bottom: 2px solid #8b8f8b;	
+	border-bottom: 2px solid #8b8f8b;	color:black;
 }</string>
               </property>
               <property name="text">
@@ -2013,6 +2073,7 @@
 	background-color: white;
 	border: 1px solid #c8ccc8;	
 	border-top: 4px solid #8b8f8b;
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -2033,7 +2094,8 @@
 	background-color: white;
 	border: 1px solid #c8ccc8;	
 	border-left: 2px solid #8b8f8b;	
-	border-top: 4px solid #8b8f8b;	
+	border-top: 4px solid #8b8f8b; 
+	color:black;	
 }</string>
               </property>
               <property name="text">
@@ -2050,10 +2112,11 @@
                </sizepolicy>
               </property>
               <property name="styleSheet">
-               <string>QToolButton {
+               <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
 	border-bottom: 2px solid #8b8f8b;	
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -2078,12 +2141,11 @@
               </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
-background-color: white;
-border: 1px solid #c8ccc8;	
+	background-color: white;
+	border: 1px solid #c8ccc8;	
 	border-left: 2px solid #8b8f8b;	
 	border-top: 4px solid #8b8f8b;
-
-
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -2101,10 +2163,10 @@ border: 1px solid #c8ccc8;
               </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
-background-color: white;
-border: 1px solid #c8ccc8;	
+	background-color: white;
+	border: 1px solid #c8ccc8;	
 	border-top: 4px solid #8b8f8b;
-
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -2122,10 +2184,10 @@ border: 1px solid #c8ccc8;
               </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
-background-color: white;
-border: 1px solid #c8ccc8;	
+	background-color: white;
+	border: 1px solid #c8ccc8;	
 	border-left: 2px solid #8b8f8b;	
-
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -2143,12 +2205,11 @@ border: 1px solid #c8ccc8;
               </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
-background-color: white;
-border: 1px solid #c8ccc8;	
+	background-color: white;
+	border: 1px solid #c8ccc8;	
 	border-right: 2px solid #8b8f8b;	
-	border-top: 4px solid #8b8f8b;
-
-
+	border-top: 4px solid #8b8f8b; 
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -2166,10 +2227,10 @@ border: 1px solid #c8ccc8;
               </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
-background-color: white;
-border: 1px solid #c8ccc8;	
-	border-right: 2px solid #8b8f8b;	
-
+	background-color: white;
+	border: 1px solid #c8ccc8;	
+	border-right: 2px solid #8b8f8b;
+	color:black;	
 }</string>
               </property>
               <property name="text">
@@ -2187,8 +2248,9 @@ border: 1px solid #c8ccc8;
               </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
-background-color: white;
-border: 1px solid #c8ccc8;	
+	background-color: white;
+	border: 1px solid #c8ccc8;
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -2206,11 +2268,11 @@ border: 1px solid #c8ccc8;
               </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
-background-color: white;
-border: 1px solid #c8ccc8;	
+	background-color: white;
+	border: 1px solid #c8ccc8;	
 	border-left: 2px solid #8b8f8b;	
 	border-bottom: 2px solid #8b8f8b;	
-
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -2228,10 +2290,10 @@ border: 1px solid #c8ccc8;
               </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
-background-color: white;
-border: 1px solid #c8ccc8;	
-	border-bottom: 2px solid #8b8f8b;	
-
+	background-color: white;
+	border: 1px solid #c8ccc8;	
+	border-bottom: 2px solid #8b8f8b;
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -2249,11 +2311,11 @@ border: 1px solid #c8ccc8;
               </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
-background-color: white;
-border: 1px solid #c8ccc8;	
+	background-color: white;
+	border: 1px solid #c8ccc8;	
 	border-right: 2px solid #8b8f8b;	
-	border-bottom: 2px solid #8b8f8b;	
-
+	border-bottom: 2px solid #8b8f8b;
+	color:black;
 }</string>
               </property>
               <property name="text">
