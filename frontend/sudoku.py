@@ -20,8 +20,9 @@ class Worker(QtCore.QRunnable):
     def run(self):
         while(True):
             try:
+                print("wait received")
                 result = self.fn(self.conn)
-                print(result)
+                print("received")
                 self.signals.result.emit(result) 
             except socket.error:
                 print("connection closed")
@@ -195,7 +196,7 @@ class sudokuController:
                         if self.mask[i][j] == False:
                             keypad.close() 
                             return
-            payload = {"row" : self.row, "col" : self.col, "value" : int(value)}
+            payload = {"row":self.row,"col":self.col,"value":int(value)}
             #move
             sendPacket(self.conn, 3, json.dumps(payload))
             

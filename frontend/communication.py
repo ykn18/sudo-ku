@@ -12,15 +12,20 @@ def createConnection():
 def receivePacket(conn):
     packet_type = conn.recv(1)
     packet_type = int.from_bytes(packet_type, byteorder='big')
+    print(packet_type)
     payload_length = conn.recv(1)
     payload_length = int.from_bytes(payload_length, byteorder='big')
+    print(payload_length)
     payload = conn.recv(payload_length)
+    print(payload)
     payload = payload.decode('utf-8')
     return packet_type, payload
 
 def sendPacket(conn, packet_type, payload):
     payload_length = len(payload.encode('utf-8'))
+    print("packet type: ", packet_type)
     packet = bytes([packet_type]) + bytes([payload_length]) + payload.encode('utf-8')
+    print(packet)
     conn.sendall(packet)
 
 
