@@ -26,7 +26,7 @@ class Worker(QtCore.QRunnable):
                     self.conn.shutdown(socket.SHUT_RDWR)
                     self.conn.close()
                     print("connection closed")
-                    self.signals.error.emit()
+                    #self.signals.error.emit()
                     break
                 self.signals.result.emit(result) 
             except socket.error:
@@ -63,6 +63,13 @@ class sudokuController:
         self.view.easyButton.pressed.connect(lambda mode = "easy" : self.setDifficulty(mode))
         self.view.mediumButton.pressed.connect(lambda mode = "medium" : self.setDifficulty(mode))
         self.view.hardButton.pressed.connect(lambda mode = "hard" : self.setDifficulty(mode))
+        for r in range(0,9):
+            for c in range(0,9):
+                box_grid = self.view.gridLayout.itemAtPosition(r//3,(c//3)+1)
+                item = box_grid.itemAtPosition(r%3,c%3)        
+                tool_button = item.widget()
+                tool_button.pressed.connect(lambda pos = (r, c): self.onItem(pos[0], pos[1]))
+
         
     def onSignInButton(self):
         username = self.view.usernameLine.text()
@@ -126,7 +133,7 @@ class sudokuController:
                     tool_button.setStyleSheet(style)
                 else:
                     self.count += 1
-                    tool_button.pressed.connect(lambda pos = (r, c): self.onItem(pos[0], pos[1]))
+                    
     
     def onItem(self, row, col):
         self.row = row
@@ -167,7 +174,9 @@ class sudokuController:
             self.count -= 1
 
         tool_button.setText(value)
+         
         self.board[self.row][self.col] = int(value)
+        
         
         verify(self.board, self.row, self.col, self.mask)
                 
@@ -196,16 +205,12 @@ class sudokuController:
                 sendPacket(self.conn, 7, json.dumps(payload).replace(" ", "", -1))
         #collaborative mode
         else:
-            for i in range(9):
-                    for j in range(9):
-                        if self.mask[i][j] == False:
-                            keypad.close() 
-                            return
             payload = {"row":self.row,"col":self.col,"value":int(value)}
             #move
             sendPacket(self.conn, 3, json.dumps(payload).replace(" ", "", -1))
-            
-        keypad.close()    
+        
+        keypad.close()
+           
 
 
     def setMode(self, mode):
@@ -234,17 +239,17 @@ class sudokuController:
             sendPacket(self.conn, 0, json.dumps(match_request))
             worker = Worker(receivePacket,self.conn)
             worker.signals.result.connect(self.packed_received)
-            worker.signals.error.connect(self.error_received)
+            #worker.signals.error.connect(self.error_received)
             self.threadpool.start(worker)
 
-    def error_received(self):
+    '''def error_received(self):
         msg = QMessageBox()
         msg.move(self.view.pos().x() + 100,self.view.pos().y() + 100)
         msg.setIcon(QMessageBox.Information)
         msg.setText("There is a connection error, retry")
         msg.setWindowTitle("Connection Error")
         msg.exec_()
-        self.view.stackedWidget.setCurrentIndex(2)
+        self.view.stackedWidget.setCurrentIndex(2)'''
 
 
     def flushBoard(self):
@@ -257,8 +262,8 @@ class sudokuController:
 
     
     def onMsgButton(self):
-        self.conn.shutdown(socket.SHUT_RDWR)
-        self.conn.close()
+        #self.conn.shutdown(socket.SHUT_RDWR)
+        #self.conn.close()
         self.flushBoard()
         self.view.stackedWidget.setCurrentIndex(2)
 
@@ -352,10 +357,6 @@ class sudokuController:
             msg.exec_()
 
 
-
-
-
-        
 
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
