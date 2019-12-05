@@ -9,6 +9,7 @@ import json
 
 class WorkerSignals(QtCore.QObject):
     result = QtCore.pyqtSignal(tuple)
+    error = QtCore.pyqtSignal()
     
 class Worker(QtCore.QRunnable):
     def __init__(self, fn, conn):
@@ -19,10 +20,14 @@ class Worker(QtCore.QRunnable):
 
     def run(self):
         while(True):
-            try:
-                print("wait received")
+            try:   
                 result = self.fn(self.conn)
-                print("received")
+                if result[0] == 0:
+                    self.conn.shutdown(socket.SHUT_RDWR)
+                    self.conn.close()
+                    print("connection closed")
+                    self.signals.error.emit()
+                    break
                 self.signals.result.emit(result) 
             except socket.error:
                 print("connection closed")
@@ -198,7 +203,7 @@ class sudokuController:
                             return
             payload = {"row":self.row,"col":self.col,"value":int(value)}
             #move
-            sendPacket(self.conn, 3, json.dumps(payload))
+            sendPacket(self.conn, 3, json.dumps(payload).replace(" ", "", -1))
             
         keypad.close()    
 
@@ -213,7 +218,7 @@ class sudokuController:
         self.sendMatchRequest()
 
     def sendMatchRequest(self):
-        match_request = {"token" : self.token, "mode" : self.mode, "difficulty" : self.difficulty}
+        match_request = {"token" : self.token, "mode" : int(self.mode), "difficulty" : self.difficulty}
         try:
             self.conn = createConnection()
         except socket.error:
@@ -229,7 +234,18 @@ class sudokuController:
             sendPacket(self.conn, 0, json.dumps(match_request))
             worker = Worker(receivePacket,self.conn)
             worker.signals.result.connect(self.packed_received)
+            worker.signals.error.connect(self.error_received)
             self.threadpool.start(worker)
+
+    def error_received(self):
+        msg = QMessageBox()
+        msg.move(self.view.pos().x() + 100,self.view.pos().y() + 100)
+        msg.setIcon(QMessageBox.Information)
+        msg.setText("There is a connection error, retry")
+        msg.setWindowTitle("Connection Error")
+        msg.exec_()
+        self.view.stackedWidget.setCurrentIndex(2)
+
 
     def flushBoard(self):
         for r in range(9):
@@ -272,6 +288,7 @@ class sudokuController:
                 msg.buttonClicked.connect(lambda: self.onMsgButton())
                 msg.exec_()
         elif packet_type == 5:
+            if self.mode == "0":
                 msg = QMessageBox()
                 msg.move(self.view.pos().x() + 100,self.view.pos().y() + 100)
                 msg.setIcon(QMessageBox.Information)
@@ -279,11 +296,63 @@ class sudokuController:
                 msg.setWindowTitle("Match finished")
                 msg.buttonClicked.connect(lambda: self.onMsgButton())
                 msg.exec_()
+            else:
+                msg = QMessageBox()
+                msg.move(self.view.pos().x() + 100,self.view.pos().y() + 100)
+                msg.setIcon(QMessageBox.Information)
+                msg.setText("sudoku completed")
+                msg.setWindowTitle("Match finished")
+                msg.buttonClicked.connect(lambda: self.onMsgButton())
+                msg.exec_()
+
         elif packet_type == 4:
-            print(payload)
+            if payload["isLegal"] is False:
+                msg = QMessageBox()
+                msg.move(self.view.pos().x() + 100,self.view.pos().y() + 100)
+                msg.setIcon(QMessageBox.Information)
+                msg.setText("move is not legal")
+                msg.setWindowTitle("Error")
+                msg.buttonClicked.connect(lambda: self.onMsgButton())
+                msg.exec_()
 
         elif packet_type == 6:
-            print(payload)
+            self.updateBoard(payload["row"],payload["col"],payload["value"],payload["done"])
+            
+    def updateBoard(self, row, col, value, done):
+
+        box_grid = self.view.gridLayout.itemAtPosition(row//3, (col//3) + 1)
+        item = box_grid.itemAtPosition(row%3, col%3)        
+        tool_button = item.widget()
+        tool_button.setText(str(value))
+
+        self.board[row][col] = int(value)
+        verify(self.board, row, col, self.mask)
+                
+        for i in range(9):
+            for j in range(9):
+                box_grid = self.view.gridLayout.itemAtPosition(i//3, (j//3) + 1)
+                item = box_grid.itemAtPosition(i%3, j%3)        
+                tool_button = item.widget()
+                if self.mask[i][j] == True:
+                    if "color:red;" in tool_button.styleSheet():
+                        style = tool_button.styleSheet().replace("color:red;", "color:black;")
+                        tool_button.setStyleSheet(style)
+                else:
+                    if "color:black;" in tool_button.styleSheet():
+                        style = tool_button.styleSheet().replace("color:black;", "color:red;")
+                        tool_button.setStyleSheet(style)
+
+        if done is True:
+            msg = QMessageBox()
+            msg.move(self.view.pos().x() + 100,self.view.pos().y() + 100)
+            msg.setIcon(QMessageBox.Information)
+            msg.setText("sudoku completed")
+            msg.setWindowTitle("Match finished")
+            msg.buttonClicked.connect(lambda: self.onMsgButton())
+            msg.exec_()
+
+
+
 
 
         
