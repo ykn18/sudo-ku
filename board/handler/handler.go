@@ -46,20 +46,14 @@ func (s SudokuBoard) CheckSolution(board [9][9]int) bool {
 func (s *SudokuBoard) Move(r, c, val int) (bool, int) {
 	//Check if the position (r, c) is editable
 	if s.editableMask[r][c] == true {
-		//Check if a zero value is being inserted
-		if val == 0 {
-			if s.board[r][c] != 0 {
-				s.board[r][c] = 0
-				s.blanks++
-				return true, s.blanks
-			} else {
-				return true, s.blanks
-			}
-		} else if isLegal(s.board, r, c, val) {
-			s.board[r][c] = val
+		if s.board[r][c] == 0 && val != 0 {
 			s.blanks--
-			return true, s.blanks
 		}
+		if s.board[r][c] != 0 && val == 0 {
+			s.blanks++
+		}
+		s.board[r][c] = val
+		return true, s.blanks
 	}
 	return false, s.blanks
 }

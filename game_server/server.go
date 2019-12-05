@@ -122,6 +122,7 @@ func handleConnectionIn(c net.Conn, ch chan<- Packet) {
 	for {
 		p, err := ReadPacket(c)
 		if err != nil {
+			fmt.Println("Closing the reader socket")
 			c.Close()
 			return
 		}
@@ -132,6 +133,11 @@ func handleConnectionIn(c net.Conn, ch chan<- Packet) {
 func handleConnectionOut(c net.Conn, ch <-chan Packet) {
 	for {
 		p := <-ch
+		if p.Type == 0 {
+			fmt.Println("Closing the writer socket")
+			c.Close()
+			return
+		}
 		err := WritePacket(c, p)
 		if err != nil {
 			c.Close()
@@ -207,6 +213,8 @@ func gameServerChallenge(c1 matchRequestMsg, c2 matchRequestMsg) {
 					if v {
 						msg, _ := json.Marshal(DoneMsg{Done: true})
 						ch2Out <- MakePacket(DonePkt, msg)
+						ch1Out <- Packet{}
+						ch2Out <- Packet{}
 						return
 					}
 				}
@@ -223,6 +231,8 @@ func gameServerChallenge(c1 matchRequestMsg, c2 matchRequestMsg) {
 					if v {
 						msg, _ := json.Marshal(DoneMsg{Done: true})
 						ch1Out <- MakePacket(DonePkt, msg)
+						ch1Out <- Packet{}
+						ch2Out <- Packet{}
 						return
 					}
 				}
@@ -301,6 +311,9 @@ func gameServerCollaborative(c1 matchRequestMsg, c2 matchRequestMsg) {
 						fmt.Println("I'm done")
 						doneMsg, _ := json.Marshal(DoneMsg{Done: true})
 						ch1Out <- MakePacket(DonePkt, doneMsg)
+						//Sends an empty packet to close the writer goroutine
+						ch1Out <- Packet{}
+						ch2Out <- Packet{}
 						return
 					}
 				}
@@ -308,9 +321,9 @@ func gameServerCollaborative(c1 matchRequestMsg, c2 matchRequestMsg) {
 
 		case p2 := <-ch2In:
 			{
-				json.Unmarshal([]byte(p2.Payload), &moveDecoded)
 				switch p2.Type {
 				case MovePkt:
+					json.Unmarshal([]byte(p2.Payload), &moveDecoded)
 					r, r2, done, _ := handleMoveMsgCollaborative(&sudokuBoard, moveDecoded)
 
 					ch2Out <- MakePacket(MoveOutcomePkt, r)
@@ -321,6 +334,9 @@ func gameServerCollaborative(c1 matchRequestMsg, c2 matchRequestMsg) {
 						fmt.Println("I'm done")
 						doneMsg, _ := json.Marshal(DoneMsg{Done: true})
 						ch2Out <- MakePacket(DonePkt, doneMsg)
+						//Sends an empty packet to close the writer goroutine
+						ch1Out <- Packet{}
+						ch2Out <- Packet{}
 						return
 					}
 				}
@@ -333,10 +349,10 @@ func handleMoveMsgCollaborative(s *SudokuBoard, m MoveMsg) (r, r2 []byte, done b
 	done = false
 	legal, remaining := (*s).Move(m.Row, m.Col, m.Value)
 
-	if remaining == 0 {
+	if remaining == 0 && (*s).CheckSolution((*s).GetBoard()) {
 		done = true
 	}
-	fmt.Println(remaining)
+
 	if legal {
 		r2, _ = json.Marshal(ChangeValueMsg{Row: m.Row, Col: m.Col, Value: m.Value, Done: done})
 	}
