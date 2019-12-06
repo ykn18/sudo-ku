@@ -42,9 +42,10 @@ class sudokuController:
     #board
     def __init__(self, view):
         self.view = view
+        self.view.setWindowIcon(QtGui.QIcon("media/icon.png"))
         status_txt = QLabel(self.view.page_6)
         status_txt.setAlignment(QtCore.Qt.AlignCenter)
-        movie = QtGui.QMovie("loading1.gif")
+        movie = QtGui.QMovie("media/loading1.gif")
         status_txt.setMovie(movie)
         movie.start()
         layout = QHBoxLayout()
