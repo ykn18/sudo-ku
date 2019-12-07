@@ -42,15 +42,6 @@ class sudokuController:
     #board
     def __init__(self, view):
         self.view = view
-        self.view.setWindowIcon(QtGui.QIcon("media/icon.png"))
-        status_txt = QLabel(self.view.page_6)
-        status_txt.setAlignment(QtCore.Qt.AlignCenter)
-        movie = QtGui.QMovie("media/loading1.gif")
-        status_txt.setMovie(movie)
-        movie.start()
-        layout = QHBoxLayout()
-        layout.addWidget(status_txt)
-        self.view.page_6.setLayout(layout)
         self.connectSignals()
         self.threadpool = QtCore.QThreadPool()
 
@@ -132,10 +123,20 @@ class sudokuController:
                     tool_button.setText(str(board[r][c]))
                     style = tool_button.styleSheet().replace("background-color: white;", "background-color: #f5f5f5;")
                     tool_button.setStyleSheet(style)
+                    tool_button.setEnabled(False)
                 else:
                     self.count += 1
+
+        self.view.opponentLabel.setText(self.opponent)
+        self.view.timeEdit.setTime(QtCore.QTime(0, 0, 0))
+        self.view.timeEdit.setDisplayFormat('hh:mm:ss')
+        self.timer = QtCore.QTimer()
+        self.timer.timeout.connect(self.updateTime)
+        self.timer.start(1000)
+
+    def updateTime(self):
+        self.view.timeEdit.setTime(self.view.timeEdit.time().addSecs(1))
                     
-    
     def onItem(self, row, col):
         self.row = row
         self.col = col
@@ -202,6 +203,7 @@ class sudokuController:
                         if self.mask[i][j] == False:
                             keypad.close() 
                             return
+                self.timer.stop()
                 payload = {"board" : self.board}
                 sendPacket(self.conn, 7, json.dumps(payload).replace(" ", "", -1))
         #collaborative mode
@@ -218,7 +220,11 @@ class sudokuController:
         self.mode = mode
         self.view.stackedWidget.setCurrentIndex(3)
 
-    def setDifficulty(self, difficulty):  
+    def setDifficulty(self, difficulty):
+        self.view.setWindowIcon(QtGui.QIcon("media/icon.png"))
+        movie = QtGui.QMovie("media/loading1.gif")
+        self.view.loadLabel.setMovie(movie)
+        movie.start()  
         self.view.stackedWidget.setCurrentIndex(4)
         self.difficulty = difficulty
         self.sendMatchRequest()
@@ -260,6 +266,7 @@ class sudokuController:
                 item = box_grid.itemAtPosition(r%3, c%3)        
                 tool_button = item.widget()
                 tool_button.setText("")
+                tool_button.setEnabled(True)
 
     
     def onMsgButton(self):
@@ -282,6 +289,7 @@ class sudokuController:
                 msg.exec_()
                 self.view.stackedWidget.setCurrentIndex(2)
         elif packet_type == 2:
+            self.opponent = payload["opponentUsername"]
             self.fillBoard(payload["board"])
             self.view.stackedWidget.setCurrentIndex(5)
         elif packet_type == 8:
@@ -295,6 +303,7 @@ class sudokuController:
                 msg.exec_()
         elif packet_type == 5:
             if self.mode == "0":
+                self.timer.stop()
                 msg = QMessageBox()
                 msg.move(self.view.pos().x() + 100,self.view.pos().y() + 100)
                 msg.setIcon(QMessageBox.Information)
@@ -303,6 +312,7 @@ class sudokuController:
                 msg.buttonClicked.connect(lambda: self.onMsgButton())
                 msg.exec_()
             else:
+                self.timer.stop()
                 msg = QMessageBox()
                 msg.move(self.view.pos().x() + 100,self.view.pos().y() + 100)
                 msg.setIcon(QMessageBox.Information)
