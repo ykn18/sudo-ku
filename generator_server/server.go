@@ -1,53 +1,95 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
-	"fmt"
 	"log"
+	"math/rand"
 	"net/http"
-	"sudo-ku/board/generator"
-	"sudo-ku/board/handler"
+	"sudo-ku/board/model"
+	"time"
+
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
+
+	"github.com/gorilla/mux"
 )
 
+var client *mongo.Client
+
+type SudokuEntry struct {
+	ID         primitive.ObjectID `json:"_id,omitempty" bson:"_id,omitempty"`
+	Board      [9][9]int          `json:"board,omitempty" bson:"board,omitempty"`
+	Solution   [9][9]int          `json:"solution,omitempty" bson:"solution,omitempty"`
+	Difficulty string             `json:"difficulty,omitempty" bson:"difficulty,omitempty"`
+}
+
 func main() {
-	//ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
-	//client, err := mongo.Connect(ctx, options.Client().ApplyURI("mongodb://localhost:27017"))
-	/*
-		r := mux.NewRouter()
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
+	client, _ = mongo.Connect(ctx, clientOptions)
+	rand.Seed(time.Now().UnixNano())
 
-		r.HandleFunc("/board", getBoard)
-
-		http.ListenAndServe(":8080", r)
-	*/
-
-	/*
-	var s generator.SudokuBoard
-	var c int
-	c = 0
-	s = generator.MakeSudokuBoard("easy")
-	for _, vi := range s.Board {
-		for _, vj := range vi {
-			if vj != 0 {
-				c++
-			}
-		}
-	}*/
-	s := generator.MakeSudokuBoard("easy")
-	fmt.Println(s)
+	r := mux.NewRouter()
+	r.HandleFunc("/board/difficulty={difficulty}", getBoard)
+	http.ListenAndServe(":7070", r)
 }
 
 func getBoard(w http.ResponseWriter, r *http.Request) {
-	s := generator.MakeSudokuBoard("easy")
+	w.Header().Set("Content-Type", "application/json")
+	vars := mux.Vars(r)
+
+	s := getSudokuDB(vars["difficulty"])
 
 	boardJson, err := json.Marshal(s)
 
-	var h handler.SudokuBoard
-	json.Unmarshal(boardJson, &h)
-	log.Println(h)
 	if err != nil {
 		panic(err)
 	}
-	w.Header().Set("Content-Type", "application/json")
+
 	w.WriteHeader(http.StatusOK)
 	w.Write(boardJson)
+}
+
+/*
+func insertSudokuDB(s model.SudokuBoard, diff string) {
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	var e SudokuEntry
+	e.Board = s.Board
+	e.Solution = s.Solution
+	e.Difficulty = diff
+
+	collection := client.Database("sudo-ku").Collection("boards")
+
+	result, _ := collection.InsertOne(ctx, e)
+	fmt.Println(result)
+}
+*/
+
+func getSudokuDB(diff string) (s model.SudokuBoard) {
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	collection := client.Database("sudo-ku").Collection("boards")
+
+	n, _ := collection.CountDocuments(ctx, bson.M{"difficulty": diff})
+	options := options.Find()
+	options.SetLimit(1)
+	options.SetSkip(int64(rand.Intn(int(n - 1))))
+
+	var e SudokuEntry
+	cur, _ := collection.Find(ctx, bson.M{"difficulty": diff}, options)
+	for cur.Next(ctx) {
+		err := cur.Decode(&e)
+		if err != nil {
+			log.Fatal("Error on Decoding the document", err)
+		}
+	}
+	s.Board = e.Board
+	s.Solution = e.Solution
+
+	return s
 }

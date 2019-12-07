@@ -5,7 +5,9 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"net"
+	"net/http"
 	. "sudo-ku/board/handler"
 	"sudo-ku/board/model"
 	. "sudo-ku/game_server/communication"
@@ -158,32 +160,42 @@ func gameServerChallenge(c1 matchRequestMsg, c2 matchRequestMsg) {
 	go handleConnectionOut(c2.conn, ch2Out)
 
 	//var sudokuBoard1 handler.SudokuBoard = handler.SudokuBoard(generator.MakeSudokuBoard(c1.difficulty))
-	sudokuBoard1g := model.SudokuBoard{
-		Board: [9][9]int{
-			{5, 8, 3, 4, 7, 1, 2, 6, 9},
-			{4, 6, 7, 2, 5, 9, 0, 0, 8},
-			{9, 1, 2, 3, 6, 8, 0, 0, 4},
-			{8, 7, 0, 5, 3, 6, 1, 9, 2},
-			{1, 2, 5, 9, 4, 7, 8, 3, 6},
-			{6, 3, 9, 1, 8, 2, 4, 5, 7},
-			{7, 0, 1, 6, 2, 0, 9, 8, 3},
-			{3, 4, 6, 8, 9, 5, 7, 2, 1},
-			{2, 9, 8, 7, 1, 3, 6, 4, 5}},
-		Solution: [9][9]int{
-			{5, 8, 3, 4, 7, 1, 2, 6, 9},
-			{4, 6, 7, 2, 5, 9, 3, 1, 8},
-			{9, 1, 2, 3, 6, 8, 5, 7, 4},
-			{8, 7, 4, 5, 3, 6, 1, 9, 2},
-			{1, 2, 5, 9, 4, 7, 8, 3, 6},
-			{6, 3, 9, 1, 8, 2, 4, 5, 7},
-			{7, 5, 1, 6, 2, 4, 9, 8, 3},
-			{3, 4, 6, 8, 9, 5, 7, 2, 1},
-			{2, 9, 8, 7, 1, 3, 6, 4, 5}},
-		Blanks: 7,
-	}
-	sudokuBoard1JSON, _ := json.Marshal(sudokuBoard1g)
+	response, _ := http.Get("http://localhost:7070/board/difficulty=medium")
+	body, _ := ioutil.ReadAll(response.Body)
+	/*
+			sudokuBoard1g := model.SudokuBoard{
+				Board: [9][9]int{
+					{5, 8, 3, 4, 7, 1, 2, 6, 9},
+					{4, 6, 7, 2, 5, 9, 0, 0, 8},
+					{9, 1, 2, 3, 6, 8, 0, 0, 4},
+					{8, 7, 0, 5, 3, 6, 1, 9, 2},
+					{1, 2, 5, 9, 4, 7, 8, 3, 6},
+					{6, 3, 9, 1, 8, 2, 4, 5, 7},
+					{7, 0, 1, 6, 2, 0, 9, 8, 3},
+					{3, 4, 6, 8, 9, 5, 7, 2, 1},
+					{2, 9, 8, 7, 1, 3, 6, 4, 5}},
+				Solution: [9][9]int{
+					{5, 8, 3, 4, 7, 1, 2, 6, 9},
+					{4, 6, 7, 2, 5, 9, 3, 1, 8},
+					{9, 1, 2, 3, 6, 8, 5, 7, 4},
+					{8, 7, 4, 5, 3, 6, 1, 9, 2},
+					{1, 2, 5, 9, 4, 7, 8, 3, 6},
+					{6, 3, 9, 1, 8, 2, 4, 5, 7},
+					{7, 5, 1, 6, 2, 4, 9, 8, 3},
+					{3, 4, 6, 8, 9, 5, 7, 2, 1},
+					{2, 9, 8, 7, 1, 3, 6, 4, 5}},
+				Blanks: 7,
+			}
+
+
+		sudokuBoard1JSON, _ := json.Marshal(sudokuBoard1g)
+
+
+
+
+	*/
 	var sudokuBoard1 SudokuBoard
-	json.Unmarshal(sudokuBoard1JSON, &sudokuBoard1)
+	json.Unmarshal(body, &sudokuBoard1)
 	sudokuBoard2 := sudokuBoard1
 
 	startMatchMsg1, err1 := json.Marshal(MatchFoundMsg{OpponentUsername: c2.username, Board: sudokuBoard1.GetBoard()})
@@ -274,7 +286,6 @@ func gameServerCollaborative(c1 matchRequestMsg, c2 matchRequestMsg) {
 			{7, 5, 1, 6, 2, 4, 9, 8, 3},
 			{3, 4, 6, 8, 9, 5, 7, 2, 1},
 			{2, 9, 8, 7, 1, 3, 6, 4, 5}},
-		Blanks: 7,
 	}
 	sudokuBoardJSON, _ := json.Marshal(sudokuBoardg)
 	var sudokuBoard SudokuBoard

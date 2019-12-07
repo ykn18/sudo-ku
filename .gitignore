@@ -1,4 +1,4 @@
 *.pyc
-/auth_server/__pycache__
-/frontend/__pycache__
+auth_server/__pycache__/
+frontend/__pycache__/
 

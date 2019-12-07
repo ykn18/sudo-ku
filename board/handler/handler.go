@@ -29,11 +29,12 @@ func (s *SudokuBoard) UnmarshalJSON(b []byte) error {
 
 	s.board = temp.Board
 	s.solution = temp.Solution
-	s.blanks = temp.Blanks
+	s.blanks = 0
 	for i, v := range s.board {
 		for j, _ := range v {
 			if s.board[i][j] == 0 {
 				s.editableMask[i][j] = true
+				s.blanks++
 			}
 		}
 	}
