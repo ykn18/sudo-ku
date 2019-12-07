@@ -28,9 +28,8 @@ class UserLogin(Resource):
     def post(self):
         data = parser.parse_args()
         current_user = UserModel.find_by_username(data['username'])
-
-        if not current_user:
-            return {'message': 'User {} doesn\'t exist'.format(data['username'])}
+        if current_user == None:
+            return {'message': 'User {} doesn\'t exist'.format(data['username'])}, 400
         
         if UserModel.verify_hash(data['password'], current_user.password):
             return {'token' : create_token(data['username'])}, 200
