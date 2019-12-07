@@ -109,7 +109,7 @@ func matchServer(matchChannel chan matchRequestMsg) {
 		if len(*m) > 0 {
 			if (*m)[0].username == currentRequest.username {
 				fmt.Println("sono qui 2")
-				WritePacket(currentRequest.conn, MakePacket(ErrorPkt, []byte(`{msg":"Are you trying to play with yourself?"}`)))
+				WritePacket(currentRequest.conn, MakePacket(ErrorPkt, []byte(`{"msg":"Are you trying to play with yourself?"}`)))
 				continue
 			}
 			fmt.Println("sono qui 3")

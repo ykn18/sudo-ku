@@ -140,7 +140,7 @@ class sudokuController:
             self.conn = createConnection()
         except socket.error:
             message = "There is a connection error, retry"
-            MessageBox("Connetion Error", message, self.view.geometry().center())
+            msg = MessageBox("Connetion Error", message, self.view.geometry().center())
             msg.showMessage()
             self.view.stackedWidget.setCurrentIndex(2)
             print("connetion error")
@@ -156,11 +156,7 @@ class sudokuController:
         packet_type = res[0]
         payload = res[1]
         payload = json.loads(payload)
-        '''if packet_type == MATCH_REQUEST_ACK:
-            if payload["status"] is not 0:
-                MessageBox("Connetion Error", message, self.view.geometry().center())
-                msg.showMessage()
-                self.view.stackedWidget.setCurrentIndex(2)'''
+
         if packet_type == MATCH_FOUND:
             self.opponent = payload["opponentUsername"]
             self.fillBoard(payload["board"])
@@ -185,7 +181,7 @@ class sudokuController:
         elif packet_type == CHANGE_VALUE:
             self.updateBoard(payload["row"],payload["col"],payload["value"])
         elif packet_type == ERROR:
-            msg = MessageBox("Error","Internal server error", self.view.geometry().center())
+            msg = MessageBox("Error",payload["msg"], self.view.geometry().center())
             msg.buttonClicked.connect(lambda: self.onMsgButton())
             msg.showMessage()
   
@@ -254,30 +250,12 @@ class sudokuController:
         box_grid = self.view.gridLayout.itemAtPosition(self.box_grid_row,self.box_grid_col)
         item = box_grid.itemAtPosition(self.item_row, self.item_col)        
         tool_button = item.widget()
-
         if self.board[self.row][self.col] == 0:
             self.count -= 1
-
         tool_button.setText(value)
-         
         self.board[self.row][self.col] = int(value)
-        
-        
         verify(self.board, self.row, self.col, self.mask)
-                
-        for i in range(9):
-            for j in range(9):
-                box_grid = self.view.gridLayout.itemAtPosition(i//3, (j//3) + 1)
-                item = box_grid.itemAtPosition(i%3, j%3)        
-                tool_button = item.widget()
-                if self.mask[i][j] == True:
-                    if "color:red;" in tool_button.styleSheet():
-                        style = tool_button.styleSheet().replace("color:red;", "color:black;")
-                        tool_button.setStyleSheet(style)
-                else:
-                    if "color:black;" in tool_button.styleSheet():
-                        style = tool_button.styleSheet().replace("color:black;", "color:red;")
-                        tool_button.setStyleSheet(style)
+        self.cellsColor()
         #challenge mode
         if self.mode == "0":
             if self.count == 0:
@@ -294,9 +272,24 @@ class sudokuController:
             payload = {"row":self.row,"col":self.col,"value":int(value)}
             #move
             sendPacket(self.conn, MOVE, json.dumps(payload).replace(" ", "", -1))
-        
         keypad.close()
-           
+
+
+    def cellsColor(self):
+        for i in range(9):
+            for j in range(9):
+                box_grid = self.view.gridLayout.itemAtPosition(i//3, (j//3) + 1)
+                item = box_grid.itemAtPosition(i%3, j%3)        
+                tool_button = item.widget()
+                if self.mask[i][j] == True:
+                    if "color:red;" in tool_button.styleSheet():
+                        style = tool_button.styleSheet().replace("color:red;", "color:black;")
+                        tool_button.setStyleSheet(style)
+                else:
+                    if "color:black;" in tool_button.styleSheet():
+                        style = tool_button.styleSheet().replace("color:black;", "color:red;")
+                        tool_button.setStyleSheet(style)
+         
 
     def error_received(self):
         title = "Connection Error"
@@ -321,40 +314,13 @@ class sudokuController:
         self.view.stackedWidget.setCurrentIndex(2)
         
     def updateBoard(self, row, col, value):
-
         box_grid = self.view.gridLayout.itemAtPosition(row//3, (col//3) + 1)
         item = box_grid.itemAtPosition(row%3, col%3)        
         tool_button = item.widget()
         tool_button.setText(str(value))
-
         self.board[row][col] = int(value)
-        verify(self.board, row, col, self.mask)
-                
-        for i in range(9):
-            for j in range(9):
-                box_grid = self.view.gridLayout.itemAtPosition(i//3, (j//3) + 1)
-                item = box_grid.itemAtPosition(i%3, j%3)        
-                tool_button = item.widget()
-                if self.mask[i][j] == True:
-                    if "color:red;" in tool_button.styleSheet():
-                        style = tool_button.styleSheet().replace("color:red;", "color:black;")
-                        tool_button.setStyleSheet(style)
-                else:
-                    if "color:black;" in tool_button.styleSheet():
-                        style = tool_button.styleSheet().replace("color:black;", "color:red;")
-                        tool_button.setStyleSheet(style)
-
-        '''if done is True:
-            msg = QMessageBox()
-            msg.move(self.view.pos().x() + 100,self.view.pos().y() + 100)
-            msg.setIcon(QMessageBox.Information)
-            msg.setText("sudoku completed")
-            msg.setWindowTitle("Match finished")
-            msg.buttonClicked.connect(lambda: self.onMsgButton())
-            msg.exec_()'''
-
-
-
+        verify(self.board, row, col, self.mask)       
+        self.cellsColor()
 
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
