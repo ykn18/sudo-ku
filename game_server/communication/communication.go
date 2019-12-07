@@ -8,16 +8,14 @@ import (
 )
 
 const (
-	MatchRequestPkt    byte = 0
-	MatchRequestAckPkt byte = 1
-	MatchFoundPkt      byte = 2
-	MovePkt            byte = 3
-	MoveOutcomePkt     byte = 4
-	DonePkt            byte = 5
-	ChangeValuePkt     byte = 6
-	CheckSolutionPkt   byte = 7
-	ValidSolutionPkt   byte = 8
-	ErrorPkt           byte = 9
+	MatchRequestPkt  byte = 0
+	MatchFoundPkt    byte = 1
+	CheckSolutionPkt byte = 2
+	ValidSolutionPkt byte = 3
+	DonePkt          byte = 4
+	MovePkt          byte = 5
+	ChangeValuePkt   byte = 6
+	ErrorPkt         byte = 7
 )
 
 type Packet struct {
@@ -32,6 +30,14 @@ func MakePacket(t byte, payload []byte) Packet {
 	p.Size = byte(len(payload))
 	p.Payload = payload
 	return p
+}
+
+func IsOpen(conn net.Conn) bool {
+	_, err := bufio.NewReader(conn).Peek(1)
+	if err == nil {
+		return true
+	}
+	return false
 }
 
 func ReadPacket(conn net.Conn) (Packet, error) {

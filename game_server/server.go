@@ -1,13 +1,10 @@
 package main
 
-//TO DO: ADD CHECK TO SEE IF THE CLIENT IS STILL IN THE QUEUE
-//TO DO: CLOSE WRITING GOROUTINE AT THE END
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
-	"io/ioutil"
 	"net"
-	"net/http"
 	. "sudo-ku/board/handler"
 	"sudo-ku/board/model"
 	. "sudo-ku/game_server/communication"
@@ -20,6 +17,9 @@ type matchRequestMsg struct {
 	mode       int
 	username   string
 }
+
+var errBadRequest = errors.New("Bad request")
+var errInternal = errors.New("Internal server error")
 
 var difficulties = [...]string{"easy", "medium", "hard"}
 
@@ -61,15 +61,10 @@ func handleMatchInit(conn net.Conn, matchChannel chan matchRequestMsg) {
 		if err != nil {
 			return
 		}
-		netData, err := json.Marshal(ClientMatchResponseMsg{Status: 0})
-		//TO DO: ADD CHECK
-		err = WritePacket(conn, MakePacket(MatchRequestAckPkt, netData))
-		if err != nil {
-			fmt.Println("", err)
-		}
 		matchChannel <- matchRequestMsg{conn: conn, difficulty: decodedReq.Difficulty, mode: decodedReq.Mode, username: payload.Username}
+	} else {
+		WritePacket(conn, MakePacket(ErrorPkt, []byte(`{msg":"Authentication error"}`)))
 	}
-	//TO DO: return error
 }
 
 func matchServer(matchChannel chan matchRequestMsg) {
@@ -95,20 +90,35 @@ func matchServer(matchChannel chan matchRequestMsg) {
 		} else if currentRequest.mode == 1 {
 			queues = &matchingQueuesCollaborative
 		} else {
-			//TO DO: return an error to the client for the chosen mode and close the connection
+			WritePacket(currentRequest.conn, MakePacket(ErrorPkt, []byte(`{msg":"Bad request"}`)))
 			continue
 		}
 		m, ok := (*queues)[currentRequest.difficulty]
 
 		//Check if the difficulty of the last request extracted from the channel is legal
 		if !ok {
-			//TO DO: return an error to the client for the chosen difficulty and close the connection
+			WritePacket(currentRequest.conn, MakePacket(ErrorPkt, []byte(`{msg":"Bad request"}`)))
+			continue
 		}
+		/*
+			for len(*m) > 0 && !IsOpen((*m)[0].conn) {
+				fmt.Println("sono qui 1")
+				*m = (*m)[1:]
+			}
+		*/
 		if len(*m) > 0 {
+			if (*m)[0].username == currentRequest.username {
+				fmt.Println("sono qui 2")
+				WritePacket(currentRequest.conn, MakePacket(ErrorPkt, []byte(`{msg":"Are you trying to play with yourself?"}`)))
+				continue
+			}
+			fmt.Println("sono qui 3")
 			r := (*m)[0]
 			*m = (*m)[1:]
 			//Passes the connections of the matched players to the goroutine that manages
 			//the game session
+			fmt.Println(currentRequest.username)
+			fmt.Println(r.username)
 			if currentRequest.mode == 0 {
 				go gameServerChallenge(r, currentRequest)
 			} else {
@@ -159,43 +169,36 @@ func gameServerChallenge(c1 matchRequestMsg, c2 matchRequestMsg) {
 	go handleConnectionIn(c2.conn, ch2In)
 	go handleConnectionOut(c2.conn, ch2Out)
 
-	//var sudokuBoard1 handler.SudokuBoard = handler.SudokuBoard(generator.MakeSudokuBoard(c1.difficulty))
-	response, _ := http.Get("http://localhost:7070/board/difficulty=medium")
-	body, _ := ioutil.ReadAll(response.Body)
-	/*
-			sudokuBoard1g := model.SudokuBoard{
-				Board: [9][9]int{
-					{5, 8, 3, 4, 7, 1, 2, 6, 9},
-					{4, 6, 7, 2, 5, 9, 0, 0, 8},
-					{9, 1, 2, 3, 6, 8, 0, 0, 4},
-					{8, 7, 0, 5, 3, 6, 1, 9, 2},
-					{1, 2, 5, 9, 4, 7, 8, 3, 6},
-					{6, 3, 9, 1, 8, 2, 4, 5, 7},
-					{7, 0, 1, 6, 2, 0, 9, 8, 3},
-					{3, 4, 6, 8, 9, 5, 7, 2, 1},
-					{2, 9, 8, 7, 1, 3, 6, 4, 5}},
-				Solution: [9][9]int{
-					{5, 8, 3, 4, 7, 1, 2, 6, 9},
-					{4, 6, 7, 2, 5, 9, 3, 1, 8},
-					{9, 1, 2, 3, 6, 8, 5, 7, 4},
-					{8, 7, 4, 5, 3, 6, 1, 9, 2},
-					{1, 2, 5, 9, 4, 7, 8, 3, 6},
-					{6, 3, 9, 1, 8, 2, 4, 5, 7},
-					{7, 5, 1, 6, 2, 4, 9, 8, 3},
-					{3, 4, 6, 8, 9, 5, 7, 2, 1},
-					{2, 9, 8, 7, 1, 3, 6, 4, 5}},
-				Blanks: 7,
-			}
+	//response, _ := http.Get("http://localhost:7070/board/difficulty=medium")
+	//body, _ := ioutil.ReadAll(response.Body)
 
+	sudokuBoard1g := model.SudokuBoard{
+		Board: [9][9]int{
+			{5, 8, 3, 4, 7, 1, 2, 6, 9},
+			{4, 6, 7, 2, 5, 9, 0, 0, 8},
+			{9, 1, 2, 3, 6, 8, 0, 0, 4},
+			{8, 7, 0, 5, 3, 6, 1, 9, 2},
+			{1, 2, 5, 9, 4, 7, 8, 3, 6},
+			{6, 3, 9, 1, 8, 2, 4, 5, 7},
+			{7, 0, 1, 6, 2, 0, 9, 8, 3},
+			{3, 4, 6, 8, 9, 5, 7, 2, 1},
+			{2, 9, 8, 7, 1, 3, 6, 4, 5}},
+		Solution: [9][9]int{
+			{5, 8, 3, 4, 7, 1, 2, 6, 9},
+			{4, 6, 7, 2, 5, 9, 3, 1, 8},
+			{9, 1, 2, 3, 6, 8, 5, 7, 4},
+			{8, 7, 4, 5, 3, 6, 1, 9, 2},
+			{1, 2, 5, 9, 4, 7, 8, 3, 6},
+			{6, 3, 9, 1, 8, 2, 4, 5, 7},
+			{7, 5, 1, 6, 2, 4, 9, 8, 3},
+			{3, 4, 6, 8, 9, 5, 7, 2, 1},
+			{2, 9, 8, 7, 1, 3, 6, 4, 5}},
+	}
 
-		sudokuBoard1JSON, _ := json.Marshal(sudokuBoard1g)
+	sudokuBoard1JSON, _ := json.Marshal(sudokuBoard1g)
 
-
-
-
-	*/
 	var sudokuBoard1 SudokuBoard
-	json.Unmarshal(body, &sudokuBoard1)
+	json.Unmarshal(sudokuBoard1JSON, &sudokuBoard1)
 	sudokuBoard2 := sudokuBoard1
 
 	startMatchMsg1, err1 := json.Marshal(MatchFoundMsg{OpponentUsername: c2.username, Board: sudokuBoard1.GetBoard()})
@@ -303,7 +306,7 @@ func gameServerCollaborative(c1 matchRequestMsg, c2 matchRequestMsg) {
 	ch1Out <- MakePacket(MatchFoundPkt, startMatchMsg1)
 	ch2Out <- MakePacket(MatchFoundPkt, startMatchMsg2)
 
-	var moveDecoded MoveMsg
+	doneMsg, _ := json.Marshal(DoneMsg{Done: true})
 
 	for {
 		select {
@@ -311,18 +314,22 @@ func gameServerCollaborative(c1 matchRequestMsg, c2 matchRequestMsg) {
 			{
 				switch p1.Type {
 				case MovePkt:
-					json.Unmarshal([]byte(p1.Payload), &moveDecoded)
-					r, r2, done, _ := handleMoveMsgCollaborative(&sudokuBoard, moveDecoded)
-
-					ch1Out <- MakePacket(MoveOutcomePkt, r)
-					if r2 != nil {
-						ch2Out <- MakePacket(ChangeValuePkt, r2)
+					r, done, err := handleMoveMsgCollaborative(&sudokuBoard, p1)
+					if err != nil {
+						if err == errBadRequest {
+							fmt.Println(err)
+							continue
+						} else {
+							fmt.Println(err)
+							ch1Out <- Packet{}
+							ch2Out <- Packet{}
+							return
+						}
 					}
+					ch2Out <- MakePacket(ChangeValuePkt, r)
 					if done {
-						fmt.Println("I'm done")
-						doneMsg, _ := json.Marshal(DoneMsg{Done: true})
 						ch1Out <- MakePacket(DonePkt, doneMsg)
-						//Sends an empty packet to close the writer goroutine
+						ch2Out <- MakePacket(DonePkt, doneMsg)
 						ch1Out <- Packet{}
 						ch2Out <- Packet{}
 						return
@@ -334,18 +341,22 @@ func gameServerCollaborative(c1 matchRequestMsg, c2 matchRequestMsg) {
 			{
 				switch p2.Type {
 				case MovePkt:
-					json.Unmarshal([]byte(p2.Payload), &moveDecoded)
-					r, r2, done, _ := handleMoveMsgCollaborative(&sudokuBoard, moveDecoded)
-
-					ch2Out <- MakePacket(MoveOutcomePkt, r)
-					if r2 != nil {
-						ch1Out <- MakePacket(ChangeValuePkt, r2)
+					r, done, err := handleMoveMsgCollaborative(&sudokuBoard, p2)
+					if err != nil {
+						if err == errBadRequest {
+							fmt.Println(err)
+							continue
+						} else {
+							fmt.Println(err)
+							ch1Out <- Packet{}
+							ch2Out <- Packet{}
+							return
+						}
 					}
+					ch1Out <- MakePacket(ChangeValuePkt, r)
 					if done {
-						fmt.Println("I'm done")
-						doneMsg, _ := json.Marshal(DoneMsg{Done: true})
+						ch1Out <- MakePacket(DonePkt, doneMsg)
 						ch2Out <- MakePacket(DonePkt, doneMsg)
-						//Sends an empty packet to close the writer goroutine
 						ch1Out <- Packet{}
 						ch2Out <- Packet{}
 						return
@@ -356,17 +367,32 @@ func gameServerCollaborative(c1 matchRequestMsg, c2 matchRequestMsg) {
 	}
 }
 
-func handleMoveMsgCollaborative(s *SudokuBoard, m MoveMsg) (r, r2 []byte, done bool, err error) {
-	done = false
-	legal, remaining := (*s).Move(m.Row, m.Col, m.Value)
+func handleMoveMsgCollaborative(s *SudokuBoard, p Packet) (r []byte, done bool, err error) {
+	var moveDecoded MoveMsg
 
+	err = json.Unmarshal([]byte(p.Payload), &moveDecoded)
+
+	if err != nil {
+		err = errBadRequest
+		return
+	}
+
+	allowed, remaining := (*s).Move(moveDecoded.Row, moveDecoded.Col, moveDecoded.Value)
+
+	if !allowed {
+		err = errBadRequest
+		return
+	}
+
+	changeValResponse, err := json.Marshal(ChangeValueMsg{Row: moveDecoded.Row, Col: moveDecoded.Col, Value: moveDecoded.Value})
+
+	if err != nil {
+		err = errInternal
+		return
+	}
+	r = changeValResponse
 	if remaining == 0 && (*s).CheckSolution((*s).GetBoard()) {
 		done = true
 	}
-
-	if legal {
-		r2, _ = json.Marshal(ChangeValueMsg{Row: m.Row, Col: m.Col, Value: m.Value, Done: done})
-	}
-	r, err = json.Marshal(MoveOutcomeMsg{IsLegal: legal})
-	return
+	return r, done, err
 }
