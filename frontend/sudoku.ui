@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>526</width>
-    <height>507</height>
+    <width>660</width>
+    <height>577</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -22,8 +22,27 @@
     <height>0</height>
    </size>
   </property>
+  <property name="font">
+   <font>
+    <family>Lato</family>
+    <weight>75</weight>
+    <bold>true</bold>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>MainWindow</string>
+  </property>
+  <property name="layoutDirection">
+   <enum>Qt::LeftToRight</enum>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow{
+	background:white;
+}
+QLineEdit{
+border: 4px solid black;
+  border-radius: 4px;
+}</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="sizePolicy">
@@ -32,8 +51,8 @@
      <verstretch>0</verstretch>
     </sizepolicy>
    </property>
-   <layout class="QGridLayout" name="gridLayout_3">
-    <item row="0" column="0">
+   <layout class="QVBoxLayout" name="verticalLayout_8">
+    <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -45,64 +64,95 @@
        <number>0</number>
       </property>
       <widget class="QWidget" name="page">
-       <layout class="QFormLayout" name="formLayout_2">
-        <property name="horizontalSpacing">
-         <number>40</number>
-        </property>
-        <property name="verticalSpacing">
-         <number>20</number>
-        </property>
+       <layout class="QVBoxLayout" name="verticalLayout_7">
         <property name="leftMargin">
-         <number>9</number>
+         <number>0</number>
         </property>
         <property name="topMargin">
          <number>9</number>
         </property>
         <property name="rightMargin">
-         <number>40</number>
+         <number>0</number>
         </property>
-        <item row="0" column="0" colspan="2">
+        <item>
          <widget class="QLabel" name="label">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+            <horstretch>0</horstretch>
+            <verstretch>1</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <family>Lato</family>
+            <pointsize>25</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel {
+	padding-bottom:30px;
+}</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="pixmap">
+           <pixmap>media/logo_test2.png</pixmap>
+          </property>
+          <property name="scaledContents">
+           <bool>true</bool>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="margin">
+           <number>0</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="verticalSpacer_7">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Preferred</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>30</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QLabel" name="usernameLabel">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
           <property name="font">
            <font>
-            <pointsize>30</pointsize>
+            <family>Lato</family>
+            <pointsize>20</pointsize>
             <weight>75</weight>
             <bold>true</bold>
            </font>
           </property>
           <property name="text">
-           <string>Sudo-ku</string>
+           <string>Username</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="usernameLabel">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>20</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>username:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
+        <item>
          <widget class="QLineEdit" name="usernameLine">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -110,40 +160,75 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="styleSheet">
+           <string notr="true">QLineEdit{
+margin-right:100px;
+margin-left:100px;
+border: 4px solid black;
+  border-radius: 4px;
+}</string>
+          </property>
          </widget>
         </item>
-        <item row="2" column="0">
+        <item>
          <widget class="QLabel" name="passwordLabel">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
           <property name="font">
            <font>
+            <family>Lato</family>
             <pointsize>20</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
            </font>
           </property>
           <property name="text">
-           <string>password:</string>
+           <string>Password</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
           </property>
          </widget>
         </item>
-        <item row="2" column="1">
+        <item>
          <widget class="QLineEdit" name="passwordLine">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-            <horstretch>0</horstretch>
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>50</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLineEdit{
+margin-right:100px;
+margin-left:100px;
+border: 4px solid black;
+  border-radius: 4px;
+}</string>
           </property>
           <property name="echoMode">
            <enum>QLineEdit::Password</enum>
           </property>
          </widget>
         </item>
-        <item row="3" column="1">
+        <item>
+         <spacer name="verticalSpacer_8">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
          <widget class="QPushButton" name="signInButton">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -151,15 +236,24 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton{
+margin-right:150px;
+margin-left:150px;
+background:black;
+color:white;
+font-weight: bold;
+}</string>
+          </property>
           <property name="text">
            <string>Sign In</string>
           </property>
          </widget>
         </item>
-        <item row="4" column="1">
+        <item>
          <widget class="QLabel" name="label_4">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -167,15 +261,27 @@
           <property name="text">
            <string>or</string>
           </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
          </widget>
         </item>
-        <item row="5" column="1">
+        <item>
          <widget class="QPushButton" name="signUpButton">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton{
+margin-right:150px;
+margin-left:150px;
+background:black;
+color:white;
+font-weight: bold;
+}</string>
           </property>
           <property name="text">
            <string>Sign Up</string>
@@ -185,14 +291,8 @@
        </layout>
       </widget>
       <widget class="QWidget" name="page_2">
-       <layout class="QFormLayout" name="formLayout">
-        <property name="horizontalSpacing">
-         <number>30</number>
-        </property>
-        <property name="verticalSpacing">
-         <number>20</number>
-        </property>
-        <item row="0" column="0" colspan="2">
+       <layout class="QVBoxLayout" name="verticalLayout_9">
+        <item>
          <widget class="QLabel" name="label_2">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -202,6 +302,7 @@
           </property>
           <property name="font">
            <font>
+            <family>Lato</family>
             <pointsize>30</pointsize>
             <weight>75</weight>
             <bold>true</bold>
@@ -215,7 +316,20 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
+        <item>
+         <spacer name="verticalSpacer_10">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
          <widget class="QLabel" name="usernameLabel_2">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -225,15 +339,21 @@
           </property>
           <property name="font">
            <font>
+            <family>Lato</family>
             <pointsize>20</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
            </font>
           </property>
           <property name="text">
-           <string>username:</string>
+           <string>Username</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
           </property>
          </widget>
         </item>
-        <item row="1" column="1">
+        <item>
          <widget class="QLineEdit" name="usernameLineRegistration">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -241,9 +361,17 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="styleSheet">
+           <string notr="true">QLineEdit{
+margin-right:100px;
+margin-left:100px;
+border: 4px solid black;
+  border-radius: 4px;
+}</string>
+          </property>
          </widget>
         </item>
-        <item row="2" column="0">
+        <item>
          <widget class="QLabel" name="passwordLabel_2">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -253,15 +381,21 @@
           </property>
           <property name="font">
            <font>
+            <family>Lato</family>
             <pointsize>20</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
            </font>
           </property>
           <property name="text">
-           <string>password:</string>
+           <string>Password</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
           </property>
          </widget>
         </item>
-        <item row="2" column="1">
+        <item>
          <widget class="QLineEdit" name="passwordLineRegistration">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -269,12 +403,20 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="styleSheet">
+           <string notr="true">QLineEdit{
+margin-right:100px;
+margin-left:100px;
+border: 4px solid black;
+  border-radius: 4px;
+}</string>
+          </property>
           <property name="echoMode">
            <enum>QLineEdit::Password</enum>
           </property>
          </widget>
         </item>
-        <item row="3" column="0">
+        <item>
          <widget class="QLabel" name="label_3">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -284,30 +426,21 @@
           </property>
           <property name="font">
            <font>
+            <family>Lato</family>
             <pointsize>20</pointsize>
-            <weight>50</weight>
-            <bold>false</bold>
+            <weight>75</weight>
+            <bold>true</bold>
            </font>
           </property>
           <property name="text">
-           <string>repeat pass:</string>
+           <string>Repeat password</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
           </property>
          </widget>
         </item>
-        <item row="5" column="1">
-         <widget class="QPushButton" name="registrationButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Sign Up</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
+        <item>
          <widget class="QLineEdit" name="repeatPasswordLine">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -315,11 +448,54 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="styleSheet">
+           <string notr="true">QLineEdit{
+margin-right:100px;
+margin-left:100px;
+border: 4px solid black;
+  border-radius: 4px;
+}</string>
+          </property>
           <property name="echoMode">
            <enum>QLineEdit::Password</enum>
           </property>
           <property name="alignment">
            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="verticalSpacer_9">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="registrationButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton{
+margin-right:150px;
+margin-left:150px;
+background:black;
+color:white;
+font-weight: bold;
+}</string>
+          </property>
+          <property name="text">
+           <string>Sign Up</string>
           </property>
          </widget>
         </item>
@@ -359,7 +535,20 @@
             <property name="font">
              <font>
               <pointsize>15</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
              </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{
+margin:10px;
+margin-right:80px;
+margin-left:80px;
+border: 8px solid black; 
+background:white;
+font-weight: bold;
+border-radius: 16px;
+}</string>
             </property>
             <property name="text">
              <string>Challenge</string>
@@ -377,7 +566,20 @@
             <property name="font">
              <font>
               <pointsize>15</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
              </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{
+margin:10px;
+margin-right:80px;
+margin-left:80px;
+border: 8px solid black; 
+background:white;
+font-weight: bold;
+border-radius: 16px;
+}</string>
             </property>
             <property name="text">
              <string>Collaborative</string>
@@ -438,7 +640,20 @@
             <property name="font">
              <font>
               <pointsize>15</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
              </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{
+margin:10px;
+margin-right:80px;
+margin-left:80px;
+border: 8px solid black; 
+background:white;
+font-weight: bold;
+border-radius: 16px;
+}</string>
             </property>
             <property name="text">
              <string>Easy</string>
@@ -456,7 +671,20 @@
             <property name="font">
              <font>
               <pointsize>15</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
              </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{
+margin:10px;
+margin-right:80px;
+margin-left:80px;
+border: 8px solid black; 
+background:white;
+font-weight: bold;
+border-radius: 16px;
+}</string>
             </property>
             <property name="text">
              <string>Medium</string>
@@ -474,7 +702,20 @@
             <property name="font">
              <font>
               <pointsize>15</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
              </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{
+margin:10px;
+margin-right:80px;
+margin-left:80px;
+border: 8px solid black; 
+background:white;
+font-weight: bold;
+border-radius: 16px;
+}</string>
             </property>
             <property name="text">
              <string>Hard</string>
@@ -516,7 +757,10 @@
           </property>
           <property name="font">
            <font>
+            <family>Lato</family>
             <pointsize>20</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
            </font>
           </property>
           <property name="text">
@@ -2439,6 +2683,7 @@
           </property>
           <property name="font">
            <font>
+            <family>Lato</family>
             <weight>75</weight>
             <bold>true</bold>
            </font>

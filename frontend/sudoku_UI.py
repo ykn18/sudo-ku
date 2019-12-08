@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'sudoku.ui'
 #
-# Created by: PyQt5 UI code generator 5.12.3
+# Created by: PyQt5 UI code generator 5.13.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -13,13 +13,26 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(526, 507)
+        MainWindow.resize(660, 577)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
         MainWindow.setSizePolicy(sizePolicy)
         MainWindow.setMinimumSize(QtCore.QSize(0, 0))
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setBold(True)
+        font.setWeight(75)
+        MainWindow.setFont(font)
+        MainWindow.setLayoutDirection(QtCore.Qt.LeftToRight)
+        MainWindow.setStyleSheet("QMainWindow{\n"
+"    background:white;\n"
+"}\n"
+"QLineEdit{\n"
+"border: 4px solid black;\n"
+"  border-radius: 4px;\n"
+"}")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -27,8 +40,8 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.centralwidget.sizePolicy().hasHeightForWidth())
         self.centralwidget.setSizePolicy(sizePolicy)
         self.centralwidget.setObjectName("centralwidget")
-        self.gridLayout_3 = QtWidgets.QGridLayout(self.centralwidget)
-        self.gridLayout_3.setObjectName("gridLayout_3")
+        self.verticalLayout_8 = QtWidgets.QVBoxLayout(self.centralwidget)
+        self.verticalLayout_8.setObjectName("verticalLayout_8")
         self.stackedWidget = QtWidgets.QStackedWidget(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -38,95 +51,137 @@ class Ui_MainWindow(object):
         self.stackedWidget.setObjectName("stackedWidget")
         self.page = QtWidgets.QWidget()
         self.page.setObjectName("page")
-        self.formLayout_2 = QtWidgets.QFormLayout(self.page)
-        self.formLayout_2.setContentsMargins(9, 9, 40, -1)
-        self.formLayout_2.setHorizontalSpacing(40)
-        self.formLayout_2.setVerticalSpacing(20)
-        self.formLayout_2.setObjectName("formLayout_2")
+        self.verticalLayout_7 = QtWidgets.QVBoxLayout(self.page)
+        self.verticalLayout_7.setContentsMargins(0, 9, 0, -1)
+        self.verticalLayout_7.setObjectName("verticalLayout_7")
         self.label = QtWidgets.QLabel(self.page)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Ignored)
         sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setVerticalStretch(1)
         sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
         self.label.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
-        font.setPointSize(30)
+        font.setFamily("Lato")
+        font.setPointSize(25)
         font.setBold(True)
         font.setWeight(75)
         self.label.setFont(font)
+        self.label.setStyleSheet("QLabel {\n"
+"    padding-bottom:30px;\n"
+"}")
+        self.label.setText("")
+        self.label.setPixmap(QtGui.QPixmap("media/logo_test2.png"))
+        self.label.setScaledContents(True)
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName("label")
-        self.formLayout_2.setWidget(0, QtWidgets.QFormLayout.SpanningRole, self.label)
+        self.verticalLayout_7.addWidget(self.label)
+        spacerItem = QtWidgets.QSpacerItem(20, 30, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
+        self.verticalLayout_7.addItem(spacerItem)
         self.usernameLabel = QtWidgets.QLabel(self.page)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.usernameLabel.sizePolicy().hasHeightForWidth())
         self.usernameLabel.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
+        font.setFamily("Lato")
         font.setPointSize(20)
+        font.setBold(True)
+        font.setWeight(75)
         self.usernameLabel.setFont(font)
+        self.usernameLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.usernameLabel.setObjectName("usernameLabel")
-        self.formLayout_2.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.usernameLabel)
+        self.verticalLayout_7.addWidget(self.usernameLabel)
         self.usernameLine = QtWidgets.QLineEdit(self.page)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.usernameLine.sizePolicy().hasHeightForWidth())
         self.usernameLine.setSizePolicy(sizePolicy)
+        self.usernameLine.setStyleSheet("QLineEdit{\n"
+"margin-right:100px;\n"
+"margin-left:100px;\n"
+"border: 4px solid black;\n"
+"  border-radius: 4px;\n"
+"}")
         self.usernameLine.setObjectName("usernameLine")
-        self.formLayout_2.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.usernameLine)
+        self.verticalLayout_7.addWidget(self.usernameLine)
         self.passwordLabel = QtWidgets.QLabel(self.page)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.passwordLabel.sizePolicy().hasHeightForWidth())
         self.passwordLabel.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
+        font.setFamily("Lato")
         font.setPointSize(20)
+        font.setBold(True)
+        font.setWeight(75)
         self.passwordLabel.setFont(font)
+        self.passwordLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.passwordLabel.setObjectName("passwordLabel")
-        self.formLayout_2.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.passwordLabel)
+        self.verticalLayout_7.addWidget(self.passwordLabel)
         self.passwordLine = QtWidgets.QLineEdit(self.page)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(50)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.passwordLine.sizePolicy().hasHeightForWidth())
         self.passwordLine.setSizePolicy(sizePolicy)
+        self.passwordLine.setStyleSheet("QLineEdit{\n"
+"margin-right:100px;\n"
+"margin-left:100px;\n"
+"border: 4px solid black;\n"
+"  border-radius: 4px;\n"
+"}")
         self.passwordLine.setEchoMode(QtWidgets.QLineEdit.Password)
         self.passwordLine.setObjectName("passwordLine")
-        self.formLayout_2.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.passwordLine)
+        self.verticalLayout_7.addWidget(self.passwordLine)
+        spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout_7.addItem(spacerItem1)
         self.signInButton = QtWidgets.QPushButton(self.page)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.signInButton.sizePolicy().hasHeightForWidth())
         self.signInButton.setSizePolicy(sizePolicy)
+        self.signInButton.setStyleSheet("QPushButton{\n"
+"margin-right:150px;\n"
+"margin-left:150px;\n"
+"background:black;\n"
+"color:white;\n"
+"font-weight: bold;\n"
+"}")
         self.signInButton.setObjectName("signInButton")
-        self.formLayout_2.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.signInButton)
+        self.verticalLayout_7.addWidget(self.signInButton)
         self.label_4 = QtWidgets.QLabel(self.page)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
         self.label_4.setSizePolicy(sizePolicy)
+        self.label_4.setAlignment(QtCore.Qt.AlignCenter)
         self.label_4.setObjectName("label_4")
-        self.formLayout_2.setWidget(4, QtWidgets.QFormLayout.FieldRole, self.label_4)
+        self.verticalLayout_7.addWidget(self.label_4)
         self.signUpButton = QtWidgets.QPushButton(self.page)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.signUpButton.sizePolicy().hasHeightForWidth())
         self.signUpButton.setSizePolicy(sizePolicy)
+        self.signUpButton.setStyleSheet("QPushButton{\n"
+"margin-right:150px;\n"
+"margin-left:150px;\n"
+"background:black;\n"
+"color:white;\n"
+"font-weight: bold;\n"
+"}")
         self.signUpButton.setObjectName("signUpButton")
-        self.formLayout_2.setWidget(5, QtWidgets.QFormLayout.FieldRole, self.signUpButton)
+        self.verticalLayout_7.addWidget(self.signUpButton)
         self.stackedWidget.addWidget(self.page)
         self.page_2 = QtWidgets.QWidget()
         self.page_2.setObjectName("page_2")
-        self.formLayout = QtWidgets.QFormLayout(self.page_2)
-        self.formLayout.setHorizontalSpacing(30)
-        self.formLayout.setVerticalSpacing(20)
-        self.formLayout.setObjectName("formLayout")
+        self.verticalLayout_9 = QtWidgets.QVBoxLayout(self.page_2)
+        self.verticalLayout_9.setObjectName("verticalLayout_9")
         self.label_2 = QtWidgets.QLabel(self.page_2)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -134,13 +189,16 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
         self.label_2.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
+        font.setFamily("Lato")
         font.setPointSize(30)
         font.setBold(True)
         font.setWeight(75)
         self.label_2.setFont(font)
         self.label_2.setAlignment(QtCore.Qt.AlignCenter)
         self.label_2.setObjectName("label_2")
-        self.formLayout.setWidget(0, QtWidgets.QFormLayout.SpanningRole, self.label_2)
+        self.verticalLayout_9.addWidget(self.label_2)
+        spacerItem2 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout_9.addItem(spacerItem2)
         self.usernameLabel_2 = QtWidgets.QLabel(self.page_2)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -148,18 +206,28 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.usernameLabel_2.sizePolicy().hasHeightForWidth())
         self.usernameLabel_2.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
+        font.setFamily("Lato")
         font.setPointSize(20)
+        font.setBold(True)
+        font.setWeight(75)
         self.usernameLabel_2.setFont(font)
+        self.usernameLabel_2.setAlignment(QtCore.Qt.AlignCenter)
         self.usernameLabel_2.setObjectName("usernameLabel_2")
-        self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.usernameLabel_2)
+        self.verticalLayout_9.addWidget(self.usernameLabel_2)
         self.usernameLineRegistration = QtWidgets.QLineEdit(self.page_2)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.usernameLineRegistration.sizePolicy().hasHeightForWidth())
         self.usernameLineRegistration.setSizePolicy(sizePolicy)
+        self.usernameLineRegistration.setStyleSheet("QLineEdit{\n"
+"margin-right:100px;\n"
+"margin-left:100px;\n"
+"border: 4px solid black;\n"
+"  border-radius: 4px;\n"
+"}")
         self.usernameLineRegistration.setObjectName("usernameLineRegistration")
-        self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.usernameLineRegistration)
+        self.verticalLayout_9.addWidget(self.usernameLineRegistration)
         self.passwordLabel_2 = QtWidgets.QLabel(self.page_2)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -167,19 +235,29 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.passwordLabel_2.sizePolicy().hasHeightForWidth())
         self.passwordLabel_2.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
+        font.setFamily("Lato")
         font.setPointSize(20)
+        font.setBold(True)
+        font.setWeight(75)
         self.passwordLabel_2.setFont(font)
+        self.passwordLabel_2.setAlignment(QtCore.Qt.AlignCenter)
         self.passwordLabel_2.setObjectName("passwordLabel_2")
-        self.formLayout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.passwordLabel_2)
+        self.verticalLayout_9.addWidget(self.passwordLabel_2)
         self.passwordLineRegistration = QtWidgets.QLineEdit(self.page_2)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.passwordLineRegistration.sizePolicy().hasHeightForWidth())
         self.passwordLineRegistration.setSizePolicy(sizePolicy)
+        self.passwordLineRegistration.setStyleSheet("QLineEdit{\n"
+"margin-right:100px;\n"
+"margin-left:100px;\n"
+"border: 4px solid black;\n"
+"  border-radius: 4px;\n"
+"}")
         self.passwordLineRegistration.setEchoMode(QtWidgets.QLineEdit.Password)
         self.passwordLineRegistration.setObjectName("passwordLineRegistration")
-        self.formLayout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.passwordLineRegistration)
+        self.verticalLayout_9.addWidget(self.passwordLineRegistration)
         self.label_3 = QtWidgets.QLabel(self.page_2)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -187,30 +265,47 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
         self.label_3.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
+        font.setFamily("Lato")
         font.setPointSize(20)
-        font.setBold(False)
-        font.setWeight(50)
+        font.setBold(True)
+        font.setWeight(75)
         self.label_3.setFont(font)
+        self.label_3.setAlignment(QtCore.Qt.AlignCenter)
         self.label_3.setObjectName("label_3")
-        self.formLayout.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.label_3)
-        self.registrationButton = QtWidgets.QPushButton(self.page_2)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.registrationButton.sizePolicy().hasHeightForWidth())
-        self.registrationButton.setSizePolicy(sizePolicy)
-        self.registrationButton.setObjectName("registrationButton")
-        self.formLayout.setWidget(5, QtWidgets.QFormLayout.FieldRole, self.registrationButton)
+        self.verticalLayout_9.addWidget(self.label_3)
         self.repeatPasswordLine = QtWidgets.QLineEdit(self.page_2)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.repeatPasswordLine.sizePolicy().hasHeightForWidth())
         self.repeatPasswordLine.setSizePolicy(sizePolicy)
+        self.repeatPasswordLine.setStyleSheet("QLineEdit{\n"
+"margin-right:100px;\n"
+"margin-left:100px;\n"
+"border: 4px solid black;\n"
+"  border-radius: 4px;\n"
+"}")
         self.repeatPasswordLine.setEchoMode(QtWidgets.QLineEdit.Password)
         self.repeatPasswordLine.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.repeatPasswordLine.setObjectName("repeatPasswordLine")
-        self.formLayout.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.repeatPasswordLine)
+        self.verticalLayout_9.addWidget(self.repeatPasswordLine)
+        spacerItem3 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout_9.addItem(spacerItem3)
+        self.registrationButton = QtWidgets.QPushButton(self.page_2)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.registrationButton.sizePolicy().hasHeightForWidth())
+        self.registrationButton.setSizePolicy(sizePolicy)
+        self.registrationButton.setStyleSheet("QPushButton{\n"
+"margin-right:150px;\n"
+"margin-left:150px;\n"
+"background:black;\n"
+"color:white;\n"
+"font-weight: bold;\n"
+"}")
+        self.registrationButton.setObjectName("registrationButton")
+        self.verticalLayout_9.addWidget(self.registrationButton)
         self.stackedWidget.addWidget(self.page_2)
         self.page_3 = QtWidgets.QWidget()
         self.page_3.setObjectName("page_3")
@@ -219,8 +314,8 @@ class Ui_MainWindow(object):
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName("verticalLayout")
-        spacerItem = QtWidgets.QSpacerItem(20, 80, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
-        self.verticalLayout.addItem(spacerItem)
+        spacerItem4 = QtWidgets.QSpacerItem(20, 80, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.verticalLayout.addItem(spacerItem4)
         self.challengeButton = QtWidgets.QPushButton(self.page_3)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -229,7 +324,18 @@ class Ui_MainWindow(object):
         self.challengeButton.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(15)
+        font.setBold(True)
+        font.setWeight(75)
         self.challengeButton.setFont(font)
+        self.challengeButton.setStyleSheet("QPushButton{\n"
+"margin:10px;\n"
+"margin-right:80px;\n"
+"margin-left:80px;\n"
+"border: 8px solid black; \n"
+"background:white;\n"
+"font-weight: bold;\n"
+"border-radius: 16px;\n"
+"}")
         self.challengeButton.setObjectName("challengeButton")
         self.verticalLayout.addWidget(self.challengeButton)
         self.collaborativeButton = QtWidgets.QPushButton(self.page_3)
@@ -240,11 +346,22 @@ class Ui_MainWindow(object):
         self.collaborativeButton.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(15)
+        font.setBold(True)
+        font.setWeight(75)
         self.collaborativeButton.setFont(font)
+        self.collaborativeButton.setStyleSheet("QPushButton{\n"
+"margin:10px;\n"
+"margin-right:80px;\n"
+"margin-left:80px;\n"
+"border: 8px solid black; \n"
+"background:white;\n"
+"font-weight: bold;\n"
+"border-radius: 16px;\n"
+"}")
         self.collaborativeButton.setObjectName("collaborativeButton")
         self.verticalLayout.addWidget(self.collaborativeButton)
-        spacerItem1 = QtWidgets.QSpacerItem(20, 80, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
-        self.verticalLayout.addItem(spacerItem1)
+        spacerItem5 = QtWidgets.QSpacerItem(20, 80, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.verticalLayout.addItem(spacerItem5)
         self.verticalLayout_3.addLayout(self.verticalLayout)
         self.stackedWidget.addWidget(self.page_3)
         self.page_4 = QtWidgets.QWidget()
@@ -254,8 +371,8 @@ class Ui_MainWindow(object):
         self.verticalLayout_2 = QtWidgets.QVBoxLayout()
         self.verticalLayout_2.setSpacing(0)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
-        spacerItem2 = QtWidgets.QSpacerItem(20, 80, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
-        self.verticalLayout_2.addItem(spacerItem2)
+        spacerItem6 = QtWidgets.QSpacerItem(20, 80, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.verticalLayout_2.addItem(spacerItem6)
         self.easyButton = QtWidgets.QPushButton(self.page_4)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -264,7 +381,18 @@ class Ui_MainWindow(object):
         self.easyButton.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(15)
+        font.setBold(True)
+        font.setWeight(75)
         self.easyButton.setFont(font)
+        self.easyButton.setStyleSheet("QPushButton{\n"
+"margin:10px;\n"
+"margin-right:80px;\n"
+"margin-left:80px;\n"
+"border: 8px solid black; \n"
+"background:white;\n"
+"font-weight: bold;\n"
+"border-radius: 16px;\n"
+"}")
         self.easyButton.setObjectName("easyButton")
         self.verticalLayout_2.addWidget(self.easyButton)
         self.mediumButton = QtWidgets.QPushButton(self.page_4)
@@ -275,7 +403,18 @@ class Ui_MainWindow(object):
         self.mediumButton.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(15)
+        font.setBold(True)
+        font.setWeight(75)
         self.mediumButton.setFont(font)
+        self.mediumButton.setStyleSheet("QPushButton{\n"
+"margin:10px;\n"
+"margin-right:80px;\n"
+"margin-left:80px;\n"
+"border: 8px solid black; \n"
+"background:white;\n"
+"font-weight: bold;\n"
+"border-radius: 16px;\n"
+"}")
         self.mediumButton.setObjectName("mediumButton")
         self.verticalLayout_2.addWidget(self.mediumButton)
         self.hardButton = QtWidgets.QPushButton(self.page_4)
@@ -286,11 +425,22 @@ class Ui_MainWindow(object):
         self.hardButton.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(15)
+        font.setBold(True)
+        font.setWeight(75)
         self.hardButton.setFont(font)
+        self.hardButton.setStyleSheet("QPushButton{\n"
+"margin:10px;\n"
+"margin-right:80px;\n"
+"margin-left:80px;\n"
+"border: 8px solid black; \n"
+"background:white;\n"
+"font-weight: bold;\n"
+"border-radius: 16px;\n"
+"}")
         self.hardButton.setObjectName("hardButton")
         self.verticalLayout_2.addWidget(self.hardButton)
-        spacerItem3 = QtWidgets.QSpacerItem(20, 80, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
-        self.verticalLayout_2.addItem(spacerItem3)
+        spacerItem7 = QtWidgets.QSpacerItem(20, 80, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.verticalLayout_2.addItem(spacerItem7)
         self.verticalLayout_4.addLayout(self.verticalLayout_2)
         self.stackedWidget.addWidget(self.page_4)
         self.page_6 = QtWidgets.QWidget()
@@ -305,13 +455,16 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.label_5.sizePolicy().hasHeightForWidth())
         self.label_5.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
+        font.setFamily("Lato")
         font.setPointSize(20)
+        font.setBold(True)
+        font.setWeight(75)
         self.label_5.setFont(font)
         self.label_5.setAlignment(QtCore.Qt.AlignCenter)
         self.label_5.setObjectName("label_5")
         self.verticalLayout_5.addWidget(self.label_5)
-        spacerItem4 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.verticalLayout_5.addItem(spacerItem4)
+        spacerItem8 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout_5.addItem(spacerItem8)
         self.loadLabel = QtWidgets.QLabel(self.page_6)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -322,8 +475,8 @@ class Ui_MainWindow(object):
         self.loadLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.loadLabel.setObjectName("loadLabel")
         self.verticalLayout_5.addWidget(self.loadLabel)
-        spacerItem5 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.verticalLayout_5.addItem(spacerItem5)
+        spacerItem9 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout_5.addItem(spacerItem9)
         self.stackedWidget.addWidget(self.page_6)
         self.page_5 = QtWidgets.QWidget()
         self.page_5.setObjectName("page_5")
@@ -1653,6 +1806,7 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.opponentLabel.sizePolicy().hasHeightForWidth())
         self.opponentLabel.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
+        font.setFamily("Lato")
         font.setBold(True)
         font.setWeight(75)
         self.opponentLabel.setFont(font)
@@ -1661,7 +1815,7 @@ class Ui_MainWindow(object):
         self.opponentLabel.setObjectName("opponentLabel")
         self.gridLayout_12.addWidget(self.opponentLabel, 0, 1, 1, 2)
         self.stackedWidget.addWidget(self.page_5)
-        self.gridLayout_3.addWidget(self.stackedWidget, 0, 0, 1, 1)
+        self.verticalLayout_8.addWidget(self.stackedWidget)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -1671,16 +1825,15 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.label.setText(_translate("MainWindow", "Sudo-ku"))
-        self.usernameLabel.setText(_translate("MainWindow", "username:"))
-        self.passwordLabel.setText(_translate("MainWindow", "password:"))
+        self.usernameLabel.setText(_translate("MainWindow", "Username"))
+        self.passwordLabel.setText(_translate("MainWindow", "Password"))
         self.signInButton.setText(_translate("MainWindow", "Sign In"))
         self.label_4.setText(_translate("MainWindow", "or"))
         self.signUpButton.setText(_translate("MainWindow", "Sign Up"))
         self.label_2.setText(_translate("MainWindow", "Registration"))
-        self.usernameLabel_2.setText(_translate("MainWindow", "username:"))
-        self.passwordLabel_2.setText(_translate("MainWindow", "password:"))
-        self.label_3.setText(_translate("MainWindow", "repeat pass:"))
+        self.usernameLabel_2.setText(_translate("MainWindow", "Username"))
+        self.passwordLabel_2.setText(_translate("MainWindow", "Password"))
+        self.label_3.setText(_translate("MainWindow", "Repeat password"))
         self.registrationButton.setText(_translate("MainWindow", "Sign Up"))
         self.challengeButton.setText(_translate("MainWindow", "Challenge"))
         self.collaborativeButton.setText(_translate("MainWindow", "Collaborative"))
