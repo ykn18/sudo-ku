@@ -145,6 +145,7 @@ class sudokuController:
             self.view.stackedWidget.setCurrentIndex(2)
             print("connetion error")
         else:
+            print("send packet")
             sendPacket(self.conn, MATCH_REQUEST, json.dumps(match_request))
             worker = Worker(receivePacket,self.conn)
             worker.signals.result.connect(self.packed_received)
@@ -305,6 +306,8 @@ class sudokuController:
                 box_grid = self.view.gridLayout.itemAtPosition(r//3, (c//3) + 1)
                 item = box_grid.itemAtPosition(r%3, c%3)        
                 tool_button = item.widget()
+                style = tool_button.styleSheet().replace("background-color: #f5f5f5;", "background-color: white;")
+                tool_button.setStyleSheet(style)
                 tool_button.setText("")
                 tool_button.setEnabled(True)
 
