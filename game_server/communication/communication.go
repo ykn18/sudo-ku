@@ -61,6 +61,9 @@ func ReadPacket(conn net.Conn) (Packet, error) {
 		return p, err
 	}
 
+	if size == 0 {
+		return Packet{Type: t, Size: size, Payload: []byte{}}, nil
+	}
 	_, err = io.ReadFull(r, payload[:int(size)])
 	if err != nil {
 		return p, err
@@ -74,7 +77,9 @@ func ReadPacket(conn net.Conn) (Packet, error) {
 func WritePacket(conn net.Conn, p Packet) error {
 	fmt.Println("I'm sending:", string(p.Type), string(p.Size), string(p.Payload))
 	data := append([]byte{p.Type}, []byte{p.Size}...)
-	data = append(data, p.Payload...)
+	if p.Size > 0 {
+		data = append(data, p.Payload...)
+	}
 
 	_, err := conn.Write(data)
 	return err

@@ -63,7 +63,7 @@ func handleMatchInit(conn net.Conn, matchChannel chan matchRequestMsg) {
 		}
 		matchChannel <- matchRequestMsg{conn: conn, difficulty: decodedReq.Difficulty, mode: decodedReq.Mode, username: payload.Username}
 	} else {
-		WritePacket(conn, MakePacket(ErrorPkt, []byte(`{msg":"Authentication error"}`)))
+		WritePacket(conn, MakePacket(ErrorPkt, []byte(`{"msg":"Authentication error"}`)))
 	}
 }
 
@@ -90,20 +90,21 @@ func matchServer(matchChannel chan matchRequestMsg) {
 		} else if currentRequest.mode == 1 {
 			queues = &matchingQueuesCollaborative
 		} else {
-			WritePacket(currentRequest.conn, MakePacket(ErrorPkt, []byte(`{msg":"Bad request"}`)))
+			WritePacket(currentRequest.conn, MakePacket(ErrorPkt, []byte(`{"msg":"Bad request"}`)))
 			continue
 		}
 		m, ok := (*queues)[currentRequest.difficulty]
 
 		//Check if the difficulty of the last request extracted from the channel is legal
 		if !ok {
-			WritePacket(currentRequest.conn, MakePacket(ErrorPkt, []byte(`{msg":"Bad request"}`)))
+			WritePacket(currentRequest.conn, MakePacket(ErrorPkt, []byte(`{"m"sg":"Bad request"}`)))
 			continue
 		}
 
 		for len(*m) > 0 && !IsOpen((*m)[0].conn) {
-			fmt.Println("sono qui 1")
 			*m = (*m)[1:]
+			fmt.Println("Removing closed connection")
+			fmt.Println(*m)
 		}
 
 		if len(*m) > 0 {
@@ -208,8 +209,8 @@ func gameServerChallenge(c1 matchRequestMsg, c2 matchRequestMsg) {
 
 	if err1 != nil || err2 != nil {
 		fmt.Println("ops")
-		ch1Out <- MakePacket(ErrorPkt, []byte(`{msg":"internal server error"}`))
-		ch2Out <- MakePacket(ErrorPkt, []byte(`{msg":"internal server error"}`))
+		ch1Out <- MakePacket(ErrorPkt, []byte(`{"msg":"internal server error"}`))
+		ch2Out <- MakePacket(ErrorPkt, []byte(`{"msg":"internal server error"}`))
 	}
 
 	ch1Out <- MakePacket(MatchFoundPkt, startMatchMsg1)
@@ -223,6 +224,7 @@ func gameServerChallenge(c1 matchRequestMsg, c2 matchRequestMsg) {
 			{
 				switch p1.Type {
 				case 0:
+					ch2Out <- MakePacket(ErrorPkt, []byte(`{"msg":"Opponent left, you win!"}`))
 					ch1Out <- Packet{}
 					ch2Out <- Packet{}
 					return
@@ -245,6 +247,7 @@ func gameServerChallenge(c1 matchRequestMsg, c2 matchRequestMsg) {
 			{
 				switch p2.Type {
 				case 0:
+					ch1Out <- MakePacket(ErrorPkt, []byte(`{"msg":"Opponent left, you win!"}`))
 					ch1Out <- Packet{}
 					ch2Out <- Packet{}
 					return
@@ -309,8 +312,8 @@ func gameServerCollaborative(c1 matchRequestMsg, c2 matchRequestMsg) {
 
 	if err1 != nil || err2 != nil {
 		fmt.Println("ops")
-		ch1Out <- MakePacket(ErrorPkt, []byte(`{msg":"internal server error"}`))
-		ch2Out <- MakePacket(ErrorPkt, []byte(`{msg":"internal server error"}`))
+		ch1Out <- MakePacket(ErrorPkt, []byte(`{"msg":"internal server error"}`))
+		ch2Out <- MakePacket(ErrorPkt, []byte(`{"msg":"internal server error"}`))
 	}
 
 	ch1Out <- MakePacket(MatchFoundPkt, startMatchMsg1)
@@ -324,6 +327,7 @@ func gameServerCollaborative(c1 matchRequestMsg, c2 matchRequestMsg) {
 			{
 				switch p1.Type {
 				case 0:
+					ch2Out <- MakePacket(ErrorPkt, []byte(`{"msg":"Your friend left, game over!"}`))
 					ch1Out <- Packet{}
 					ch2Out <- Packet{}
 					return
@@ -355,6 +359,7 @@ func gameServerCollaborative(c1 matchRequestMsg, c2 matchRequestMsg) {
 			{
 				switch p2.Type {
 				case 0:
+					ch1Out <- MakePacket(ErrorPkt, []byte(`{"msg":"Your friend left, game over!"}`))
 					ch1Out <- Packet{}
 					ch2Out <- Packet{}
 					return
