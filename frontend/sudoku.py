@@ -64,7 +64,7 @@ class Worker(QtCore.QRunnable):
                     print("connection closed")
                     self.signals.error.emit()
                     break
-                self.signals.result.emit(result) 
+                self.signals.result.emit(result)
             except socket.error:
                 print("connection closed")
                 break
@@ -139,6 +139,7 @@ class sudokuController:
         self.view.stackedWidget.setCurrentIndex(4)
         self.difficulty = difficulty
         self.sendMatchRequest()
+        print("call send match request  ")
 
     def sendMatchRequest(self):
         global waiting
@@ -152,7 +153,7 @@ class sudokuController:
             self.view.stackedWidget.setCurrentIndex(2)
             print("connetion error")
         else:
-            print("send packet")
+            print("send match request")
             sendPacket(self.conn, MATCH_REQUEST, json.dumps(match_request))
             worker = Worker(receivePacket,self.conn)
             worker.signals.result.connect(self.packed_received)

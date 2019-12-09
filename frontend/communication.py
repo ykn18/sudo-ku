@@ -6,7 +6,6 @@ PORT = 8080
 def createConnection():
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.connect((HOST,PORT))
-    print(sock)
     return sock
 
 
