@@ -70,13 +70,8 @@ class Worker(QtCore.QRunnable):
                     self.conn.close()
                     print("connection closed")
                     self.signals.error.emit()
-<<<<<<< HEAD
-                    break
-                self.signals.result.emit(result)
-=======
                     return
                 self.signals.result.emit(result) 
->>>>>>> 27a364d4f0f3759e802919f0284f7d3073c3e10f
             except socket.error:
                 print("connection closed")
                 return
@@ -165,6 +160,7 @@ class sudokuController:
         except socket.error:
             message = "There is a connection error, retry"
             msg = MessageBox("Connetion Error", message, self.view.geometry().center())
+            msg.buttonClicked.connect(lambda: self.onMsgButton())
             msg.showMessage()
             self.view.stackedWidget.setCurrentIndex(2)
             print("connetion error")
@@ -224,6 +220,7 @@ class sudokuController:
 
   
     def onMsgButton(self):
+        self.enableDifficultyButton()
         self.flushBoard()
         self.view.stackedWidget.setCurrentIndex(2)
 
@@ -344,11 +341,12 @@ class sudokuController:
         msg.showMessage()
         self.view.stackedWidget.setCurrentIndex(2)
         
-
-    def flushBoard(self):
+    def enableDifficultyButton(self):
         self.view.easyButton.setEnabled(True)
         self.view.mediumButton.setEnabled(True)
         self.view.hardButton.setEnabled(True)
+
+    def flushBoard(self):
         for r in range(9):
             for c in range(9):
                 box_grid = self.view.gridLayout.itemAtPosition(r//3, (c//3) + 1)
