@@ -108,17 +108,13 @@ func matchServer(matchChannel chan matchRequestMsg) {
 		*/
 		if len(*m) > 0 {
 			if (*m)[0].username == currentRequest.username {
-				fmt.Println("sono qui 2")
 				WritePacket(currentRequest.conn, MakePacket(ErrorPkt, []byte(`{"msg":"Are you trying to play with yourself?"}`)))
 				continue
 			}
-			fmt.Println("sono qui 3")
 			r := (*m)[0]
 			*m = (*m)[1:]
 			//Passes the connections of the matched players to the goroutine that manages
 			//the game session
-			fmt.Println(currentRequest.username)
-			fmt.Println(r.username)
 			if currentRequest.mode == 0 {
 				go gameServerChallenge(r, currentRequest)
 			} else {
@@ -136,6 +132,9 @@ func handleConnectionIn(c net.Conn, ch chan<- Packet) {
 		if err != nil {
 			fmt.Println("Closing the reader socket")
 			c.Close()
+			//A reader goroutine sending an empty packet means that it is closing the connection
+			//because the client is down or the match has finished and is returning
+			ch <- Packet{}
 			return
 		}
 		ch <- p
@@ -145,6 +144,7 @@ func handleConnectionIn(c net.Conn, ch chan<- Packet) {
 func handleConnectionOut(c net.Conn, ch <-chan Packet) {
 	for {
 		p := <-ch
+		//A writer goroutine receiving an empty packet has to close the connection and return
 		if p.Type == 0 {
 			fmt.Println("Closing the writer socket")
 			c.Close()
@@ -169,9 +169,11 @@ func gameServerChallenge(c1 matchRequestMsg, c2 matchRequestMsg) {
 	go handleConnectionIn(c2.conn, ch2In)
 	go handleConnectionOut(c2.conn, ch2Out)
 
-	//response, _ := http.Get("http://localhost:7070/board/difficulty=medium")
-	//body, _ := ioutil.ReadAll(response.Body)
+	/*
+		response, _ := http.Get("http://localhost:7070/board/difficulty=medium")
+		body, _ := ioutil.ReadAll(response.Body)
 
+	*/
 	sudokuBoard1g := model.SudokuBoard{
 		Board: [9][9]int{
 			{5, 8, 3, 4, 7, 1, 2, 6, 9},
@@ -220,6 +222,10 @@ func gameServerChallenge(c1 matchRequestMsg, c2 matchRequestMsg) {
 		case p1 := <-ch1In:
 			{
 				switch p1.Type {
+				case 0:
+					ch1Out <- Packet{}
+					ch2Out <- Packet{}
+					return
 				case CheckSolutionPkt:
 					json.Unmarshal([]byte(p1.Payload), &solutionDecoded)
 					v := sudokuBoard1.CheckSolution(solutionDecoded.Board)
@@ -238,6 +244,10 @@ func gameServerChallenge(c1 matchRequestMsg, c2 matchRequestMsg) {
 		case p2 := <-ch2In:
 			{
 				switch p2.Type {
+				case 0:
+					ch1Out <- Packet{}
+					ch2Out <- Packet{}
+					return
 				case CheckSolutionPkt:
 					json.Unmarshal([]byte(p2.Payload), &solutionDecoded)
 					v := sudokuBoard2.CheckSolution(solutionDecoded.Board)
@@ -313,6 +323,10 @@ func gameServerCollaborative(c1 matchRequestMsg, c2 matchRequestMsg) {
 		case p1 := <-ch1In:
 			{
 				switch p1.Type {
+				case 0:
+					ch1Out <- Packet{}
+					ch2Out <- Packet{}
+					return
 				case MovePkt:
 					r, done, err := handleMoveMsgCollaborative(&sudokuBoard, p1)
 					if err != nil {
@@ -340,6 +354,10 @@ func gameServerCollaborative(c1 matchRequestMsg, c2 matchRequestMsg) {
 		case p2 := <-ch2In:
 			{
 				switch p2.Type {
+				case 0:
+					ch1Out <- Packet{}
+					ch2Out <- Packet{}
+					return
 				case MovePkt:
 					r, done, err := handleMoveMsgCollaborative(&sudokuBoard, p2)
 					if err != nil {

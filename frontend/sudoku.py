@@ -6,14 +6,16 @@ from communication import *
 from board import verify
 import json
 
-MATCH_REQUEST = 0
-MATCH_FOUND = 1
-CHECK_SOLUTION = 2
-VALID_SOLUTION = 3
-DONE = 4
-MOVE = 5
-CHANGE_VALUE = 6
-ERROR = 7
+MATCH_REQUEST = 1
+MATCH_FOUND = 2
+CHECK_SOLUTION = 3
+VALID_SOLUTION = 4
+DONE = 5
+MOVE = 6
+CHANGE_VALUE = 7
+PING = 8
+PING_ACK = 9
+ERROR = 10 
 
 
 class MessageBox(QMessageBox):
@@ -204,7 +206,7 @@ class sudokuController:
                 tool_button = item.widget()
                 if board[r][c] != 0:
                     tool_button.setText(str(board[r][c]))
-                    style = tool_button.styleSheet().replace("background-color: white;", "background-color: #f5f5f5;")
+                    style = tool_button.styleSheet().replace("background-color: white;", "background-color: #dddddd;")
                     tool_button.setStyleSheet(style)
                     tool_button.setEnabled(False)
                 else:
@@ -257,12 +259,13 @@ class sudokuController:
         box_grid = self.view.gridLayout.itemAtPosition(self.box_grid_row,self.box_grid_col)
         item = box_grid.itemAtPosition(self.item_row, self.item_col)        
         tool_button = item.widget()
+        old_value = tool_button.text()
+        old_value = int(old_value) if old_value != "" else 0 
         if self.board[self.row][self.col] == 0:
             self.count -= 1
         tool_button.setText(value)
         self.board[self.row][self.col] = int(value)
-        verify(self.board, self.row, self.col, self.mask)
-        print(self.mask)
+        verify(self.board, self.row, self.col, old_value, int(value), self.mask)
         self.cellsColor()
         #challenge mode
         if self.mode == 0:
@@ -313,7 +316,7 @@ class sudokuController:
                 box_grid = self.view.gridLayout.itemAtPosition(r//3, (c//3) + 1)
                 item = box_grid.itemAtPosition(r%3, c%3)        
                 tool_button = item.widget()
-                style = tool_button.styleSheet().replace("background-color: #f5f5f5;", "background-color: white;")
+                style = tool_button.styleSheet().replace("background-color: #dddddd;", "background-color: white;")
                 tool_button.setStyleSheet(style)
                 tool_button.setText("")
                 tool_button.setEnabled(True)
@@ -323,9 +326,11 @@ class sudokuController:
         box_grid = self.view.gridLayout.itemAtPosition(row//3, (col//3) + 1)
         item = box_grid.itemAtPosition(row%3, col%3)        
         tool_button = item.widget()
+        old_value = tool_button.text()
+        old_value = int(old_value) if old_value != "" else 0 
         tool_button.setText(str(value))
         self.board[row][col] = int(value)
-        verify(self.board, row, col, self.mask)       
+        verify(self.board, row, col, old_value, int(value), self.mask)       
         self.cellsColor()
 
 

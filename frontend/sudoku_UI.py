@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'sudoku.ui'
 #
-# Created by: PyQt5 UI code generator 5.12.3
+# Created by: PyQt5 UI code generator 5.13.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -13,13 +13,27 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(526, 507)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        MainWindow.resize(657, 589)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
         MainWindow.setSizePolicy(sizePolicy)
-        MainWindow.setMinimumSize(QtCore.QSize(0, 0))
+        MainWindow.setMinimumSize(QtCore.QSize(657, 589))
+        MainWindow.setMaximumSize(QtCore.QSize(657, 589))
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setBold(True)
+        font.setWeight(75)
+        MainWindow.setFont(font)
+        MainWindow.setLayoutDirection(QtCore.Qt.LeftToRight)
+        MainWindow.setStyleSheet("QMainWindow{\n"
+"    background:white;\n"
+"}\n"
+"QLineEdit{\n"
+"border: 4px solid black;\n"
+"  border-radius: 4px;\n"
+"}")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -27,8 +41,8 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.centralwidget.sizePolicy().hasHeightForWidth())
         self.centralwidget.setSizePolicy(sizePolicy)
         self.centralwidget.setObjectName("centralwidget")
-        self.gridLayout_3 = QtWidgets.QGridLayout(self.centralwidget)
-        self.gridLayout_3.setObjectName("gridLayout_3")
+        self.verticalLayout_8 = QtWidgets.QVBoxLayout(self.centralwidget)
+        self.verticalLayout_8.setObjectName("verticalLayout_8")
         self.stackedWidget = QtWidgets.QStackedWidget(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -38,95 +52,147 @@ class Ui_MainWindow(object):
         self.stackedWidget.setObjectName("stackedWidget")
         self.page = QtWidgets.QWidget()
         self.page.setObjectName("page")
-        self.formLayout_2 = QtWidgets.QFormLayout(self.page)
-        self.formLayout_2.setContentsMargins(9, 9, 40, -1)
-        self.formLayout_2.setHorizontalSpacing(40)
-        self.formLayout_2.setVerticalSpacing(20)
-        self.formLayout_2.setObjectName("formLayout_2")
+        self.verticalLayout_7 = QtWidgets.QVBoxLayout(self.page)
+        self.verticalLayout_7.setContentsMargins(0, 9, 0, -1)
+        self.verticalLayout_7.setObjectName("verticalLayout_7")
         self.label = QtWidgets.QLabel(self.page)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Ignored)
         sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setVerticalStretch(1)
         sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
         self.label.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
-        font.setPointSize(30)
+        font.setFamily("Lato")
+        font.setPointSize(25)
         font.setBold(True)
         font.setWeight(75)
         self.label.setFont(font)
+        self.label.setStyleSheet("QLabel {\n"
+"    padding-bottom:30px;\n"
+"}")
+        self.label.setText("")
+        self.label.setPixmap(QtGui.QPixmap("media/logo_test2.png"))
+        self.label.setScaledContents(True)
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName("label")
-        self.formLayout_2.setWidget(0, QtWidgets.QFormLayout.SpanningRole, self.label)
+        self.verticalLayout_7.addWidget(self.label)
+        spacerItem = QtWidgets.QSpacerItem(20, 30, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
+        self.verticalLayout_7.addItem(spacerItem)
         self.usernameLabel = QtWidgets.QLabel(self.page)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.usernameLabel.sizePolicy().hasHeightForWidth())
         self.usernameLabel.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
+        font.setFamily("Lato")
         font.setPointSize(20)
+        font.setBold(True)
+        font.setWeight(75)
         self.usernameLabel.setFont(font)
+        self.usernameLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.usernameLabel.setObjectName("usernameLabel")
-        self.formLayout_2.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.usernameLabel)
+        self.verticalLayout_7.addWidget(self.usernameLabel)
         self.usernameLine = QtWidgets.QLineEdit(self.page)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.usernameLine.sizePolicy().hasHeightForWidth())
         self.usernameLine.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setBold(True)
+        font.setWeight(75)
+        self.usernameLine.setFont(font)
+        self.usernameLine.setStyleSheet("QLineEdit{\n"
+"margin-right:100px;\n"
+"margin-left:100px;\n"
+"border: 4px solid black;\n"
+"  border-radius: 4px;\n"
+"}")
         self.usernameLine.setObjectName("usernameLine")
-        self.formLayout_2.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.usernameLine)
+        self.verticalLayout_7.addWidget(self.usernameLine)
         self.passwordLabel = QtWidgets.QLabel(self.page)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.passwordLabel.sizePolicy().hasHeightForWidth())
         self.passwordLabel.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
+        font.setFamily("Lato")
         font.setPointSize(20)
+        font.setBold(True)
+        font.setWeight(75)
         self.passwordLabel.setFont(font)
+        self.passwordLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.passwordLabel.setObjectName("passwordLabel")
-        self.formLayout_2.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.passwordLabel)
+        self.verticalLayout_7.addWidget(self.passwordLabel)
         self.passwordLine = QtWidgets.QLineEdit(self.page)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(50)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.passwordLine.sizePolicy().hasHeightForWidth())
         self.passwordLine.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setBold(True)
+        font.setWeight(75)
+        self.passwordLine.setFont(font)
+        self.passwordLine.setStyleSheet("QLineEdit{\n"
+"margin-right:100px;\n"
+"margin-left:100px;\n"
+"border: 4px solid black;\n"
+"  border-radius: 4px;\n"
+"}")
         self.passwordLine.setEchoMode(QtWidgets.QLineEdit.Password)
         self.passwordLine.setObjectName("passwordLine")
-        self.formLayout_2.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.passwordLine)
+        self.verticalLayout_7.addWidget(self.passwordLine)
+        spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout_7.addItem(spacerItem1)
         self.signInButton = QtWidgets.QPushButton(self.page)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.signInButton.sizePolicy().hasHeightForWidth())
         self.signInButton.setSizePolicy(sizePolicy)
+        self.signInButton.setStyleSheet("QPushButton{\n"
+"margin-right:150px;\n"
+"margin-left:150px;\n"
+"background:black;\n"
+"color:white;\n"
+"font-weight: bold;\n"
+"}")
         self.signInButton.setObjectName("signInButton")
-        self.formLayout_2.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.signInButton)
+        self.verticalLayout_7.addWidget(self.signInButton)
         self.label_4 = QtWidgets.QLabel(self.page)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
         self.label_4.setSizePolicy(sizePolicy)
+        self.label_4.setAlignment(QtCore.Qt.AlignCenter)
         self.label_4.setObjectName("label_4")
-        self.formLayout_2.setWidget(4, QtWidgets.QFormLayout.FieldRole, self.label_4)
+        self.verticalLayout_7.addWidget(self.label_4)
         self.signUpButton = QtWidgets.QPushButton(self.page)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.signUpButton.sizePolicy().hasHeightForWidth())
         self.signUpButton.setSizePolicy(sizePolicy)
+        self.signUpButton.setStyleSheet("QPushButton{\n"
+"margin-right:150px;\n"
+"margin-left:150px;\n"
+"background:black;\n"
+"color:white;\n"
+"font-weight: bold;\n"
+"}")
         self.signUpButton.setObjectName("signUpButton")
-        self.formLayout_2.setWidget(5, QtWidgets.QFormLayout.FieldRole, self.signUpButton)
+        self.verticalLayout_7.addWidget(self.signUpButton)
         self.stackedWidget.addWidget(self.page)
         self.page_2 = QtWidgets.QWidget()
         self.page_2.setObjectName("page_2")
-        self.formLayout = QtWidgets.QFormLayout(self.page_2)
-        self.formLayout.setHorizontalSpacing(30)
-        self.formLayout.setVerticalSpacing(20)
-        self.formLayout.setObjectName("formLayout")
+        self.verticalLayout_9 = QtWidgets.QVBoxLayout(self.page_2)
+        self.verticalLayout_9.setObjectName("verticalLayout_9")
         self.label_2 = QtWidgets.QLabel(self.page_2)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -134,13 +200,16 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
         self.label_2.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
+        font.setFamily("Lato")
         font.setPointSize(30)
         font.setBold(True)
         font.setWeight(75)
         self.label_2.setFont(font)
         self.label_2.setAlignment(QtCore.Qt.AlignCenter)
         self.label_2.setObjectName("label_2")
-        self.formLayout.setWidget(0, QtWidgets.QFormLayout.SpanningRole, self.label_2)
+        self.verticalLayout_9.addWidget(self.label_2)
+        spacerItem2 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout_9.addItem(spacerItem2)
         self.usernameLabel_2 = QtWidgets.QLabel(self.page_2)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -148,18 +217,28 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.usernameLabel_2.sizePolicy().hasHeightForWidth())
         self.usernameLabel_2.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
+        font.setFamily("Lato")
         font.setPointSize(20)
+        font.setBold(True)
+        font.setWeight(75)
         self.usernameLabel_2.setFont(font)
+        self.usernameLabel_2.setAlignment(QtCore.Qt.AlignCenter)
         self.usernameLabel_2.setObjectName("usernameLabel_2")
-        self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.usernameLabel_2)
+        self.verticalLayout_9.addWidget(self.usernameLabel_2)
         self.usernameLineRegistration = QtWidgets.QLineEdit(self.page_2)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.usernameLineRegistration.sizePolicy().hasHeightForWidth())
         self.usernameLineRegistration.setSizePolicy(sizePolicy)
+        self.usernameLineRegistration.setStyleSheet("QLineEdit{\n"
+"margin-right:100px;\n"
+"margin-left:100px;\n"
+"border: 4px solid black;\n"
+"  border-radius: 4px;\n"
+"}")
         self.usernameLineRegistration.setObjectName("usernameLineRegistration")
-        self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.usernameLineRegistration)
+        self.verticalLayout_9.addWidget(self.usernameLineRegistration)
         self.passwordLabel_2 = QtWidgets.QLabel(self.page_2)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -167,19 +246,29 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.passwordLabel_2.sizePolicy().hasHeightForWidth())
         self.passwordLabel_2.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
+        font.setFamily("Lato")
         font.setPointSize(20)
+        font.setBold(True)
+        font.setWeight(75)
         self.passwordLabel_2.setFont(font)
+        self.passwordLabel_2.setAlignment(QtCore.Qt.AlignCenter)
         self.passwordLabel_2.setObjectName("passwordLabel_2")
-        self.formLayout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.passwordLabel_2)
+        self.verticalLayout_9.addWidget(self.passwordLabel_2)
         self.passwordLineRegistration = QtWidgets.QLineEdit(self.page_2)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.passwordLineRegistration.sizePolicy().hasHeightForWidth())
         self.passwordLineRegistration.setSizePolicy(sizePolicy)
+        self.passwordLineRegistration.setStyleSheet("QLineEdit{\n"
+"margin-right:100px;\n"
+"margin-left:100px;\n"
+"border: 4px solid black;\n"
+"  border-radius: 4px;\n"
+"}")
         self.passwordLineRegistration.setEchoMode(QtWidgets.QLineEdit.Password)
         self.passwordLineRegistration.setObjectName("passwordLineRegistration")
-        self.formLayout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.passwordLineRegistration)
+        self.verticalLayout_9.addWidget(self.passwordLineRegistration)
         self.label_3 = QtWidgets.QLabel(self.page_2)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -187,30 +276,47 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
         self.label_3.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
+        font.setFamily("Lato")
         font.setPointSize(20)
-        font.setBold(False)
-        font.setWeight(50)
+        font.setBold(True)
+        font.setWeight(75)
         self.label_3.setFont(font)
+        self.label_3.setAlignment(QtCore.Qt.AlignCenter)
         self.label_3.setObjectName("label_3")
-        self.formLayout.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.label_3)
-        self.registrationButton = QtWidgets.QPushButton(self.page_2)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.registrationButton.sizePolicy().hasHeightForWidth())
-        self.registrationButton.setSizePolicy(sizePolicy)
-        self.registrationButton.setObjectName("registrationButton")
-        self.formLayout.setWidget(5, QtWidgets.QFormLayout.FieldRole, self.registrationButton)
+        self.verticalLayout_9.addWidget(self.label_3)
         self.repeatPasswordLine = QtWidgets.QLineEdit(self.page_2)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.repeatPasswordLine.sizePolicy().hasHeightForWidth())
         self.repeatPasswordLine.setSizePolicy(sizePolicy)
+        self.repeatPasswordLine.setStyleSheet("QLineEdit{\n"
+"margin-right:100px;\n"
+"margin-left:100px;\n"
+"border: 4px solid black;\n"
+"  border-radius: 4px;\n"
+"}")
         self.repeatPasswordLine.setEchoMode(QtWidgets.QLineEdit.Password)
         self.repeatPasswordLine.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.repeatPasswordLine.setObjectName("repeatPasswordLine")
-        self.formLayout.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.repeatPasswordLine)
+        self.verticalLayout_9.addWidget(self.repeatPasswordLine)
+        spacerItem3 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout_9.addItem(spacerItem3)
+        self.registrationButton = QtWidgets.QPushButton(self.page_2)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.registrationButton.sizePolicy().hasHeightForWidth())
+        self.registrationButton.setSizePolicy(sizePolicy)
+        self.registrationButton.setStyleSheet("QPushButton{\n"
+"margin-right:150px;\n"
+"margin-left:150px;\n"
+"background:black;\n"
+"color:white;\n"
+"font-weight: bold;\n"
+"}")
+        self.registrationButton.setObjectName("registrationButton")
+        self.verticalLayout_9.addWidget(self.registrationButton)
         self.stackedWidget.addWidget(self.page_2)
         self.page_3 = QtWidgets.QWidget()
         self.page_3.setObjectName("page_3")
@@ -219,8 +325,8 @@ class Ui_MainWindow(object):
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName("verticalLayout")
-        spacerItem = QtWidgets.QSpacerItem(20, 80, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
-        self.verticalLayout.addItem(spacerItem)
+        spacerItem4 = QtWidgets.QSpacerItem(20, 80, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.verticalLayout.addItem(spacerItem4)
         self.challengeButton = QtWidgets.QPushButton(self.page_3)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -229,7 +335,18 @@ class Ui_MainWindow(object):
         self.challengeButton.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(15)
+        font.setBold(True)
+        font.setWeight(75)
         self.challengeButton.setFont(font)
+        self.challengeButton.setStyleSheet("QPushButton{\n"
+"margin:10px;\n"
+"margin-right:80px;\n"
+"margin-left:80px;\n"
+"border: 8px solid black; \n"
+"background:white;\n"
+"font-weight: bold;\n"
+"border-radius: 16px;\n"
+"}")
         self.challengeButton.setObjectName("challengeButton")
         self.verticalLayout.addWidget(self.challengeButton)
         self.collaborativeButton = QtWidgets.QPushButton(self.page_3)
@@ -240,11 +357,22 @@ class Ui_MainWindow(object):
         self.collaborativeButton.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(15)
+        font.setBold(True)
+        font.setWeight(75)
         self.collaborativeButton.setFont(font)
+        self.collaborativeButton.setStyleSheet("QPushButton{\n"
+"margin:10px;\n"
+"margin-right:80px;\n"
+"margin-left:80px;\n"
+"border: 8px solid black; \n"
+"background:white;\n"
+"font-weight: bold;\n"
+"border-radius: 16px;\n"
+"}")
         self.collaborativeButton.setObjectName("collaborativeButton")
         self.verticalLayout.addWidget(self.collaborativeButton)
-        spacerItem1 = QtWidgets.QSpacerItem(20, 80, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
-        self.verticalLayout.addItem(spacerItem1)
+        spacerItem5 = QtWidgets.QSpacerItem(20, 80, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.verticalLayout.addItem(spacerItem5)
         self.verticalLayout_3.addLayout(self.verticalLayout)
         self.stackedWidget.addWidget(self.page_3)
         self.page_4 = QtWidgets.QWidget()
@@ -254,8 +382,8 @@ class Ui_MainWindow(object):
         self.verticalLayout_2 = QtWidgets.QVBoxLayout()
         self.verticalLayout_2.setSpacing(0)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
-        spacerItem2 = QtWidgets.QSpacerItem(20, 80, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
-        self.verticalLayout_2.addItem(spacerItem2)
+        spacerItem6 = QtWidgets.QSpacerItem(20, 80, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.verticalLayout_2.addItem(spacerItem6)
         self.easyButton = QtWidgets.QPushButton(self.page_4)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -264,7 +392,18 @@ class Ui_MainWindow(object):
         self.easyButton.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(15)
+        font.setBold(True)
+        font.setWeight(75)
         self.easyButton.setFont(font)
+        self.easyButton.setStyleSheet("QPushButton{\n"
+"margin:10px;\n"
+"margin-right:80px;\n"
+"margin-left:80px;\n"
+"border: 8px solid black; \n"
+"background:white;\n"
+"font-weight: bold;\n"
+"border-radius: 16px;\n"
+"}")
         self.easyButton.setObjectName("easyButton")
         self.verticalLayout_2.addWidget(self.easyButton)
         self.mediumButton = QtWidgets.QPushButton(self.page_4)
@@ -275,7 +414,18 @@ class Ui_MainWindow(object):
         self.mediumButton.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(15)
+        font.setBold(True)
+        font.setWeight(75)
         self.mediumButton.setFont(font)
+        self.mediumButton.setStyleSheet("QPushButton{\n"
+"margin:10px;\n"
+"margin-right:80px;\n"
+"margin-left:80px;\n"
+"border: 8px solid black; \n"
+"background:white;\n"
+"font-weight: bold;\n"
+"border-radius: 16px;\n"
+"}")
         self.mediumButton.setObjectName("mediumButton")
         self.verticalLayout_2.addWidget(self.mediumButton)
         self.hardButton = QtWidgets.QPushButton(self.page_4)
@@ -286,11 +436,22 @@ class Ui_MainWindow(object):
         self.hardButton.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(15)
+        font.setBold(True)
+        font.setWeight(75)
         self.hardButton.setFont(font)
+        self.hardButton.setStyleSheet("QPushButton{\n"
+"margin:10px;\n"
+"margin-right:80px;\n"
+"margin-left:80px;\n"
+"border: 8px solid black; \n"
+"background:white;\n"
+"font-weight: bold;\n"
+"border-radius: 16px;\n"
+"}")
         self.hardButton.setObjectName("hardButton")
         self.verticalLayout_2.addWidget(self.hardButton)
-        spacerItem3 = QtWidgets.QSpacerItem(20, 80, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
-        self.verticalLayout_2.addItem(spacerItem3)
+        spacerItem7 = QtWidgets.QSpacerItem(20, 80, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.verticalLayout_2.addItem(spacerItem7)
         self.verticalLayout_4.addLayout(self.verticalLayout_2)
         self.stackedWidget.addWidget(self.page_4)
         self.page_6 = QtWidgets.QWidget()
@@ -305,13 +466,16 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.label_5.sizePolicy().hasHeightForWidth())
         self.label_5.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
+        font.setFamily("Lato")
         font.setPointSize(20)
+        font.setBold(True)
+        font.setWeight(75)
         self.label_5.setFont(font)
         self.label_5.setAlignment(QtCore.Qt.AlignCenter)
         self.label_5.setObjectName("label_5")
         self.verticalLayout_5.addWidget(self.label_5)
-        spacerItem4 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.verticalLayout_5.addItem(spacerItem4)
+        spacerItem8 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout_5.addItem(spacerItem8)
         self.loadLabel = QtWidgets.QLabel(self.page_6)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -322,8 +486,8 @@ class Ui_MainWindow(object):
         self.loadLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.loadLabel.setObjectName("loadLabel")
         self.verticalLayout_5.addWidget(self.loadLabel)
-        spacerItem5 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.verticalLayout_5.addItem(spacerItem5)
+        spacerItem9 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout_5.addItem(spacerItem9)
         self.stackedWidget.addWidget(self.page_6)
         self.page_5 = QtWidgets.QWidget()
         self.page_5.setObjectName("page_5")
@@ -335,6 +499,11 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_6.sizePolicy().hasHeightForWidth())
         self.label_6.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_6.setFont(font)
         self.label_6.setObjectName("label_6")
         self.gridLayout_12.addWidget(self.label_6, 0, 0, 1, 1)
         self.gridLayout = QtWidgets.QGridLayout()
@@ -350,11 +519,17 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_4.sizePolicy().hasHeightForWidth())
         self.toolButton_4.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_4.setFont(font)
         self.toolButton_4.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-right: 2px solid #8b8f8b;    \n"
-"    border-top: 4px solid #8b8f8b;    \n"
+"    border-right: 2px solid black;    \n"
+"    border-top: 4px solid black; \n"
 "    color:black;\n"
 "}")
         self.toolButton_4.setText("")
@@ -366,11 +541,17 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_7.sizePolicy().hasHeightForWidth())
         self.toolButton_7.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_7.setFont(font)
         self.toolButton_7.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-left: 4px solid #8b8f8b;    \n"
-"    border-bottom: 2px solid #8b8f8b;    \n"
+"    border-left: 4px solid black;    \n"
+"    border-bottom: 2px solid black;    \n"
 "    color:black;\n"
 "}")
         self.toolButton_7.setText("")
@@ -382,10 +563,16 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_2.sizePolicy().hasHeightForWidth())
         self.toolButton_2.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_2.setFont(font)
         self.toolButton_2.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-left: 4px solid #8b8f8b;\n"
+"    border-left: 4px solid black;\n"
 "    color:black;    \n"
 "}")
         self.toolButton_2.setText("")
@@ -399,10 +586,16 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_8.sizePolicy().hasHeightForWidth())
         self.toolButton_8.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_8.setFont(font)
         self.toolButton_8.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-bottom: 2px solid #8b8f8b;    \n"
+"    border-bottom: 2px solid black;    \n"
 "    color:black;\n"
 "}")
         self.toolButton_8.setText("")
@@ -414,11 +607,17 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_9.sizePolicy().hasHeightForWidth())
         self.toolButton_9.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_9.setFont(font)
         self.toolButton_9.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-right: 2px solid #8b8f8b;    \n"
-"    border-bottom: 2px solid #8b8f8b;    \n"
+"    border-right: 2px solid black;    \n"
+"    border-bottom: 2px solid black;\n"
 "    color:black;\n"
 "}")
         self.toolButton_9.setText("")
@@ -430,10 +629,16 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_3.sizePolicy().hasHeightForWidth())
         self.toolButton_3.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_3.setFont(font)
         self.toolButton_3.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-top: 4px solid #8b8f8b;\n"
+"    border-top: 4px solid black;\n"
 "    color:black;\n"
 "}")
         self.toolButton_3.setText("")
@@ -445,10 +650,16 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_6.sizePolicy().hasHeightForWidth())
         self.toolButton_6.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_6.setFont(font)
         self.toolButton_6.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-right: 2px solid #8b8f8b;\n"
+"    border-right: 2px solid black;\n"
 "    color:black;    \n"
 "}")
         self.toolButton_6.setText("")
@@ -460,11 +671,17 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_1.sizePolicy().hasHeightForWidth())
         self.toolButton_1.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_1.setFont(font)
         self.toolButton_1.setStyleSheet("QToolButton{\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-top: 4px solid #8b8f8b;\n"
-"    border-left: 4px solid #8b8f8b;    \n"
+"    border-top: 4px solid black;\n"
+"    border-left: 4px solid black;    \n"
 "    color:black;\n"
 "}")
         self.toolButton_1.setText("")
@@ -479,6 +696,12 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_5.sizePolicy().hasHeightForWidth())
         self.toolButton_5.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_5.setFont(font)
         self.toolButton_5.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;\n"
@@ -497,10 +720,16 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_67.sizePolicy().hasHeightForWidth())
         self.toolButton_67.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_67.setFont(font)
         self.toolButton_67.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-left: 2px solid #8b8f8b;    \n"
+"    border-left: 2px solid black;    \n"
 "    color:black;\n"
 "}")
         self.toolButton_67.setText("")
@@ -512,10 +741,16 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_69.sizePolicy().hasHeightForWidth())
         self.toolButton_69.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_69.setFont(font)
         self.toolButton_69.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-right: 2px solid #8b8f8b;\n"
+"    border-right: 2px solid black;\n"
 "    color:black;    \n"
 "}")
         self.toolButton_69.setText("")
@@ -527,11 +762,17 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_70.sizePolicy().hasHeightForWidth())
         self.toolButton_70.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_70.setFont(font)
         self.toolButton_70.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-left: 2px solid #8b8f8b;    \n"
-"    border-bottom: 4px solid #8b8f8b;    \n"
+"    border-left: 2px solid black;    \n"
+"    border-bottom: 4px solid black;    \n"
 "    color:black;\n"
 "}")
         self.toolButton_70.setText("")
@@ -543,10 +784,16 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_65.sizePolicy().hasHeightForWidth())
         self.toolButton_65.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_65.setFont(font)
         self.toolButton_65.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-top: 2px solid #8b8f8b;    \n"
+"    border-top: 2px solid black;    \n"
 "    color:black;\n"
 "}\n"
 "\n"
@@ -560,11 +807,17 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_66.sizePolicy().hasHeightForWidth())
         self.toolButton_66.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_66.setFont(font)
         self.toolButton_66.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-right: 2px solid #8b8f8b;    \n"
-"    border-top: 2px solid #8b8f8b;    \n"
+"    border-right: 2px solid black;    \n"
+"    border-top: 2px solid black;    \n"
 "    color:black;\n"
 "}")
         self.toolButton_66.setText("")
@@ -576,6 +829,12 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_68.sizePolicy().hasHeightForWidth())
         self.toolButton_68.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_68.setFont(font)
         self.toolButton_68.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;\n"
@@ -590,10 +849,16 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_71.sizePolicy().hasHeightForWidth())
         self.toolButton_71.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_71.setFont(font)
         self.toolButton_71.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-bottom: 4px solid #8b8f8b;\n"
+"    border-bottom: 4px solid black;    \n"
 "    color:black;\n"
 "}")
         self.toolButton_71.setText("")
@@ -605,11 +870,17 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_64.sizePolicy().hasHeightForWidth())
         self.toolButton_64.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_64.setFont(font)
         self.toolButton_64.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-left: 2px solid #8b8f8b;    \n"
-"    border-top: 2px solid #8b8f8b;    \n"
+"    border-left: 2px solid black;    \n"
+"    border-top: 2px solid black;    \n"
 "    color:black;\n"
 "}")
         self.toolButton_64.setText("")
@@ -621,11 +892,17 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_72.sizePolicy().hasHeightForWidth())
         self.toolButton_72.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_72.setFont(font)
         self.toolButton_72.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-right: 2px solid #8b8f8b;    \n"
-"    border-bottom: 4px solid #8b8f8b;\n"
+"    border-right: 2px solid black;    \n"
+"    border-bottom: 4px solid black;\n"
 "    color:black;\n"
 "}")
         self.toolButton_72.setText("")
@@ -641,10 +918,16 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_30.sizePolicy().hasHeightForWidth())
         self.toolButton_30.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_30.setFont(font)
         self.toolButton_30.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-top: 2px solid #8b8f8b;    \n"
+"    border-top: 2px solid black;    \n"
 "    color:black;\n"
 "}\n"
 "\n"
@@ -658,11 +941,17 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_28.sizePolicy().hasHeightForWidth())
         self.toolButton_28.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_28.setFont(font)
         self.toolButton_28.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-left: 4px solid #8b8f8b;    \n"
-"    border-top: 2px solid #8b8f8b;    \n"
+"    border-left: 4px solid black;    \n"
+"    border-top: 2px solid black;    \n"
 "    color:black;\n"
 "}")
         self.toolButton_28.setText("")
@@ -674,11 +963,17 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_29.sizePolicy().hasHeightForWidth())
         self.toolButton_29.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_29.setFont(font)
         self.toolButton_29.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-right: 2px solid #8b8f8b;    \n"
-"    border-top: 2px solid #8b8f8b;    \n"
+"    border-right: 2px solid black;    \n"
+"    border-top: 2px solid black;    \n"
 "    color:black;\n"
 "}")
         self.toolButton_29.setText("")
@@ -690,6 +985,12 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_32.sizePolicy().hasHeightForWidth())
         self.toolButton_32.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_32.setFont(font)
         self.toolButton_32.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;\n"
@@ -704,10 +1005,16 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_31.sizePolicy().hasHeightForWidth())
         self.toolButton_31.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_31.setFont(font)
         self.toolButton_31.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-left: 4px solid #8b8f8b;    \n"
+"    border-left: 4px solid black;    \n"
 "    color:black;\n"
 "}")
         self.toolButton_31.setText("")
@@ -719,10 +1026,16 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_33.sizePolicy().hasHeightForWidth())
         self.toolButton_33.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_33.setFont(font)
         self.toolButton_33.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-right: 2px solid #8b8f8b;\n"
+"    border-right: 2px solid black;\n"
 "    color:black;    \n"
 "}")
         self.toolButton_33.setText("")
@@ -734,11 +1047,17 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_34.sizePolicy().hasHeightForWidth())
         self.toolButton_34.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_34.setFont(font)
         self.toolButton_34.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-left: 4px solid #8b8f8b;    \n"
-"    border-bottom: 2px solid #8b8f8b;    \n"
+"    border-left: 4px solid black;    \n"
+"    border-bottom: 2px solid black;    \n"
 "    color:black;\n"
 "}")
         self.toolButton_34.setText("")
@@ -750,10 +1069,16 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_35.sizePolicy().hasHeightForWidth())
         self.toolButton_35.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_35.setFont(font)
         self.toolButton_35.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-bottom: 2px solid #8b8f8b;    \n"
+"    border-bottom: 2px solid black;    \n"
 "    color:black;\n"
 "}")
         self.toolButton_35.setText("")
@@ -765,11 +1090,17 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_36.sizePolicy().hasHeightForWidth())
         self.toolButton_36.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_36.setFont(font)
         self.toolButton_36.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-right: 2px solid #8b8f8b;    \n"
-"    border-bottom: 2px solid #8b8f8b;    \n"
+"    border-right: 2px solid black;    \n"
+"    border-bottom: 2px solid black;\n"
 "    color:black;\n"
 "}")
         self.toolButton_36.setText("")
@@ -785,10 +1116,16 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_47.sizePolicy().hasHeightForWidth())
         self.toolButton_47.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_47.setFont(font)
         self.toolButton_47.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-left: 2px solid #8b8f8b;    \n"
+"    border-left: 2px solid black;    \n"
 "    color:black;\n"
 "}")
         self.toolButton_47.setText("")
@@ -800,11 +1137,17 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_49.sizePolicy().hasHeightForWidth())
         self.toolButton_49.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_49.setFont(font)
         self.toolButton_49.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-top: 2px solid #8b8f8b;\n"
-"    color:black;    \n"
+"    border-top: 2px solid black;    \n"
+"    color:black;\n"
 "}\n"
 "\n"
 "")
@@ -817,11 +1160,17 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_46.sizePolicy().hasHeightForWidth())
         self.toolButton_46.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_46.setFont(font)
         self.toolButton_46.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-left: 2px solid #8b8f8b;    \n"
-"    border-top: 2px solid #8b8f8b;    \n"
+"    border-left: 2px solid black;    \n"
+"    border-top: 2px solid black;    \n"
 "    color:black;\n"
 "}")
         self.toolButton_46.setText("")
@@ -833,6 +1182,12 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_50.sizePolicy().hasHeightForWidth())
         self.toolButton_50.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_50.setFont(font)
         self.toolButton_50.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
@@ -847,11 +1202,17 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_48.sizePolicy().hasHeightForWidth())
         self.toolButton_48.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_48.setFont(font)
         self.toolButton_48.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-left: 2px solid #8b8f8b;    \n"
-"    border-bottom: 2px solid #8b8f8b;    \n"
+"    border-left: 2px solid black;    \n"
+"    border-bottom: 2px solid black;    \n"
 "    color:black;\n"
 "}")
         self.toolButton_48.setText("")
@@ -863,10 +1224,16 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_51.sizePolicy().hasHeightForWidth())
         self.toolButton_51.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_51.setFont(font)
         self.toolButton_51.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-bottom: 2px solid #8b8f8b;    \n"
+"    border-bottom: 2px solid black;    \n"
 "    color:black;\n"
 "}")
         self.toolButton_51.setText("")
@@ -878,11 +1245,17 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_52.sizePolicy().hasHeightForWidth())
         self.toolButton_52.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_52.setFont(font)
         self.toolButton_52.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-right: 4px solid #8b8f8b;    \n"
-"    border-top: 2px solid #8b8f8b;\n"
+"    border-right: 4px solid black;    \n"
+"    border-top: 2px solid black;\n"
 "    color:black;    \n"
 "}")
         self.toolButton_52.setText("")
@@ -894,10 +1267,16 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_53.sizePolicy().hasHeightForWidth())
         self.toolButton_53.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_53.setFont(font)
         self.toolButton_53.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-right: 4px solid #8b8f8b;\n"
+"    border-right: 4px solid black;\n"
 "    color:black;    \n"
 "}")
         self.toolButton_53.setText("")
@@ -909,12 +1288,17 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_54.sizePolicy().hasHeightForWidth())
         self.toolButton_54.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_54.setFont(font)
         self.toolButton_54.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-right: 4px solid #8b8f8b;    \n"
-"    border-bottom: 2px solid #8b8f8b;    \n"
-"    color:black;\n"
+"    border-right: 4px solid black;    \n"
+"    border-bottom: 2px solid black;    color:black;\n"
 "}")
         self.toolButton_54.setText("")
         self.toolButton_54.setObjectName("toolButton_54")
@@ -929,11 +1313,17 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_57.sizePolicy().hasHeightForWidth())
         self.toolButton_57.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_57.setFont(font)
         self.toolButton_57.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-right: 2px solid #8b8f8b;    \n"
-"    border-top: 2px solid #8b8f8b;    \n"
+"    border-right: 2px solid black;    \n"
+"    border-top: 2px solid black;    \n"
 "    color:black;\n"
 "}")
         self.toolButton_57.setText("")
@@ -945,11 +1335,17 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_55.sizePolicy().hasHeightForWidth())
         self.toolButton_55.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_55.setFont(font)
         self.toolButton_55.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-left: 4px solid #8b8f8b;    \n"
-"    border-top: 2px solid #8b8f8b;    \n"
+"    border-left: 4px solid black;    \n"
+"    border-top: 2px solid black;    \n"
 "    color:black;\n"
 "}")
         self.toolButton_55.setText("")
@@ -961,6 +1357,12 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_59.sizePolicy().hasHeightForWidth())
         self.toolButton_59.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_59.setFont(font)
         self.toolButton_59.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;\n"
@@ -975,11 +1377,17 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_62.sizePolicy().hasHeightForWidth())
         self.toolButton_62.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_62.setFont(font)
         self.toolButton_62.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-bottom: 4px solid #8b8f8b;\n"
-"    color:black;    \n"
+"    border-bottom: 4px solid black;    \n"
+"    color:black;\n"
 "}")
         self.toolButton_62.setText("")
         self.toolButton_62.setObjectName("toolButton_62")
@@ -990,10 +1398,16 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_56.sizePolicy().hasHeightForWidth())
         self.toolButton_56.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_56.setFont(font)
         self.toolButton_56.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-top: 2px solid #8b8f8b;    \n"
+"    border-top: 2px solid black;    \n"
 "    color:black;\n"
 "}\n"
 "\n"
@@ -1007,10 +1421,16 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_60.sizePolicy().hasHeightForWidth())
         self.toolButton_60.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_60.setFont(font)
         self.toolButton_60.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-right: 2px solid #8b8f8b;\n"
+"    border-right: 2px solid black;\n"
 "    color:black;    \n"
 "}")
         self.toolButton_60.setText("")
@@ -1022,10 +1442,16 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_58.sizePolicy().hasHeightForWidth())
         self.toolButton_58.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_58.setFont(font)
         self.toolButton_58.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-left: 4px solid #8b8f8b;    \n"
+"    border-left: 4px solid black;    \n"
 "    color:black;\n"
 "}")
         self.toolButton_58.setText("")
@@ -1037,11 +1463,17 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_61.sizePolicy().hasHeightForWidth())
         self.toolButton_61.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_61.setFont(font)
         self.toolButton_61.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-left: 4px solid #8b8f8b;    \n"
-"    border-bottom: 4px solid #8b8f8b;    \n"
+"    border-left: 4px solid black;    \n"
+"    border-bottom: 4px solid black;    \n"
 "    color:black;\n"
 "}")
         self.toolButton_61.setText("")
@@ -1053,12 +1485,18 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_63.sizePolicy().hasHeightForWidth())
         self.toolButton_63.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_63.setFont(font)
         self.toolButton_63.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-right: 2px solid #8b8f8b;    \n"
-"    border-bottom: 4px solid #8b8f8b;\n"
-"    color:black;    \n"
+"    border-right: 2px solid black;    \n"
+"    border-bottom: 4px solid black;\n"
+"    color:black;\n"
 "}")
         self.toolButton_63.setText("")
         self.toolButton_63.setObjectName("toolButton_63")
@@ -1073,10 +1511,16 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_80.sizePolicy().hasHeightForWidth())
         self.toolButton_80.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_80.setFont(font)
         self.toolButton_80.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-bottom: 4px solid #8b8f8b;    \n"
+"    border-bottom: 4px solid black;    \n"
 "    color:black;\n"
 "}")
         self.toolButton_80.setText("")
@@ -1088,11 +1532,17 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_81.sizePolicy().hasHeightForWidth())
         self.toolButton_81.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_81.setFont(font)
         self.toolButton_81.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-bottom: 4px solid #8b8f8b;    \n"
-"    border-right: 4px solid #8b8f8b;\n"
+"    border-bottom: 4px solid black;    \n"
+"    border-right: 4px solid black;\n"
 "    color:black;    \n"
 "}")
         self.toolButton_81.setText("")
@@ -1104,10 +1554,16 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_78.sizePolicy().hasHeightForWidth())
         self.toolButton_78.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_78.setFont(font)
         self.toolButton_78.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-right: 4px solid #8b8f8b;\n"
+"    border-right: 4px solid black;\n"
 "    color:black;    \n"
 "}")
         self.toolButton_78.setText("")
@@ -1119,11 +1575,17 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_79.sizePolicy().hasHeightForWidth())
         self.toolButton_79.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_79.setFont(font)
         self.toolButton_79.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-left: 2px solid #8b8f8b;    \n"
-"    border-bottom: 4px solid #8b8f8b;    \n"
+"    border-left: 2px solid black;    \n"
+"    border-bottom: 4px solid black;    \n"
 "    color:black;\n"
 "}")
         self.toolButton_79.setText("")
@@ -1135,11 +1597,17 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_73.sizePolicy().hasHeightForWidth())
         self.toolButton_73.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_73.setFont(font)
         self.toolButton_73.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-left: 2px solid #8b8f8b;    \n"
-"    border-top: 2px solid #8b8f8b;    \n"
+"    border-left: 2px solid black;    \n"
+"    border-top: 2px solid black;    \n"
 "    color:black;\n"
 "}")
         self.toolButton_73.setText("")
@@ -1151,11 +1619,17 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_75.sizePolicy().hasHeightForWidth())
         self.toolButton_75.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_75.setFont(font)
         self.toolButton_75.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-right: 4px solid #8b8f8b;    \n"
-"    border-top: 2px solid #8b8f8b;\n"
+"    border-right: 4px solid black;    \n"
+"    border-top: 2px solid black;\n"
 "    color:black;    \n"
 "}")
         self.toolButton_75.setText("")
@@ -1167,10 +1641,16 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_74.sizePolicy().hasHeightForWidth())
         self.toolButton_74.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_74.setFont(font)
         self.toolButton_74.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-top: 2px solid #8b8f8b;    \n"
+"    border-top: 2px solid black;    \n"
 "    color:black;\n"
 "}\n"
 "\n"
@@ -1184,6 +1664,12 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_77.sizePolicy().hasHeightForWidth())
         self.toolButton_77.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_77.setFont(font)
         self.toolButton_77.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
@@ -1198,10 +1684,16 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_76.sizePolicy().hasHeightForWidth())
         self.toolButton_76.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_76.setFont(font)
         self.toolButton_76.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-left: 2px solid #8b8f8b;    \n"
+"    border-left: 2px solid black;    \n"
 "    color:black;\n"
 "}")
         self.toolButton_76.setText("")
@@ -1211,16 +1703,108 @@ class Ui_MainWindow(object):
         self.gridLayout11 = QtWidgets.QGridLayout()
         self.gridLayout11.setSpacing(0)
         self.gridLayout11.setObjectName("gridLayout11")
+        self.toolButton_42 = QtWidgets.QToolButton(self.page_5)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.toolButton_42.sizePolicy().hasHeightForWidth())
+        self.toolButton_42.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_42.setFont(font)
+        self.toolButton_42.setStyleSheet("QToolButton {\n"
+"    background-color: white;\n"
+"    border: 1px solid #c8ccc8;    \n"
+"    border-right: 2px solid black;\n"
+"    color:black;    \n"
+"}")
+        self.toolButton_42.setText("")
+        self.toolButton_42.setObjectName("toolButton_42")
+        self.gridLayout11.addWidget(self.toolButton_42, 1, 2, 1, 1)
+        self.toolButton_43 = QtWidgets.QToolButton(self.page_5)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.toolButton_43.sizePolicy().hasHeightForWidth())
+        self.toolButton_43.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_43.setFont(font)
+        self.toolButton_43.setStyleSheet("QToolButton {\n"
+"    background-color: white;\n"
+"    border: 1px solid #c8ccc8;    \n"
+"    border-left: 2px solid black;    \n"
+"    border-bottom: 2px solid black;    \n"
+"    color:black;\n"
+"}")
+        self.toolButton_43.setText("")
+        self.toolButton_43.setObjectName("toolButton_43")
+        self.gridLayout11.addWidget(self.toolButton_43, 2, 0, 1, 1)
+        self.toolButton_45 = QtWidgets.QToolButton(self.page_5)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.toolButton_45.sizePolicy().hasHeightForWidth())
+        self.toolButton_45.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_45.setFont(font)
+        self.toolButton_45.setStyleSheet("QToolButton {\n"
+"    background-color: white;\n"
+"    border: 1px solid #c8ccc8;    \n"
+"    border-right: 2px solid black;    \n"
+"    border-bottom: 2px solid black;\n"
+"    color:black;\n"
+"}")
+        self.toolButton_45.setText("")
+        self.toolButton_45.setObjectName("toolButton_45")
+        self.gridLayout11.addWidget(self.toolButton_45, 2, 2, 1, 1)
+        self.toolButton_44 = QtWidgets.QToolButton(self.page_5)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.toolButton_44.sizePolicy().hasHeightForWidth())
+        self.toolButton_44.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_44.setFont(font)
+        self.toolButton_44.setStyleSheet("QToolButton {\n"
+"    background-color: white;\n"
+"    border: 1px solid #c8ccc8;    \n"
+"    border-bottom: 2px solid black;    \n"
+"    color:black;\n"
+"}")
+        self.toolButton_44.setText("")
+        self.toolButton_44.setObjectName("toolButton_44")
+        self.gridLayout11.addWidget(self.toolButton_44, 2, 1, 1, 1)
         self.toolButton_39 = QtWidgets.QToolButton(self.page_5)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_39.sizePolicy().hasHeightForWidth())
         self.toolButton_39.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_39.setFont(font)
         self.toolButton_39.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-top: 2px solid #8b8f8b;    \n"
+"    border-top: 2px solid black;    \n"
 "    color:black;\n"
 "}\n"
 "\n"
@@ -1228,17 +1812,66 @@ class Ui_MainWindow(object):
         self.toolButton_39.setText("")
         self.toolButton_39.setObjectName("toolButton_39")
         self.gridLayout11.addWidget(self.toolButton_39, 0, 1, 1, 1)
+        self.toolButton_37 = QtWidgets.QToolButton(self.page_5)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.toolButton_37.sizePolicy().hasHeightForWidth())
+        self.toolButton_37.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_37.setFont(font)
+        self.toolButton_37.setStyleSheet("QToolButton {\n"
+"    background-color: white;\n"
+"    border: 1px solid #c8ccc8;    \n"
+"    border-left: 2px solid black;    \n"
+"    border-top: 2px solid black;    \n"
+"    color:black;\n"
+"}")
+        self.toolButton_37.setText("")
+        self.toolButton_37.setObjectName("toolButton_37")
+        self.gridLayout11.addWidget(self.toolButton_37, 0, 0, 1, 1)
+        self.toolButton_40 = QtWidgets.QToolButton(self.page_5)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.toolButton_40.sizePolicy().hasHeightForWidth())
+        self.toolButton_40.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_40.setFont(font)
+        self.toolButton_40.setStyleSheet("QToolButton {\n"
+"    background-color: white;\n"
+"    border: 1px solid #c8ccc8;    \n"
+"    border-left: 2px solid black;    \n"
+"    color:black;\n"
+"}")
+        self.toolButton_40.setText("")
+        self.toolButton_40.setObjectName("toolButton_40")
+        self.gridLayout11.addWidget(self.toolButton_40, 1, 0, 1, 1)
         self.toolButton_38 = QtWidgets.QToolButton(self.page_5)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_38.sizePolicy().hasHeightForWidth())
         self.toolButton_38.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_38.setFont(font)
         self.toolButton_38.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-right: 2px solid #8b8f8b;    \n"
-"    border-top: 2px solid #8b8f8b;    \n"
+"    border-right: 2px solid black;    \n"
+"    border-top: 2px solid black;    \n"
 "    color:black;\n"
 "}")
         self.toolButton_38.setText("")
@@ -1250,6 +1883,12 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_41.sizePolicy().hasHeightForWidth())
         self.toolButton_41.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_41.setFont(font)
         self.toolButton_41.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;\n"
@@ -1258,99 +1897,6 @@ class Ui_MainWindow(object):
         self.toolButton_41.setText("")
         self.toolButton_41.setObjectName("toolButton_41")
         self.gridLayout11.addWidget(self.toolButton_41, 1, 1, 1, 1)
-        self.toolButton_40 = QtWidgets.QToolButton(self.page_5)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.toolButton_40.sizePolicy().hasHeightForWidth())
-        self.toolButton_40.setSizePolicy(sizePolicy)
-        self.toolButton_40.setStyleSheet("QToolButton {\n"
-"    background-color: white;\n"
-"    border: 1px solid #c8ccc8;    \n"
-"    border-left: 2px solid #8b8f8b;    \n"
-"    color:black;\n"
-"}")
-        self.toolButton_40.setText("")
-        self.toolButton_40.setObjectName("toolButton_40")
-        self.gridLayout11.addWidget(self.toolButton_40, 1, 0, 1, 1)
-        self.toolButton_42 = QtWidgets.QToolButton(self.page_5)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.toolButton_42.sizePolicy().hasHeightForWidth())
-        self.toolButton_42.setSizePolicy(sizePolicy)
-        self.toolButton_42.setStyleSheet("QToolButton {\n"
-"    background-color: white;\n"
-"    border: 1px solid #c8ccc8;    \n"
-"    border-right: 2px solid #8b8f8b;\n"
-"    color:black;    \n"
-"}")
-        self.toolButton_42.setText("")
-        self.toolButton_42.setObjectName("toolButton_42")
-        self.gridLayout11.addWidget(self.toolButton_42, 1, 2, 1, 1)
-        self.toolButton_37 = QtWidgets.QToolButton(self.page_5)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.toolButton_37.sizePolicy().hasHeightForWidth())
-        self.toolButton_37.setSizePolicy(sizePolicy)
-        self.toolButton_37.setStyleSheet("QToolButton {\n"
-"    background-color: white;\n"
-"    border: 1px solid #c8ccc8;    \n"
-"    border-left: 2px solid #8b8f8b;    \n"
-"    border-top: 2px solid #8b8f8b;    \n"
-"    color:black;\n"
-"}")
-        self.toolButton_37.setText("")
-        self.toolButton_37.setObjectName("toolButton_37")
-        self.gridLayout11.addWidget(self.toolButton_37, 0, 0, 1, 1)
-        self.toolButton_43 = QtWidgets.QToolButton(self.page_5)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.toolButton_43.sizePolicy().hasHeightForWidth())
-        self.toolButton_43.setSizePolicy(sizePolicy)
-        self.toolButton_43.setStyleSheet("QToolButton {\n"
-"    background-color: white;\n"
-"    border: 1px solid #c8ccc8;    \n"
-"    border-left: 2px solid #8b8f8b;    \n"
-"    border-bottom: 2px solid #8b8f8b;    \n"
-"    color:black;\n"
-"}")
-        self.toolButton_43.setText("")
-        self.toolButton_43.setObjectName("toolButton_43")
-        self.gridLayout11.addWidget(self.toolButton_43, 2, 0, 1, 1)
-        self.toolButton_44 = QtWidgets.QToolButton(self.page_5)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.toolButton_44.sizePolicy().hasHeightForWidth())
-        self.toolButton_44.setSizePolicy(sizePolicy)
-        self.toolButton_44.setStyleSheet("QToolButton {\n"
-"    background-color: white;\n"
-"    border: 1px solid #c8ccc8;    \n"
-"    border-bottom: 2px solid #8b8f8b;\n"
-"    color:black;\n"
-"}")
-        self.toolButton_44.setText("")
-        self.toolButton_44.setObjectName("toolButton_44")
-        self.gridLayout11.addWidget(self.toolButton_44, 2, 1, 1, 1)
-        self.toolButton_45 = QtWidgets.QToolButton(self.page_5)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.toolButton_45.sizePolicy().hasHeightForWidth())
-        self.toolButton_45.setSizePolicy(sizePolicy)
-        self.toolButton_45.setStyleSheet("QToolButton {\n"
-"    background-color: white;\n"
-"    border: 1px solid #c8ccc8;    \n"
-"    border-right: 2px solid #8b8f8b;    \n"
-"    border-bottom: 2px solid #8b8f8b;\n"
-"    color:black;\n"
-"}")
-        self.toolButton_45.setText("")
-        self.toolButton_45.setObjectName("toolButton_45")
-        self.gridLayout11.addWidget(self.toolButton_45, 2, 2, 1, 1)
         self.gridLayout.addLayout(self.gridLayout11, 1, 2, 1, 1)
         self.gridLayout02 = QtWidgets.QGridLayout()
         self.gridLayout02.setSpacing(0)
@@ -1361,6 +1907,12 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_23.sizePolicy().hasHeightForWidth())
         self.toolButton_23.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_23.setFont(font)
         self.toolButton_23.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8; \n"
@@ -1375,11 +1927,17 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_27.sizePolicy().hasHeightForWidth())
         self.toolButton_27.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_27.setFont(font)
         self.toolButton_27.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-right: 4px solid #8b8f8b;    \n"
-"    border-bottom: 2px solid #8b8f8b;    color:black;\n"
+"    border-right: 4px solid black;    \n"
+"    border-bottom: 2px solid black;    color:black;\n"
 "}")
         self.toolButton_27.setText("")
         self.toolButton_27.setObjectName("toolButton_27")
@@ -1390,10 +1948,16 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_24.sizePolicy().hasHeightForWidth())
         self.toolButton_24.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_24.setFont(font)
         self.toolButton_24.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-right: 4px solid #8b8f8b;\n"
+"    border-right: 4px solid black;\n"
 "    color:black;    \n"
 "}")
         self.toolButton_24.setText("")
@@ -1405,10 +1969,16 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_20.sizePolicy().hasHeightForWidth())
         self.toolButton_20.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_20.setFont(font)
         self.toolButton_20.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-top: 4px solid #8b8f8b;\n"
+"    border-top: 4px solid black;\n"
 "    color:black;\n"
 "}")
         self.toolButton_20.setText("")
@@ -1420,10 +1990,16 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_26.sizePolicy().hasHeightForWidth())
         self.toolButton_26.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_26.setFont(font)
         self.toolButton_26.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-bottom: 2px solid #8b8f8b;    \n"
+"    border-bottom: 2px solid black;    \n"
 "    color:black;\n"
 "}")
         self.toolButton_26.setText("")
@@ -1435,10 +2011,16 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_22.sizePolicy().hasHeightForWidth())
         self.toolButton_22.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_22.setFont(font)
         self.toolButton_22.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-left: 2px solid #8b8f8b;    \n"
+"    border-left: 2px solid black;    \n"
 "    color:black;\n"
 "}")
         self.toolButton_22.setText("")
@@ -1450,11 +2032,17 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_25.sizePolicy().hasHeightForWidth())
         self.toolButton_25.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_25.setFont(font)
         self.toolButton_25.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-left: 2px solid #8b8f8b;    \n"
-"    border-bottom: 2px solid #8b8f8b;    \n"
+"    border-left: 2px solid black;    \n"
+"    border-bottom: 2px solid black;    \n"
 "    color:black;\n"
 "}")
         self.toolButton_25.setText("")
@@ -1466,11 +2054,17 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_21.sizePolicy().hasHeightForWidth())
         self.toolButton_21.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_21.setFont(font)
         self.toolButton_21.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-top: 4px solid #8b8f8b;\n"
-"    border-right: 4px solid #8b8f8b;    \n"
+"    border-top: 4px solid black;\n"
+"    border-right: 4px solid black;    \n"
 "     color:black;\n"
 "}")
         self.toolButton_21.setText("")
@@ -1482,11 +2076,17 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_19.sizePolicy().hasHeightForWidth())
         self.toolButton_19.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_19.setFont(font)
         self.toolButton_19.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-left: 2px solid #8b8f8b;    \n"
-"    border-top: 4px solid #8b8f8b; \n"
+"    border-left: 2px solid black;    \n"
+"    border-top: 4px solid black; \n"
 "    color:black;    \n"
 "}")
         self.toolButton_19.setText("")
@@ -1502,12 +2102,18 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_10.sizePolicy().hasHeightForWidth())
         self.toolButton_10.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_10.setFont(font)
         self.toolButton_10.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-left: 2px solid #8b8f8b;    \n"
-"    border-top: 4px solid #8b8f8b;\n"
-"    color:black;\n"
+"    border-left: 2px solid black;    \n"
+"    border-top: 4px solid black; \n"
+"    color:black;    \n"
 "}")
         self.toolButton_10.setText("")
         self.toolButton_10.setObjectName("toolButton_10")
@@ -1518,10 +2124,16 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_12.sizePolicy().hasHeightForWidth())
         self.toolButton_12.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_12.setFont(font)
         self.toolButton_12.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-top: 4px solid #8b8f8b;\n"
+"    border-top: 4px solid black;\n"
 "    color:black;\n"
 "}")
         self.toolButton_12.setText("")
@@ -1533,10 +2145,16 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_11.sizePolicy().hasHeightForWidth())
         self.toolButton_11.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_11.setFont(font)
         self.toolButton_11.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-left: 2px solid #8b8f8b;    \n"
+"    border-left: 2px solid black;    \n"
 "    color:black;\n"
 "}")
         self.toolButton_11.setText("")
@@ -1548,11 +2166,17 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_14.sizePolicy().hasHeightForWidth())
         self.toolButton_14.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_14.setFont(font)
         self.toolButton_14.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-right: 2px solid #8b8f8b;    \n"
-"    border-top: 4px solid #8b8f8b; \n"
+"    border-right: 2px solid black;    \n"
+"    border-top: 4px solid black; \n"
 "    color:black;\n"
 "}")
         self.toolButton_14.setText("")
@@ -1564,10 +2188,16 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_15.sizePolicy().hasHeightForWidth())
         self.toolButton_15.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_15.setFont(font)
         self.toolButton_15.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-right: 2px solid #8b8f8b;\n"
+"    border-right: 2px solid black;\n"
 "    color:black;    \n"
 "}")
         self.toolButton_15.setText("")
@@ -1579,6 +2209,12 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_13.sizePolicy().hasHeightForWidth())
         self.toolButton_13.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_13.setFont(font)
         self.toolButton_13.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;\n"
@@ -1593,11 +2229,17 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_16.sizePolicy().hasHeightForWidth())
         self.toolButton_16.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_16.setFont(font)
         self.toolButton_16.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-left: 2px solid #8b8f8b;    \n"
-"    border-bottom: 2px solid #8b8f8b;    \n"
+"    border-left: 2px solid black;    \n"
+"    border-bottom: 2px solid black;    \n"
 "    color:black;\n"
 "}")
         self.toolButton_16.setText("")
@@ -1609,10 +2251,16 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_17.sizePolicy().hasHeightForWidth())
         self.toolButton_17.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_17.setFont(font)
         self.toolButton_17.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-bottom: 2px solid #8b8f8b;\n"
+"    border-bottom: 2px solid black;    \n"
 "    color:black;\n"
 "}")
         self.toolButton_17.setText("")
@@ -1624,11 +2272,17 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.toolButton_18.sizePolicy().hasHeightForWidth())
         self.toolButton_18.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(13)
+        font.setBold(True)
+        font.setWeight(75)
+        self.toolButton_18.setFont(font)
         self.toolButton_18.setStyleSheet("QToolButton {\n"
 "    background-color: white;\n"
 "    border: 1px solid #c8ccc8;    \n"
-"    border-right: 2px solid #8b8f8b;    \n"
-"    border-bottom: 2px solid #8b8f8b;\n"
+"    border-right: 2px solid black;    \n"
+"    border-bottom: 2px solid black;\n"
 "    color:black;\n"
 "}")
         self.toolButton_18.setText("")
@@ -1642,6 +2296,11 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.timeEdit.sizePolicy().hasHeightForWidth())
         self.timeEdit.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setBold(True)
+        font.setWeight(75)
+        self.timeEdit.setFont(font)
         self.timeEdit.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.timeEdit.setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
         self.timeEdit.setObjectName("timeEdit")
@@ -1653,6 +2312,7 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.opponentLabel.sizePolicy().hasHeightForWidth())
         self.opponentLabel.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
+        font.setFamily("Lato")
         font.setBold(True)
         font.setWeight(75)
         self.opponentLabel.setFont(font)
@@ -1661,7 +2321,7 @@ class Ui_MainWindow(object):
         self.opponentLabel.setObjectName("opponentLabel")
         self.gridLayout_12.addWidget(self.opponentLabel, 0, 1, 1, 2)
         self.stackedWidget.addWidget(self.page_5)
-        self.gridLayout_3.addWidget(self.stackedWidget, 0, 0, 1, 1)
+        self.verticalLayout_8.addWidget(self.stackedWidget)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -1671,16 +2331,15 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.label.setText(_translate("MainWindow", "Sudo-ku"))
-        self.usernameLabel.setText(_translate("MainWindow", "username:"))
-        self.passwordLabel.setText(_translate("MainWindow", "password:"))
+        self.usernameLabel.setText(_translate("MainWindow", "Username"))
+        self.passwordLabel.setText(_translate("MainWindow", "Password"))
         self.signInButton.setText(_translate("MainWindow", "Sign In"))
         self.label_4.setText(_translate("MainWindow", "or"))
         self.signUpButton.setText(_translate("MainWindow", "Sign Up"))
         self.label_2.setText(_translate("MainWindow", "Registration"))
-        self.usernameLabel_2.setText(_translate("MainWindow", "username:"))
-        self.passwordLabel_2.setText(_translate("MainWindow", "password:"))
-        self.label_3.setText(_translate("MainWindow", "repeat pass:"))
+        self.usernameLabel_2.setText(_translate("MainWindow", "Username"))
+        self.passwordLabel_2.setText(_translate("MainWindow", "Password"))
+        self.label_3.setText(_translate("MainWindow", "Repeat password"))
         self.registrationButton.setText(_translate("MainWindow", "Sign Up"))
         self.challengeButton.setText(_translate("MainWindow", "Challenge"))
         self.collaborativeButton.setText(_translate("MainWindow", "Collaborative"))
