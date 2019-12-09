@@ -50,9 +50,16 @@ class Worker(QtCore.QRunnable):
         while(True):
             try:   
                 result = self.fn(self.conn)
-
                 if result[0] == DONE or result[0] == VALID_SOLUTION:
                     playing = False
+                    self.signals.result.emit(result)
+                    return
+                if result[0] == ERROR:
+                    self.signals.result.emit(result)
+                    self.conn.shutdown(socket.SHUT_RDWR)
+                    self.conn.close()
+                    print("connection closed")
+                    return
                 if result[0] == MATCH_FOUND:
                     playing = True
                     waiting = False
@@ -63,11 +70,12 @@ class Worker(QtCore.QRunnable):
                     self.conn.close()
                     print("connection closed")
                     self.signals.error.emit()
-                    break
+                    return
                 self.signals.result.emit(result) 
             except socket.error:
                 print("connection closed")
-                break
+                return
+            
 class sudokuController:
 
     def __init__(self, view):
@@ -133,6 +141,9 @@ class sudokuController:
         self.view.stackedWidget.setCurrentIndex(3)
 
     def setDifficulty(self, difficulty):
+        self.view.easyButton.setEnabled(False)
+        self.view.mediumButton.setEnabled(False)
+        self.view.hardButton.setEnabled(False)
         movie = QtGui.QMovie("media/loading1.gif")
         self.view.loadLabel.setMovie(movie)
         movie.start()  
@@ -182,7 +193,6 @@ class sudokuController:
                 msg.showMessage()
         elif packet_type == DONE: 
             if payload["done"] == True:
-                
                 if self.mode == 0:
                     self.timer.stop()
                     msg = MessageBox("Match finished","Game over,you lost", self.view.geometry().center())
@@ -205,6 +215,7 @@ class sudokuController:
             msg = MessageBox("Error",payload["msg"], self.view.geometry().center())
             msg.buttonClicked.connect(lambda: self.onMsgButton())
             msg.showMessage()
+
   
     def onMsgButton(self):
         self.flushBoard()
@@ -329,6 +340,9 @@ class sudokuController:
         
 
     def flushBoard(self):
+        self.view.easyButton.setEnabled(True)
+        self.view.mediumButton.setEnabled(True)
+        self.view.hardButton.setEnabled(True)
         for r in range(9):
             for c in range(9):
                 box_grid = self.view.gridLayout.itemAtPosition(r//3, (c//3) + 1)
