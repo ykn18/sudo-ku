@@ -6,20 +6,26 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>660</width>
-    <height>577</height>
+    <width>657</width>
+    <height>589</height>
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
   <property name="minimumSize">
    <size>
-    <width>0</width>
-    <height>0</height>
+    <width>657</width>
+    <height>589</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>657</width>
+    <height>589</height>
    </size>
   </property>
   <property name="font">
@@ -160,6 +166,13 @@ border: 4px solid black;
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="font">
+           <font>
+            <family>Lato</family>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
           <property name="styleSheet">
            <string notr="true">QLineEdit{
 margin-right:100px;
@@ -201,6 +214,13 @@ border: 4px solid black;
             <horstretch>50</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <family>Lato</family>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
           </property>
           <property name="styleSheet">
            <string notr="true">QLineEdit{
@@ -825,6 +845,13 @@ border-radius: 16px;
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="font">
+           <font>
+            <family>Lato</family>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
           <property name="text">
            <string>Opponent:</string>
           </property>
@@ -851,12 +878,20 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-right: 2px solid #8b8f8b;	
-	border-top: 4px solid #8b8f8b;	
+	border-right: 2px solid black;	
+	border-top: 4px solid black; 
 	color:black;
 }</string>
               </property>
@@ -873,12 +908,20 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-left: 4px solid #8b8f8b;	
-	border-bottom: 2px solid #8b8f8b;	
+	border-left: 4px solid black;	
+	border-bottom: 2px solid black;	
 	color:black;
 }</string>
               </property>
@@ -895,11 +938,19 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-left: 4px solid #8b8f8b;
+	border-left: 4px solid black;
 	color:black;	
 }</string>
               </property>
@@ -922,11 +973,19 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-bottom: 2px solid #8b8f8b;	
+	border-bottom: 2px solid black;	
 	color:black;
 }</string>
               </property>
@@ -943,12 +1002,20 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-right: 2px solid #8b8f8b;	
-	border-bottom: 2px solid #8b8f8b;	
+	border-right: 2px solid black;	
+	border-bottom: 2px solid black;
 	color:black;
 }</string>
               </property>
@@ -965,11 +1032,19 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-top: 4px solid #8b8f8b;
+	border-top: 4px solid black;
 	color:black;
 }</string>
               </property>
@@ -986,11 +1061,19 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-right: 2px solid #8b8f8b;
+	border-right: 2px solid black;
 	color:black;	
 }</string>
               </property>
@@ -1007,12 +1090,20 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton{
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-top: 4px solid #8b8f8b;
-	border-left: 4px solid #8b8f8b;	
+	border-top: 4px solid black;
+	border-left: 4px solid black;	
 	color:black;
 }</string>
               </property>
@@ -1037,6 +1128,14 @@ border-radius: 16px;
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
               </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
@@ -1065,11 +1164,19 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-left: 2px solid #8b8f8b;	
+	border-left: 2px solid black;	
 	color:black;
 }</string>
               </property>
@@ -1086,11 +1193,19 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-right: 2px solid #8b8f8b;
+	border-right: 2px solid black;
 	color:black;	
 }</string>
               </property>
@@ -1107,12 +1222,20 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-left: 2px solid #8b8f8b;	
-	border-bottom: 4px solid #8b8f8b;	
+	border-left: 2px solid black;	
+	border-bottom: 4px solid black;	
 	color:black;
 }</string>
               </property>
@@ -1129,11 +1252,19 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-top: 2px solid #8b8f8b;	
+	border-top: 2px solid black;	
 	color:black;
 }
 
@@ -1152,12 +1283,20 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-right: 2px solid #8b8f8b;	
-	border-top: 2px solid #8b8f8b;	
+	border-right: 2px solid black;	
+	border-top: 2px solid black;	
 	color:black;
 }</string>
               </property>
@@ -1173,6 +1312,14 @@ border-radius: 16px;
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
               </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
@@ -1194,11 +1341,19 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-bottom: 4px solid #8b8f8b;
+	border-bottom: 4px solid black;	
 	color:black;
 }</string>
               </property>
@@ -1215,12 +1370,20 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-left: 2px solid #8b8f8b;	
-	border-top: 2px solid #8b8f8b;	
+	border-left: 2px solid black;	
+	border-top: 2px solid black;	
 	color:black;
 }</string>
               </property>
@@ -1237,12 +1400,20 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-right: 2px solid #8b8f8b;	
-	border-bottom: 4px solid #8b8f8b;
+	border-right: 2px solid black;	
+	border-bottom: 4px solid black;
 	color:black;
 }</string>
               </property>
@@ -1266,11 +1437,19 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-top: 2px solid #8b8f8b;	
+	border-top: 2px solid black;	
 	color:black;
 }
 
@@ -1289,12 +1468,20 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-left: 4px solid #8b8f8b;	
-	border-top: 2px solid #8b8f8b;	
+	border-left: 4px solid black;	
+	border-top: 2px solid black;	
 	color:black;
 }</string>
               </property>
@@ -1311,12 +1498,20 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-right: 2px solid #8b8f8b;	
-	border-top: 2px solid #8b8f8b;	
+	border-right: 2px solid black;	
+	border-top: 2px solid black;	
 	color:black;
 }</string>
               </property>
@@ -1332,6 +1527,14 @@ border-radius: 16px;
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
               </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
@@ -1353,11 +1556,19 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-left: 4px solid #8b8f8b;	
+	border-left: 4px solid black;	
 	color:black;
 }</string>
               </property>
@@ -1374,11 +1585,19 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-right: 2px solid #8b8f8b;
+	border-right: 2px solid black;
 	color:black;	
 }</string>
               </property>
@@ -1395,12 +1614,20 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-left: 4px solid #8b8f8b;	
-	border-bottom: 2px solid #8b8f8b;	
+	border-left: 4px solid black;	
+	border-bottom: 2px solid black;	
 	color:black;
 }</string>
               </property>
@@ -1417,11 +1644,19 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-bottom: 2px solid #8b8f8b;	
+	border-bottom: 2px solid black;	
 	color:black;
 }</string>
               </property>
@@ -1438,12 +1673,20 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-right: 2px solid #8b8f8b;	
-	border-bottom: 2px solid #8b8f8b;	
+	border-right: 2px solid black;	
+	border-bottom: 2px solid black;
 	color:black;
 }</string>
               </property>
@@ -1467,11 +1710,19 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-left: 2px solid #8b8f8b;	
+	border-left: 2px solid black;	
 	color:black;
 }</string>
               </property>
@@ -1488,12 +1739,20 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-top: 2px solid #8b8f8b;
-	color:black;	
+	border-top: 2px solid black;	
+	color:black;
 }
 
 </string>
@@ -1511,12 +1770,20 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-left: 2px solid #8b8f8b;	
-	border-top: 2px solid #8b8f8b;	
+	border-left: 2px solid black;	
+	border-top: 2px solid black;	
 	color:black;
 }</string>
               </property>
@@ -1532,6 +1799,14 @@ border-radius: 16px;
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
               </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
@@ -1553,12 +1828,20 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-left: 2px solid #8b8f8b;	
-	border-bottom: 2px solid #8b8f8b;	
+	border-left: 2px solid black;	
+	border-bottom: 2px solid black;	
 	color:black;
 }</string>
               </property>
@@ -1575,11 +1858,19 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-bottom: 2px solid #8b8f8b;	
+	border-bottom: 2px solid black;	
 	color:black;
 }</string>
               </property>
@@ -1596,12 +1887,20 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-right: 4px solid #8b8f8b;	
-	border-top: 2px solid #8b8f8b;
+	border-right: 4px solid black;	
+	border-top: 2px solid black;
 	color:black;	
 }</string>
               </property>
@@ -1618,11 +1917,19 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-right: 4px solid #8b8f8b;
+	border-right: 4px solid black;
 	color:black;	
 }</string>
               </property>
@@ -1639,13 +1946,20 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-right: 4px solid #8b8f8b;	
-	border-bottom: 2px solid #8b8f8b;	
-	color:black;
+	border-right: 4px solid black;	
+	border-bottom: 2px solid black;	color:black;
 }</string>
               </property>
               <property name="text">
@@ -1668,12 +1982,20 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-right: 2px solid #8b8f8b;	
-	border-top: 2px solid #8b8f8b;	
+	border-right: 2px solid black;	
+	border-top: 2px solid black;	
 	color:black;
 }</string>
               </property>
@@ -1690,12 +2012,20 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-left: 4px solid #8b8f8b;	
-	border-top: 2px solid #8b8f8b;	
+	border-left: 4px solid black;	
+	border-top: 2px solid black;	
 	color:black;
 }</string>
               </property>
@@ -1711,6 +2041,14 @@ border-radius: 16px;
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
               </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
@@ -1732,12 +2070,20 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-bottom: 4px solid #8b8f8b;
-	color:black;	
+	border-bottom: 4px solid black;	
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -1753,11 +2099,19 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-top: 2px solid #8b8f8b;	
+	border-top: 2px solid black;	
 	color:black;
 }
 
@@ -1776,11 +2130,19 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-right: 2px solid #8b8f8b;
+	border-right: 2px solid black;
 	color:black;	
 }</string>
               </property>
@@ -1797,11 +2159,19 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-left: 4px solid #8b8f8b;	
+	border-left: 4px solid black;	
 	color:black;
 }</string>
               </property>
@@ -1818,12 +2188,20 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-left: 4px solid #8b8f8b;	
-	border-bottom: 4px solid #8b8f8b;	
+	border-left: 4px solid black;	
+	border-bottom: 4px solid black;	
 	color:black;
 }</string>
               </property>
@@ -1840,13 +2218,21 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-right: 2px solid #8b8f8b;	
-	border-bottom: 4px solid #8b8f8b;
-	color:black;	
+	border-right: 2px solid black;	
+	border-bottom: 4px solid black;
+	color:black;
 }</string>
               </property>
               <property name="text">
@@ -1869,11 +2255,19 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-bottom: 4px solid #8b8f8b;	
+	border-bottom: 4px solid black;	
 	color:black;
 }</string>
               </property>
@@ -1890,12 +2284,20 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-bottom: 4px solid #8b8f8b;	
-	border-right: 4px solid #8b8f8b;
+	border-bottom: 4px solid black;	
+	border-right: 4px solid black;
 	color:black;	
 }</string>
               </property>
@@ -1912,11 +2314,19 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-right: 4px solid #8b8f8b;
+	border-right: 4px solid black;
 	color:black;	
 }</string>
               </property>
@@ -1933,12 +2343,20 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-left: 2px solid #8b8f8b;	
-	border-bottom: 4px solid #8b8f8b;	
+	border-left: 2px solid black;	
+	border-bottom: 4px solid black;	
 	color:black;
 }</string>
               </property>
@@ -1955,12 +2373,20 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-left: 2px solid #8b8f8b;	
-	border-top: 2px solid #8b8f8b;	
+	border-left: 2px solid black;	
+	border-top: 2px solid black;	
 	color:black;
 }</string>
               </property>
@@ -1977,12 +2403,20 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-right: 4px solid #8b8f8b;	
-	border-top: 2px solid #8b8f8b;
+	border-right: 4px solid black;	
+	border-top: 2px solid black;
 	color:black;	
 }</string>
               </property>
@@ -1999,11 +2433,19 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-top: 2px solid #8b8f8b;	
+	border-top: 2px solid black;	
 	color:black;
 }
 
@@ -2021,6 +2463,14 @@ border-radius: 16px;
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
               </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
@@ -2042,11 +2492,19 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-left: 2px solid #8b8f8b;	
+	border-left: 2px solid black;	
 	color:black;
 }</string>
               </property>
@@ -2062,92 +2520,6 @@ border-radius: 16px;
             <property name="spacing">
              <number>0</number>
             </property>
-            <item row="0" column="1">
-             <widget class="QToolButton" name="toolButton_39">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QToolButton {
-	background-color: white;
-	border: 1px solid #c8ccc8;	
-	border-top: 2px solid #8b8f8b;	
-	color:black;
-}
-
-</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="2">
-             <widget class="QToolButton" name="toolButton_38">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QToolButton {
-	background-color: white;
-	border: 1px solid #c8ccc8;	
-	border-right: 2px solid #8b8f8b;	
-	border-top: 2px solid #8b8f8b;	
-	color:black;
-}</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QToolButton" name="toolButton_41">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QToolButton {
-	background-color: white;
-	border: 1px solid #c8ccc8;
-	color:black;
-}</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QToolButton" name="toolButton_40">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QToolButton {
-	background-color: white;
-	border: 1px solid #c8ccc8;	
-	border-left: 2px solid #8b8f8b;	
-	color:black;
-}</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
             <item row="1" column="2">
              <widget class="QToolButton" name="toolButton_42">
               <property name="sizePolicy">
@@ -2156,34 +2528,20 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-right: 2px solid #8b8f8b;
+	border-right: 2px solid black;
 	color:black;	
-}</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="0">
-             <widget class="QToolButton" name="toolButton_37">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QToolButton {
-	background-color: white;
-	border: 1px solid #c8ccc8;	
-	border-left: 2px solid #8b8f8b;	
-	border-top: 2px solid #8b8f8b;	
-	color:black;
 }</string>
               </property>
               <property name="text">
@@ -2199,33 +2557,20 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
-              <property name="styleSheet">
-               <string notr="true">QToolButton {
-	background-color: white;
-	border: 1px solid #c8ccc8;	
-	border-left: 2px solid #8b8f8b;	
-	border-bottom: 2px solid #8b8f8b;	
-	color:black;
-}</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="1">
-             <widget class="QToolButton" name="toolButton_44">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
               </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-bottom: 2px solid #8b8f8b;
+	border-left: 2px solid black;	
+	border-bottom: 2px solid black;	
 	color:black;
 }</string>
               </property>
@@ -2242,12 +2587,197 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-right: 2px solid #8b8f8b;	
-	border-bottom: 2px solid #8b8f8b;
+	border-right: 2px solid black;	
+	border-bottom: 2px solid black;
+	color:black;
+}</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QToolButton" name="toolButton_44">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QToolButton {
+	background-color: white;
+	border: 1px solid #c8ccc8;	
+	border-bottom: 2px solid black;	
+	color:black;
+}</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QToolButton" name="toolButton_39">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QToolButton {
+	background-color: white;
+	border: 1px solid #c8ccc8;	
+	border-top: 2px solid black;	
+	color:black;
+}
+
+</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QToolButton" name="toolButton_37">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QToolButton {
+	background-color: white;
+	border: 1px solid #c8ccc8;	
+	border-left: 2px solid black;	
+	border-top: 2px solid black;	
+	color:black;
+}</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QToolButton" name="toolButton_40">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QToolButton {
+	background-color: white;
+	border: 1px solid #c8ccc8;	
+	border-left: 2px solid black;	
+	color:black;
+}</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="2">
+             <widget class="QToolButton" name="toolButton_38">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QToolButton {
+	background-color: white;
+	border: 1px solid #c8ccc8;	
+	border-right: 2px solid black;	
+	border-top: 2px solid black;	
+	color:black;
+}</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QToolButton" name="toolButton_41">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QToolButton {
+	background-color: white;
+	border: 1px solid #c8ccc8;
 	color:black;
 }</string>
               </property>
@@ -2271,6 +2801,14 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
@@ -2291,12 +2829,20 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-right: 4px solid #8b8f8b;	
-	border-bottom: 2px solid #8b8f8b;	color:black;
+	border-right: 4px solid black;	
+	border-bottom: 2px solid black;	color:black;
 }</string>
               </property>
               <property name="text">
@@ -2312,11 +2858,19 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-right: 4px solid #8b8f8b;
+	border-right: 4px solid black;
 	color:black;	
 }</string>
               </property>
@@ -2333,11 +2887,19 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-top: 4px solid #8b8f8b;
+	border-top: 4px solid black;
 	color:black;
 }</string>
               </property>
@@ -2354,11 +2916,19 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-bottom: 2px solid #8b8f8b;	
+	border-bottom: 2px solid black;	
 	color:black;
 }</string>
               </property>
@@ -2375,11 +2945,19 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-left: 2px solid #8b8f8b;	
+	border-left: 2px solid black;	
 	color:black;
 }</string>
               </property>
@@ -2396,12 +2974,20 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-left: 2px solid #8b8f8b;	
-	border-bottom: 2px solid #8b8f8b;	
+	border-left: 2px solid black;	
+	border-bottom: 2px solid black;	
 	color:black;
 }</string>
               </property>
@@ -2418,12 +3004,20 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-top: 4px solid #8b8f8b;
-	border-right: 4px solid #8b8f8b;	
+	border-top: 4px solid black;
+	border-right: 4px solid black;	
  	color:black;
 }</string>
               </property>
@@ -2440,12 +3034,20 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-left: 2px solid #8b8f8b;	
-	border-top: 4px solid #8b8f8b; 
+	border-left: 2px solid black;	
+	border-top: 4px solid black; 
 	color:black;	
 }</string>
               </property>
@@ -2469,13 +3071,21 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-left: 2px solid #8b8f8b;	
-	border-top: 4px solid #8b8f8b;
-	color:black;
+	border-left: 2px solid black;	
+	border-top: 4px solid black; 
+	color:black;	
 }</string>
               </property>
               <property name="text">
@@ -2491,11 +3101,19 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-top: 4px solid #8b8f8b;
+	border-top: 4px solid black;
 	color:black;
 }</string>
               </property>
@@ -2512,11 +3130,19 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-left: 2px solid #8b8f8b;	
+	border-left: 2px solid black;	
 	color:black;
 }</string>
               </property>
@@ -2533,12 +3159,20 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-right: 2px solid #8b8f8b;	
-	border-top: 4px solid #8b8f8b; 
+	border-right: 2px solid black;	
+	border-top: 4px solid black; 
 	color:black;
 }</string>
               </property>
@@ -2555,11 +3189,19 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-right: 2px solid #8b8f8b;
+	border-right: 2px solid black;
 	color:black;	
 }</string>
               </property>
@@ -2575,6 +3217,14 @@ border-radius: 16px;
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
               </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
@@ -2596,12 +3246,20 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-left: 2px solid #8b8f8b;	
-	border-bottom: 2px solid #8b8f8b;	
+	border-left: 2px solid black;	
+	border-bottom: 2px solid black;	
 	color:black;
 }</string>
               </property>
@@ -2618,11 +3276,19 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-bottom: 2px solid #8b8f8b;
+	border-bottom: 2px solid black;	
 	color:black;
 }</string>
               </property>
@@ -2639,12 +3305,20 @@ border-radius: 16px;
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="font">
+               <font>
+                <family>Lato</family>
+                <pointsize>13</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QToolButton {
 	background-color: white;
 	border: 1px solid #c8ccc8;	
-	border-right: 2px solid #8b8f8b;	
-	border-bottom: 2px solid #8b8f8b;
+	border-right: 2px solid black;	
+	border-bottom: 2px solid black;
 	color:black;
 }</string>
               </property>
@@ -2664,6 +3338,13 @@ border-radius: 16px;
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <family>Lato</family>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
           </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

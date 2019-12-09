@@ -8,14 +8,16 @@ import (
 )
 
 const (
-	MatchRequestPkt  byte = 0
-	MatchFoundPkt    byte = 1
-	CheckSolutionPkt byte = 2
-	ValidSolutionPkt byte = 3
-	DonePkt          byte = 4
-	MovePkt          byte = 5
-	ChangeValuePkt   byte = 6
-	ErrorPkt         byte = 7
+	MatchRequestPkt  byte = 1
+	MatchFoundPkt    byte = 2
+	CheckSolutionPkt byte = 3
+	ValidSolutionPkt byte = 4
+	DonePkt          byte = 5
+	MovePkt          byte = 6
+	ChangeValuePkt   byte = 7
+	PingPkt          byte = 8
+	PingAckPkt       byte = 9
+	ErrorPkt         byte = 10
 )
 
 type Packet struct {
@@ -33,8 +35,12 @@ func MakePacket(t byte, payload []byte) Packet {
 }
 
 func IsOpen(conn net.Conn) bool {
-	_, err := bufio.NewReader(conn).Peek(1)
-	if err == nil {
+	err := WritePacket(conn, MakePacket(PingPkt, []byte{}))
+	if err != nil {
+		return false
+	}
+	p, err := ReadPacket(conn)
+	if p.Type == PingAckPkt && err == nil {
 		return true
 	}
 	return false

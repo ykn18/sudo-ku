@@ -34,15 +34,20 @@ def isDone(board):
     print("is done ", True)
     return True
 
-def verify(board, r, c, mask):
+def verify(board, r, c, old, new, mask):
+    print(old)
+    print(new)
     for i in range(9):
-        mask[i][c] = True
-        mask[r][i] = True
+        if board[i][c] == old or board[i][c] == new:
+            mask[i][c] = True
+        if board[r][i] == old or board[r][i] == new:
+            mask[r][i] = True
     row_start = r - (r % 3)
     col_start = c - (c % 3)
     for i in range(row_start, row_start + 3):
         for j in range(col_start, col_start + 3):
-            mask[i][j] = True
+            if board[i][j] == old or board[i][j] == new:
+                mask[i][j] = True
     verifyRow(board, r, mask)
     verifyCol(board, c, mask)
     verifySquare(board, r, c, mask)
