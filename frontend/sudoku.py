@@ -17,7 +17,7 @@ PING = 8
 PING_ACK = 9
 ERROR = 10 
 
-
+waiting = False
 class MessageBox(QMessageBox):
 
     def __init__(self, title, text, pos):
@@ -45,14 +45,24 @@ class Worker(QtCore.QRunnable):
         self.signals = WorkerSignals()  
 
     def run(self):
+        global waiting
+        playing = False
         while(True):
             try:   
                 result = self.fn(self.conn)
-                if result[0] == 0:
+
+                if result[0] == DONE or result[0] == VALID_SOLUTION:
+                    playing = False
+                if result[0] == MATCH_FOUND:
+                    playing = True
+                    waiting = False
+                if result[0] == 0 and (playing or waiting):
+                    playing = False
+                    waiting = False
                     self.conn.shutdown(socket.SHUT_RDWR)
                     self.conn.close()
                     print("connection closed")
-                    #self.signals.error.emit()
+                    self.signals.error.emit()
                     break
                 self.signals.result.emit(result) 
             except socket.error:
@@ -64,6 +74,7 @@ class sudokuController:
         self.view = view
         self.connectSignals()
         self.threadpool = QtCore.QThreadPool()
+        self.view.setWindowIcon(QtGui.QIcon("media/icon.png"))
 
     #connects signals of buttons to slots
     def connectSignals(self):
@@ -122,7 +133,6 @@ class sudokuController:
         self.view.stackedWidget.setCurrentIndex(3)
 
     def setDifficulty(self, difficulty):
-        self.view.setWindowIcon(QtGui.QIcon("media/icon.png"))
         movie = QtGui.QMovie("media/loading1.gif")
         self.view.loadLabel.setMovie(movie)
         movie.start()  
@@ -131,6 +141,7 @@ class sudokuController:
         self.sendMatchRequest()
 
     def sendMatchRequest(self):
+        global waiting
         match_request = {"token" : self.token, "mode" : self.mode, "difficulty" : self.difficulty}
         try:
             self.conn = createConnection()
@@ -147,13 +158,15 @@ class sudokuController:
             worker.signals.result.connect(self.packed_received)
             worker.signals.error.connect(self.error_received)
             self.threadpool.start(worker)
+            waiting = True
 
 
     def packed_received(self, res):
         packet_type = res[0]
-        payload = res[1]
-        payload = json.loads(payload)
-
+        payload_legth = res[1]
+        if payload_legth != 0:
+            payload = res[2]
+            payload = json.loads(payload)
         if packet_type == MATCH_FOUND:
             self.opponent = payload["opponentUsername"]
             self.fillBoard(payload["board"])
@@ -169,6 +182,7 @@ class sudokuController:
                 msg.showMessage()
         elif packet_type == DONE: 
             if payload["done"] == True:
+                
                 if self.mode == 0:
                     self.timer.stop()
                     msg = MessageBox("Match finished","Game over,you lost", self.view.geometry().center())
@@ -278,6 +292,7 @@ class sudokuController:
                             keypad.close() 
                             return
                 self.timer.stop()
+                
                 payload = {"board" : self.board}
                 sendPacket(self.conn, CHECK_SOLUTION, json.dumps(payload).replace(" ", "", -1))
         #collaborative mode
@@ -308,6 +323,7 @@ class sudokuController:
         title = "Connection Error"
         text = "There is a connection error, retry"
         msg = MessageBox(title, text, self.view.geometry().center())
+        msg.buttonClicked.connect(lambda: self.onMsgButton())
         msg.showMessage()
         self.view.stackedWidget.setCurrentIndex(2)
         
@@ -319,6 +335,7 @@ class sudokuController:
                 item = box_grid.itemAtPosition(r%3, c%3)        
                 tool_button = item.widget()
                 style = tool_button.styleSheet().replace("background-color: #dddddd;", "background-color: white;")
+                style = tool_button.styleSheet().replace("color:red;", "color:black;")
                 tool_button.setStyleSheet(style)
                 tool_button.setText("")
                 tool_button.setEnabled(True)

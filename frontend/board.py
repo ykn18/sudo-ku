@@ -35,8 +35,6 @@ def isDone(board):
     return True'''
 
 def verify(board, r, c, old, new, mask):
-    print(old)
-    print(new)
     for i in range(9):
         if board[i][c] == old or board[i][c] == new:
             mask[i][c] = True

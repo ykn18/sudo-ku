@@ -17,7 +17,7 @@ def receivePacket(conn):
     payload_length = int.from_bytes(payload_length, byteorder='big')
     payload = conn.recv(payload_length)
     payload = payload.decode('utf-8')
-    return packet_type, payload
+    return packet_type, payload_length ,payload
 
 def sendPacket(conn, packet_type, payload):
     payload_length = len(payload.encode('utf-8'))
