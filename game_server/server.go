@@ -100,12 +100,12 @@ func matchServer(matchChannel chan matchRequestMsg) {
 			WritePacket(currentRequest.conn, MakePacket(ErrorPkt, []byte(`{msg":"Bad request"}`)))
 			continue
 		}
-		/*
-			for len(*m) > 0 && !IsOpen((*m)[0].conn) {
-				fmt.Println("sono qui 1")
-				*m = (*m)[1:]
-			}
-		*/
+
+		for len(*m) > 0 && !IsOpen((*m)[0].conn) {
+			fmt.Println("sono qui 1")
+			*m = (*m)[1:]
+		}
+
 		if len(*m) > 0 {
 			if (*m)[0].username == currentRequest.username {
 				WritePacket(currentRequest.conn, MakePacket(ErrorPkt, []byte(`{"msg":"Are you trying to play with yourself?"}`)))
