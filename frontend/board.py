@@ -1,4 +1,4 @@
-def isInRow(board, row, value):
+'''def isInRow(board, row, value):
     for col in range(9):
         if board[row][col] == value:
             return True
@@ -32,7 +32,7 @@ def isDone(board):
                 print("is done ", False)
                 return False
     print("is done ", True)
-    return True
+    return True'''
 
 def verify(board, r, c, mask):
     for i in range(9):

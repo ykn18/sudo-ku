@@ -1,9 +1,9 @@
 from sudoku_UI import *
-from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog, QLabel, QHBoxLayout
+from PyQt5.QtWidgets import QMessageBox, QDialog
 from authentication import *
 import sys
 from communication import *
-from board import isLegal, isDone, verify
+from board import verify
 import json
 
 MATCH_REQUEST = 0
@@ -57,13 +57,7 @@ class Worker(QtCore.QRunnable):
                 print("connection closed")
                 break
 class sudokuController:
-    #view
-    #token
-    #box_grid_row
-    #box_grid_col
-    #item_row
-    #item_col
-    #board
+
     def __init__(self, view):
         self.view = view
         self.connectSignals()
@@ -74,8 +68,8 @@ class sudokuController:
         self.view.signInButton.clicked.connect(lambda : self.onSignInButton())
         self.view.signUpButton.clicked.connect(lambda : self.onSignUpButton())
         self.view.registrationButton.clicked.connect(lambda : self.onRegistrationButton())
-        self.view.challengeButton.pressed.connect(lambda mode = "0" : self.setMode(mode))
-        self.view.collaborativeButton.pressed.connect(lambda mode = "1" : self.setMode(mode))
+        self.view.challengeButton.pressed.connect(lambda mode = 0 : self.setMode(mode))
+        self.view.collaborativeButton.pressed.connect(lambda mode = 1 : self.setMode(mode))
         self.view.easyButton.pressed.connect(lambda difficulty = "easy" : self.setDifficulty(difficulty))
         self.view.mediumButton.pressed.connect(lambda difficulty = "medium" : self.setDifficulty(difficulty))
         self.view.hardButton.pressed.connect(lambda difficulty = "hard" : self.setDifficulty(difficulty))
@@ -135,7 +129,7 @@ class sudokuController:
         self.sendMatchRequest()
 
     def sendMatchRequest(self):
-        match_request = {"token" : self.token, "mode" : int(self.mode), "difficulty" : self.difficulty}
+        match_request = {"token" : self.token, "mode" : self.mode, "difficulty" : self.difficulty}
         try:
             self.conn = createConnection()
         except socket.error:
@@ -163,20 +157,28 @@ class sudokuController:
             self.fillBoard(payload["board"])
             self.view.stackedWidget.setCurrentIndex(5)
         elif packet_type == VALID_SOLUTION:
-            if payload["valid"] is True:
+            if payload["valid"] == True:
                 msg = MessageBox("Match finished","Congratulations, you won", self.view.geometry().center())
                 msg.buttonClicked.connect(lambda: self.onMsgButton())
                 msg.showMessage()
-        elif packet_type == DONE: 
-            #to do, check if done is true  
-            if self.mode == "0":
-                self.timer.stop()
-                msg = MessageBox("Match finished","Game over,you lost", self.view.geometry().center())
+            else:
+                msg = MessageBox("Irregular board","There are illegal changes", self.view.geometry().center())
                 msg.buttonClicked.connect(lambda: self.onMsgButton())
                 msg.showMessage()
+        elif packet_type == DONE: 
+            if payload["done"] == True:
+                if self.mode == 0:
+                    self.timer.stop()
+                    msg = MessageBox("Match finished","Game over,you lost", self.view.geometry().center())
+                    msg.buttonClicked.connect(lambda: self.onMsgButton())
+                    msg.showMessage()
+                else:
+                    self.timer.stop()
+                    msg = MessageBox("Match finished","Sudoku completed", self.view.geometry().center())
+                    msg.buttonClicked.connect(lambda: self.onMsgButton())
+                    msg.showMessage()
             else:
-                self.timer.stop()
-                msg = MessageBox("Match finished","Sudoku completed", self.view.geometry().center())
+                msg = MessageBox("Irregular board","There are illegal changes", self.view.geometry().center())
                 msg.buttonClicked.connect(lambda: self.onMsgButton())
                 msg.showMessage()
         elif packet_type == CHANGE_VALUE:
@@ -186,6 +188,10 @@ class sudokuController:
             msg.buttonClicked.connect(lambda: self.onMsgButton())
             msg.showMessage()
   
+    def onMsgButton(self):
+        self.flushBoard()
+        self.view.stackedWidget.setCurrentIndex(2)
+
     def fillBoard(self, board):
         self.board = board  
         self.count = 0
@@ -256,9 +262,10 @@ class sudokuController:
         tool_button.setText(value)
         self.board[self.row][self.col] = int(value)
         verify(self.board, self.row, self.col, self.mask)
+        print(self.mask)
         self.cellsColor()
         #challenge mode
-        if self.mode == "0":
+        if self.mode == 0:
             if self.count == 0:
                 for i in range(9):
                     for j in range(9):
@@ -311,10 +318,6 @@ class sudokuController:
                 tool_button.setText("")
                 tool_button.setEnabled(True)
 
-    
-    def onMsgButton(self):
-        self.flushBoard()
-        self.view.stackedWidget.setCurrentIndex(2)
         
     def updateBoard(self, row, col, value):
         box_grid = self.view.gridLayout.itemAtPosition(row//3, (col//3) + 1)
@@ -333,7 +336,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
 
 if __name__ == "__main__":
-    app = QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
     view = MainWindow()
     sudokuController(view=view)
     view.show()
