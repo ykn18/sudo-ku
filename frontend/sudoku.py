@@ -185,6 +185,8 @@ class sudokuController:
                 msg.showMessage()
         elif packet_type == CHANGE_VALUE:
             self.updateBoard(payload["row"],payload["col"],payload["value"])
+        elif packet_type == PING:
+            sendPacket(self.conn, PING_ACK, "")
         elif packet_type == ERROR:
             msg = MessageBox("Error",payload["msg"], self.view.geometry().center())
             msg.buttonClicked.connect(lambda: self.onMsgButton())
