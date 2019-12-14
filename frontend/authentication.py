@@ -15,6 +15,6 @@ def registration(username, password):
     headers = {'Content-type': 'application/json'}
     data = {'username':username, 'password':password}
     json_data = json.dumps(data)
-    conn.request('POST', '/registration', json_data, headers)
+    conn.request('POST', '/register', json_data, headers)
     response = conn.getresponse()
     return response

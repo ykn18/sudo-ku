@@ -1,4 +1,5 @@
 *.pyc
 auth_server/__pycache__/
+auth_server/myvenv/
 frontend/__pycache__/
 
