@@ -6,9 +6,9 @@ import (
 	"log"
 	"math/rand"
 	"net/http"
-	"sudo-ku/board/model"
 	"time"
 
+	"github.com/ykn18/sudo-ku/board/model"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"

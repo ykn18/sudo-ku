@@ -5,10 +5,11 @@ import (
 	"errors"
 	"fmt"
 	"net"
-	. "sudo-ku/board/handler"
-	"sudo-ku/board/model"
-	. "sudo-ku/game_server/communication"
-	"sudo-ku/game_server/utils"
+
+	. "github.com/ykn18/sudo-ku/board/handler"
+	"github.com/ykn18/sudo-ku/board/model"
+	. "github.com/ykn18/sudo-ku/game_server/communication"
+	"github.com/ykn18/sudo-ku/game_server/utils"
 )
 
 type matchRequestMsg struct {

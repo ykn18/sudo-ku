@@ -2,7 +2,8 @@ package handler
 
 import (
 	"encoding/json"
-	"sudo-ku/board/model"
+
+	"github.com/ykn18/sudo-ku/board/model"
 )
 
 type SudokuBoard struct {

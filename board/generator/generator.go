@@ -2,8 +2,9 @@ package generator
 
 import (
 	"math/rand"
-	"sudo-ku/board/model"
 	"time"
+
+	"github.com/ykn18/sudo-ku/board/model"
 )
 
 type SudokuBoard struct {
