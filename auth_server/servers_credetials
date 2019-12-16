@@ -1,0 +1,12 @@
+servername = gameserver
+password = $2y$12$Ik3X.4qSaWSuDCUtDOBNe.w.HlAupvDPENB3PNMQsThA6TA652tM.
+
+servername = statisticserver
+password = $2y$12$1MvGXK73dHvzXCU47AzaO.C9G5gc5Esnclr.XSlOb6pxPkt3Ay4sq
+
+servername = generatorserver
+password = $2y$12$Hfc/Pr3EjzPXLlED1MOHn./cTtiWkO.J8U6P9LHCOF3Um2yxTZ.HC
+
+use athentication_db
+db.servers.insert({"servername":"gameserver",
+                 "password":"$2y$12$Ik3X.4qSaWSuDCUtDOBNe.w.HlAupvDPENB3PNMQsThA6TA652tM."})
