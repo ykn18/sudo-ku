@@ -1,8 +1,9 @@
 import pymongo
+import os
 
-client = pymongo.MongoClient('mongodb://localhost:27017/')
+client = pymongo.MongoClient('mongo:27017', username='root', password='toor', authSource='admin')
+
 db = client['authentication_db']
-
 if 'servers' in db.list_collection_names():
     print('Migration already updated')
 else:

@@ -7,7 +7,7 @@ from lib_token import create_token
 
 app = Flask(__name__)
 app.config['MONGODB_NAME'] = 'authentication_db'
-app.config['MONGO_URI'] = 'mongodb://localhost:27017/authentication_db'
+app.config['MONGO_URI'] = 'mongodb://root:toor@mongo:27017/authentication_db?authSource=admin'
 app.config['USER_SECRET_KEY'] = 'usersecretkey'
 app.config['SERVER_SECRET_KEY'] = 'serversecretkey'
 

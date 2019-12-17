@@ -4,3 +4,18 @@ services:
         build: ./game_server
         ports:
             - "8080:8080"
+    generator:
+        build: ./generator_server
+    authserver:
+        build: ./auth_server
+        depends_on: 
+            - mongo
+        ports:
+            - "5000:5000"
+    mongo:
+        image: mongo
+        ports: 
+            - "27017:27017"
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: toor
