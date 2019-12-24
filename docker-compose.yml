@@ -10,6 +10,10 @@ services:
         build: ./generator_server
         depends_on: 
             - authserver
+    statisticserver:
+        build: ./statistic_server
+        ports: 
+            - "5050:5050"
     authserver:
         build: ./auth_server
         depends_on: 
