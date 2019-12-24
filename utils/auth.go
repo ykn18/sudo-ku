@@ -9,7 +9,6 @@ import (
 	"time"
 )
 
-const secretKey = "usersecretkey"
 const layout = "2006-01-02 15:04:05"
 
 type tokenPayload struct {
@@ -41,7 +40,7 @@ func checkExpiration(expTimestamp string) bool {
 	return false
 }
 
-func verifySignature(payload string, signature string) bool {
+func verifySignature(payload string, signature string, secretKey string) bool {
 	h := hmac.New(sha256.New, []byte(secretKey))
 	h.Write([]byte(payload))
 	digest := base64.URLEncoding.EncodeToString(h.Sum(nil))
@@ -52,9 +51,9 @@ func verifySignature(payload string, signature string) bool {
 }
 
 /*VerifyToken verifies that the token is valid*/
-func VerifyToken(token string) (bool, error) {
+func VerifyToken(token string, secretKey string) (bool, error) {
 	splittedToken := strings.Split(token, ".")
-	if verifySignature(splittedToken[0], splittedToken[1]) {
+	if verifySignature(splittedToken[0], splittedToken[1], secretKey) {
 		tokenBody, err := DecodeToken(token)
 		if err != nil {
 			return false, err

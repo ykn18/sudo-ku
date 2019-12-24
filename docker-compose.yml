@@ -2,10 +2,14 @@ version: '3'
 services:
     gameserver:
         build: ./game_server
+        depends_on: 
+            - authserver
         ports:
             - "8080:8080"
     generator:
         build: ./generator_server
+        depends_on: 
+            - authserver
     authserver:
         build: ./auth_server
         depends_on: 

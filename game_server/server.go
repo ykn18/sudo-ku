@@ -1,15 +1,19 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"errors"
 	"fmt"
+	"io/ioutil"
 	"net"
+	"net/http"
+	"time"
 
 	. "github.com/ykn18/sudo-ku/board/handler"
 	"github.com/ykn18/sudo-ku/board/model"
 	. "github.com/ykn18/sudo-ku/game_server/communication"
-	"github.com/ykn18/sudo-ku/game_server/utils"
+	"github.com/ykn18/sudo-ku/utils"
 )
 
 type matchRequestMsg struct {
@@ -19,12 +23,30 @@ type matchRequestMsg struct {
 	username   string
 }
 
+type serverAuthReq struct {
+	Servername string `json:"servername"`
+	Password   string `json:"password"`
+}
+
+type serverAuthRes struct {
+	Token string `json:"token"`
+}
+
+const userSecretKey = "usersecretkey"
+
 var errBadRequest = errors.New("Bad request")
 var errInternal = errors.New("Internal server error")
 
 var difficulties = [...]string{"easy", "medium", "hard"}
 
+var token = ""
+
 func main() {
+	for token == "" {
+		token = getServerToken()
+		time.Sleep(500 * time.Millisecond)
+	}
+
 	matchChannel := make(chan matchRequestMsg)
 	go matchServer(matchChannel)
 
@@ -43,6 +65,29 @@ func main() {
 	}
 }
 
+func getServerToken() string {
+	generatorURI := "http://authserver:5000/servers/auth"
+	requestBody, err := json.Marshal(serverAuthReq{
+		Servername: "gameserver",
+		Password:   "gameserver",
+	})
+
+	if err != nil {
+		return ""
+	}
+
+	resp, err := http.Post(generatorURI, "application/json", bytes.NewBuffer(requestBody))
+	if err != nil {
+		fmt.Println(err)
+		return ""
+	}
+
+	defer resp.Body.Close()
+	bodyJSON, err := ioutil.ReadAll(resp.Body)
+	var body serverAuthRes
+	json.Unmarshal(bodyJSON, &body)
+	return body.Token
+}
 func handleMatchInit(conn net.Conn, matchChannel chan matchRequestMsg) {
 
 	p, err := ReadPacket(conn)
@@ -56,7 +101,7 @@ func handleMatchInit(conn net.Conn, matchChannel chan matchRequestMsg) {
 	var decodedReq ClientMatchRequestMsg
 	json.Unmarshal(p.Payload, &decodedReq)
 
-	valid, err := utils.VerifyToken(decodedReq.Token)
+	valid, err := utils.VerifyToken(decodedReq.Token, userSecretKey)
 	if valid && (err == nil) {
 		payload, err := utils.DecodeToken(decodedReq.Token)
 		if err != nil {

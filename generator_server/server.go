@@ -19,6 +19,8 @@ import (
 
 var client *mongo.Client
 
+var serverSecretKey = "serversecretkey"
+
 type SudokuEntry struct {
 	ID         primitive.ObjectID `json:"_id,omitempty" bson:"_id,omitempty"`
 	Board      [9][9]int          `json:"board,omitempty" bson:"board,omitempty"`
