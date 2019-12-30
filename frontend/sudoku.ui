@@ -129,7 +129,7 @@ border: 4px solid black;
           <property name="sizeHint" stdset="0">
            <size>
             <width>20</width>
-            <height>30</height>
+            <height>0</height>
            </size>
           </property>
          </spacer>
@@ -169,6 +169,7 @@ border: 4px solid black;
           <property name="font">
            <font>
             <family>Lato</family>
+            <pointsize>16</pointsize>
             <weight>75</weight>
             <bold>true</bold>
            </font>
@@ -218,6 +219,7 @@ border: 4px solid black;
           <property name="font">
            <font>
             <family>Lato</family>
+            <pointsize>16</pointsize>
             <weight>75</weight>
             <bold>true</bold>
            </font>
@@ -341,10 +343,13 @@ font-weight: bold;
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Preferred</enum>
+          </property>
           <property name="sizeHint" stdset="0">
            <size>
             <width>20</width>
-            <height>40</height>
+            <height>47</height>
            </size>
           </property>
          </spacer>
@@ -380,6 +385,14 @@ font-weight: bold;
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <family>Lato</family>
+            <pointsize>16</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
           </property>
           <property name="styleSheet">
            <string notr="true">QLineEdit{
@@ -422,6 +435,14 @@ border: 4px solid black;
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <family>Lato</family>
+            <pointsize>16</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
           </property>
           <property name="styleSheet">
            <string notr="true">QLineEdit{
@@ -468,6 +489,14 @@ border: 4px solid black;
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="font">
+           <font>
+            <family>Lato</family>
+            <pointsize>16</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
           <property name="styleSheet">
            <string notr="true">QLineEdit{
 margin-right:100px;
@@ -489,10 +518,13 @@ border: 4px solid black;
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
           <property name="sizeHint" stdset="0">
            <size>
             <width>20</width>
-            <height>20</height>
+            <height>57</height>
            </size>
           </property>
          </spacer>
@@ -3374,6 +3406,100 @@ border-radius: 16px;
           </property>
           <property name="alignment">
            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_7">
+       <layout class="QVBoxLayout" name="verticalLayout_6">
+        <item>
+         <widget class="QPushButton" name="homeButton">
+          <property name="styleSheet">
+           <string notr="true">QPushButton{
+margin-right:150px;
+margin-left:150px;
+background:black;
+color:white;
+font-weight: bold;
+}</string>
+          </property>
+          <property name="text">
+           <string>Home</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_8">
+       <layout class="QVBoxLayout" name="verticalLayout_10">
+        <property name="topMargin">
+         <number>80</number>
+        </property>
+        <property name="bottomMargin">
+         <number>80</number>
+        </property>
+        <item>
+         <widget class="QPushButton" name="playButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <family>Lato</family>
+            <pointsize>21</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton{
+margin:10px;
+margin-right:80px;
+margin-left:80px;
+border: 8px solid black; 
+background:white;
+font-weight: bold;
+border-radius: 16px;
+}</string>
+          </property>
+          <property name="text">
+           <string>Play</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="statsButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <family>Lato</family>
+            <pointsize>21</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton{
+margin:10px;
+margin-right:80px;
+margin-left:80px;
+border: 8px solid black; 
+background:white;
+font-weight: bold;
+border-radius: 16px;
+}</string>
+          </property>
+          <property name="text">
+           <string>Stats</string>
           </property>
          </widget>
         </item>

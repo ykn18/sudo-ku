@@ -6,6 +6,11 @@ from communication import *
 from board import verify
 import json
 
+import time
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+from matplotlib.figure import Figure
+import matplotlib.patheffects as path_effects
+
 MATCH_REQUEST = 1
 MATCH_FOUND = 2
 CHECK_SOLUTION = 3
@@ -25,6 +30,8 @@ class MessageBox(QMessageBox):
         self.title = title
         self.text = text
         self.pos = pos
+
+        
 
     def showMessage(self):
             self.move(self.pos)
@@ -77,15 +84,39 @@ class Worker(QtCore.QRunnable):
                 return
             
 class sudokuController:
-
     def __init__(self, view):
         self.view = view
+        self.view.setWindowTitle("SUDO-KU")
         self.connectSignals()
         self.threadpool = QtCore.QThreadPool()
         self.view.setWindowIcon(QtGui.QIcon("media/icon.png"))
 
+        #Init canvas to draw stats
+        self.view.canvasWidget = FigureCanvas(Figure())
+        self.view.verticalLayout_6.addWidget(self.view.canvasWidget)
+        self.view.canvasWidget.setSizePolicy(QtWidgets.QSizePolicy.Expanding, 
+                                  QtWidgets.QSizePolicy.Expanding)
+        self.view.canvasWidget.updateGeometry()
+        self.ax = self.view.canvasWidget.figure.subplots()
+
+        
+    def updateCanvas(self):
+        self.ax.clear()
+        self.ax.set_facecolor('#828282')
+        self.ax.set_ylabel("Numbers inserted", family='sans-serif', size="13", weight="bold")
+        self.ax.set_xlabel("Time", family='sans-serif', size="13", weight="bold")
+        self.ax.set_title("Match stats", family='sans-serif', size="15", weight="bold")
+        self.ax.step(list(map(lambda x: x[0], self.moves)), list(map(lambda x: x[1], self.moves)), color="white", linewidth=5.0, 
+        path_effects=[path_effects.SimpleLineShadow(shadow_color="white"),
+        path_effects.Normal()])
+        self.ax.figure.canvas.draw()
+
+
     #connects signals of buttons to slots
     def connectSignals(self):
+        self.view.homeButton.clicked.connect(lambda : self.onHomeButton())
+        self.view.playButton.clicked.connect(lambda : self.onPlayButton())
+        self.view.statsButton.clicked.connect(lambda : self.onStatsButton())
         self.view.signInButton.clicked.connect(lambda : self.onSignInButton())
         self.view.signUpButton.clicked.connect(lambda : self.onSignUpButton())
         self.view.registrationButton.clicked.connect(lambda : self.onRegistrationButton())
@@ -101,7 +132,7 @@ class sudokuController:
                 tool_button = item.widget()
                 tool_button.pressed.connect(lambda pos = (r, c): self.onItem(pos[0], pos[1]))
 
-        
+    
     def onSignInButton(self):
         username = self.view.usernameLine.text()
         password = self.view.passwordLine.text()
@@ -110,7 +141,7 @@ class sudokuController:
         data = json.loads(response)
         if res.status == 200:
             self.token = data["token"]
-            self.view.stackedWidget.setCurrentIndex(2)
+            self.view.stackedWidget.setCurrentIndex(7)
         else:
             msg = MessageBox("Bad credentials",data["message"],self.view.geometry().center())
             msg.showMessage()
@@ -136,6 +167,16 @@ class sudokuController:
             msg = MessageBox("Bad credetials", "Insert the same password", self.view.geometry().center())
             msg.showMessage()
 
+    def onPlayButton(self):
+        self.view.stackedWidget.setCurrentIndex(2)
+    
+    def onHomeButton(self):
+        self.view.stackedWidget.setCurrentIndex(7)
+    
+    def onStatsButton(self):
+        pass
+        #TO DO: ADD LEADERBOARD
+
     def setMode(self, mode):
         self.mode = mode
         self.view.stackedWidget.setCurrentIndex(3)
@@ -160,7 +201,7 @@ class sudokuController:
         except socket.error:
             message = "There is a connection error, retry"
             msg = MessageBox("Connetion Error", message, self.view.geometry().center())
-            msg.buttonClicked.connect(lambda: self.onMsgButton())
+            msg.buttonClicked.connect(lambda: self.onMsgButton("ERROR"))
             msg.showMessage()
             self.view.stackedWidget.setCurrentIndex(2)
             print("connetion error")
@@ -187,27 +228,30 @@ class sudokuController:
         elif packet_type == VALID_SOLUTION:
             if payload["valid"] == True:
                 msg = MessageBox("Match finished","Congratulations, you won", self.view.geometry().center())
-                msg.buttonClicked.connect(lambda: self.onMsgButton())
+                self.updateCanvas()
+                msg.buttonClicked.connect(lambda: self.onMsgButton("MATCH_FINISHED"))
                 msg.showMessage()
             else:
                 msg = MessageBox("Irregular board","There are illegal changes", self.view.geometry().center())
-                msg.buttonClicked.connect(lambda: self.onMsgButton())
+                msg.buttonClicked.connect(lambda: self.onMsgButton("ERROR"))
                 msg.showMessage()
         elif packet_type == DONE: 
             if payload["done"] == True:
                 if self.mode == 0:
                     self.timer.stop()
                     msg = MessageBox("Match finished","Game over,you lost", self.view.geometry().center())
-                    msg.buttonClicked.connect(lambda: self.onMsgButton())
+                    self.updateCanvas()
+                    msg.buttonClicked.connect(lambda: self.onMsgButton("MATCH_FINISHED"))
                     msg.showMessage()
                 else:
                     self.timer.stop()
                     msg = MessageBox("Match finished","Sudoku completed", self.view.geometry().center())
-                    msg.buttonClicked.connect(lambda: self.onMsgButton())
+                    self.updateCanvas()
+                    msg.buttonClicked.connect(lambda: self.onMsgButton("MATCH_FINISHED"))
                     msg.showMessage()
             else:
                 msg = MessageBox("Irregular board","There are illegal changes", self.view.geometry().center())
-                msg.buttonClicked.connect(lambda: self.onMsgButton())
+                msg.buttonClicked.connect(lambda: self.onMsgButton("ERROR"))
                 msg.showMessage()
         elif packet_type == CHANGE_VALUE:
             self.updateBoard(payload["row"],payload["col"],payload["value"])
@@ -215,20 +259,24 @@ class sudokuController:
             sendPacket(self.conn, PING_ACK, "")
         elif packet_type == ERROR:
             msg = MessageBox("Error",payload["msg"], self.view.geometry().center())
-            msg.buttonClicked.connect(lambda: self.onMsgButton())
+            msg.buttonClicked.connect(lambda: self.onMsgButton("ERROR"))
             msg.showMessage()
 
   
-    def onMsgButton(self):
+    def onMsgButton(self, msg):
         self.enableDifficultyButton()
         self.flushBoard()
-        self.view.stackedWidget.setCurrentIndex(2)
+        if msg == "ERROR":
+            self.view.stackedWidget.setCurrentIndex(7)
+        elif msg == "MATCH_FINISHED":
+            self.view.stackedWidget.setCurrentIndex(6)
 
     def fillBoard(self, board):
         self.board = board  
         self.count = 0
         self.mask = [[True for j in range(9)] for i in range(9)]
 
+        self.moves = []
         for r in range(0,9):
             for c in range(0,9):
                 box_grid = self.view.gridLayout.itemAtPosition(r//3,(c//3)+1)
@@ -241,6 +289,7 @@ class sudokuController:
                     tool_button.setEnabled(False)
                 else:
                     self.count += 1
+        self.start_time = time.time()
         self.setupTimer()
 
 
@@ -272,6 +321,11 @@ class sudokuController:
                 button.pressed.connect(lambda value = (str(v),numeric_keypad) : self.onKeyPad(value[0], value[1]))
                 grid_layout.addWidget(button,r,c,1,1)
                 v += 1
+        button = QtWidgets.QToolButton()
+        button.setText('C')
+        button.pressed.connect(lambda value = (str(0),numeric_keypad) : self.onKeyPad(value[0], value[1]))
+        grid_layout.addWidget(button,3,1,1,1)
+
         numeric_keypad.setLayout(grid_layout)
         numeric_keypad.resize(100,100)
         box_grid = self.view.gridLayout.itemAtPosition(self.box_grid_row,self.box_grid_col)
@@ -291,9 +345,13 @@ class sudokuController:
         tool_button = item.widget()
         old_value = tool_button.text()
         old_value = int(old_value) if old_value != "" else 0 
-        if self.board[self.row][self.col] == 0:
+        if self.board[self.row][self.col] == 0 and value != "0":
             self.count -= 1
-        tool_button.setText(value)
+        elif self.board[self.row][self.col] != 0 and value == "0":
+            self.count += 1
+
+        self.moves.append((time.time()-self.start_time, 81-self.count))
+        tool_button.setText(value if value != "0" else "")
         self.board[self.row][self.col] = int(value)
         verify(self.board, self.row, self.col, old_value, int(value), self.mask)
         self.cellsColor()
@@ -303,6 +361,10 @@ class sudokuController:
                 for i in range(9):
                     for j in range(9):
                         if self.mask[i][j] == False:
+                            print(i)
+                            print(j)
+                            print(self.mask[i][j])
+                            print(self.board[i][j])
                             keypad.close() 
                             return
                 self.timer.stop()
@@ -337,7 +399,7 @@ class sudokuController:
         title = "Connection Error"
         text = "There is a connection error, retry"
         msg = MessageBox(title, text, self.view.geometry().center())
-        msg.buttonClicked.connect(lambda: self.onMsgButton())
+        msg.buttonClicked.connect(lambda: self.onMsgButton("ERROR"))
         msg.showMessage()
         self.view.stackedWidget.setCurrentIndex(2)
         

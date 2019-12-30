@@ -10,8 +10,9 @@ import (
 	"net/http"
 	"time"
 
-	. "github.com/ykn18/sudo-ku/board/handler"
 	"github.com/ykn18/sudo-ku/board/model"
+
+	. "github.com/ykn18/sudo-ku/board/handler"
 	. "github.com/ykn18/sudo-ku/game_server/communication"
 	"github.com/ykn18/sudo-ku/utils"
 )
@@ -217,10 +218,14 @@ func gameServerChallenge(c1 matchRequestMsg, c2 matchRequestMsg) {
 	go handleConnectionOut(c2.conn, ch2Out)
 
 	/*
-		response, _ := http.Get("http://localhost:7070/board/difficulty=medium")
-		body, _ := ioutil.ReadAll(response.Body)
-
+		url := "http://generator:7070/board/difficulty=" + c1.difficulty
+		client := &http.Client{}
+		req, _ := http.NewRequest("GET", url, nil)
+		req.Header.Set("Authentication", "Bearer "+token)
+		res, _ := client.Do(req)
+		body, _ := ioutil.ReadAll(res.Body)
 	*/
+
 	sudokuBoard1g := model.SudokuBoard{
 		Board: [9][9]int{
 			{5, 8, 3, 4, 7, 1, 2, 6, 9},
@@ -243,7 +248,6 @@ func gameServerChallenge(c1 matchRequestMsg, c2 matchRequestMsg) {
 			{3, 4, 6, 8, 9, 5, 7, 2, 1},
 			{2, 9, 8, 7, 1, 3, 6, 4, 5}},
 	}
-
 	sudokuBoard1JSON, _ := json.Marshal(sudokuBoard1g)
 
 	var sudokuBoard1 SudokuBoard
@@ -326,7 +330,14 @@ func gameServerCollaborative(c1 matchRequestMsg, c2 matchRequestMsg) {
 	go handleConnectionIn(c2.conn, ch2In)
 	go handleConnectionOut(c2.conn, ch2Out)
 
-	//var sudokuBoard1 handler.SudokuBoard = handler.SudokuBoard(generator.MakeSudokuBoard(c1.difficulty))
+	/*
+		url := "http://generator:7070/board/difficulty=" + c1.difficulty
+		client := &http.Client{}
+		req, _ := http.NewRequest("GET", url, nil)
+		req.Header.Set("Authentication", "Bearer "+token)
+		res, _ := client.Do(req)
+		body, _ := ioutil.ReadAll(res.Body)
+	*/
 	sudokuBoardg := model.SudokuBoard{
 		Board: [9][9]int{
 			{5, 8, 3, 4, 7, 1, 2, 6, 9},
@@ -350,6 +361,7 @@ func gameServerCollaborative(c1 matchRequestMsg, c2 matchRequestMsg) {
 			{2, 9, 8, 7, 1, 3, 6, 4, 5}},
 	}
 	sudokuBoardJSON, _ := json.Marshal(sudokuBoardg)
+
 	var sudokuBoard SudokuBoard
 	json.Unmarshal(sudokuBoardJSON, &sudokuBoard)
 

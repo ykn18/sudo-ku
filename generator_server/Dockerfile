@@ -5,7 +5,8 @@ go get -d -v go.mongodb.org/mongo-driver/bson && \
 go get -d -v go.mongodb.org/mongo-driver/bson/primitive && \
 go get -d -v go.mongodb.org/mongo-driver/mongo && \
 go get -d -v go.mongodb.org/mongo-driver/mongo/options && \
-go get -d -v github.com/gorilla/mux 
+go get -d -v github.com/gorilla/mux  && \
+go get -d -v github.com/ykn18/sudo-ku/utils
 
 COPY . .
 RUN CGO_ENABLED=0 GOOS=linux go build -o server .

@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ykn18/sudo-ku/game_server/utils"
+	"github.com/ykn18/sudo-ku/utils"
 
 	"github.com/gorilla/mux"
 	"go.mongodb.org/mongo-driver/bson"
@@ -17,6 +17,9 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
+
+const serverSecretKey = "serversecretkey"
+const userSecretKey = "usersecretkey"
 
 type MatchResult struct {
 	Win       bool      `bson:"win" json:"win,omitempty"`
@@ -120,7 +123,7 @@ func getStats(w http.ResponseWriter, r *http.Request) {
 	token := r.Header.Get("Authorization")
 	splitToken := strings.Split(token, " ")
 	token = splitToken[1]
-	valid, err := utils.VerifyToken(token)
+	valid, err := utils.VerifyToken(token, userSecretKey)
 	if valid && (err == nil) {
 		payload, err := utils.DecodeToken(token)
 		if err != nil {

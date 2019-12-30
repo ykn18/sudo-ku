@@ -76,7 +76,7 @@ class Ui_MainWindow(object):
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName("label")
         self.verticalLayout_7.addWidget(self.label)
-        spacerItem = QtWidgets.QSpacerItem(20, 30, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
+        spacerItem = QtWidgets.QSpacerItem(20, 0, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
         self.verticalLayout_7.addItem(spacerItem)
         self.usernameLabel = QtWidgets.QLabel(self.page)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
@@ -101,6 +101,7 @@ class Ui_MainWindow(object):
         self.usernameLine.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setFamily("Lato")
+        font.setPointSize(16)
         font.setBold(True)
         font.setWeight(75)
         self.usernameLine.setFont(font)
@@ -135,6 +136,7 @@ class Ui_MainWindow(object):
         self.passwordLine.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setFamily("Lato")
+        font.setPointSize(16)
         font.setBold(True)
         font.setWeight(75)
         self.passwordLine.setFont(font)
@@ -208,7 +210,7 @@ class Ui_MainWindow(object):
         self.label_2.setAlignment(QtCore.Qt.AlignCenter)
         self.label_2.setObjectName("label_2")
         self.verticalLayout_9.addWidget(self.label_2)
-        spacerItem2 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        spacerItem2 = QtWidgets.QSpacerItem(20, 47, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
         self.verticalLayout_9.addItem(spacerItem2)
         self.usernameLabel_2 = QtWidgets.QLabel(self.page_2)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
@@ -231,6 +233,12 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.usernameLineRegistration.sizePolicy().hasHeightForWidth())
         self.usernameLineRegistration.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(16)
+        font.setBold(True)
+        font.setWeight(75)
+        self.usernameLineRegistration.setFont(font)
         self.usernameLineRegistration.setStyleSheet("QLineEdit{\n"
 "margin-right:100px;\n"
 "margin-left:100px;\n"
@@ -260,6 +268,12 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.passwordLineRegistration.sizePolicy().hasHeightForWidth())
         self.passwordLineRegistration.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(16)
+        font.setBold(True)
+        font.setWeight(75)
+        self.passwordLineRegistration.setFont(font)
         self.passwordLineRegistration.setStyleSheet("QLineEdit{\n"
 "margin-right:100px;\n"
 "margin-left:100px;\n"
@@ -290,6 +304,12 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.repeatPasswordLine.sizePolicy().hasHeightForWidth())
         self.repeatPasswordLine.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(16)
+        font.setBold(True)
+        font.setWeight(75)
+        self.repeatPasswordLine.setFont(font)
         self.repeatPasswordLine.setStyleSheet("QLineEdit{\n"
 "margin-right:100px;\n"
 "margin-left:100px;\n"
@@ -300,7 +320,7 @@ class Ui_MainWindow(object):
         self.repeatPasswordLine.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.repeatPasswordLine.setObjectName("repeatPasswordLine")
         self.verticalLayout_9.addWidget(self.repeatPasswordLine)
-        spacerItem3 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        spacerItem3 = QtWidgets.QSpacerItem(20, 57, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         self.verticalLayout_9.addItem(spacerItem3)
         self.registrationButton = QtWidgets.QPushButton(self.page_2)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
@@ -2321,6 +2341,73 @@ class Ui_MainWindow(object):
         self.opponentLabel.setObjectName("opponentLabel")
         self.gridLayout_12.addWidget(self.opponentLabel, 0, 1, 1, 2)
         self.stackedWidget.addWidget(self.page_5)
+        self.page_7 = QtWidgets.QWidget()
+        self.page_7.setObjectName("page_7")
+        self.verticalLayout_6 = QtWidgets.QVBoxLayout(self.page_7)
+        self.verticalLayout_6.setObjectName("verticalLayout_6")
+        self.homeButton = QtWidgets.QPushButton(self.page_7)
+        self.homeButton.setStyleSheet("QPushButton{\n"
+"margin-right:150px;\n"
+"margin-left:150px;\n"
+"background:black;\n"
+"color:white;\n"
+"font-weight: bold;\n"
+"}")
+        self.homeButton.setObjectName("homeButton")
+        self.verticalLayout_6.addWidget(self.homeButton)
+        self.stackedWidget.addWidget(self.page_7)
+        self.page_8 = QtWidgets.QWidget()
+        self.page_8.setObjectName("page_8")
+        self.verticalLayout_10 = QtWidgets.QVBoxLayout(self.page_8)
+        self.verticalLayout_10.setContentsMargins(-1, 80, -1, 80)
+        self.verticalLayout_10.setObjectName("verticalLayout_10")
+        self.playButton = QtWidgets.QPushButton(self.page_8)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.playButton.sizePolicy().hasHeightForWidth())
+        self.playButton.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(21)
+        font.setBold(True)
+        font.setWeight(75)
+        self.playButton.setFont(font)
+        self.playButton.setStyleSheet("QPushButton{\n"
+"margin:10px;\n"
+"margin-right:80px;\n"
+"margin-left:80px;\n"
+"border: 8px solid black; \n"
+"background:white;\n"
+"font-weight: bold;\n"
+"border-radius: 16px;\n"
+"}")
+        self.playButton.setObjectName("playButton")
+        self.verticalLayout_10.addWidget(self.playButton)
+        self.statsButton = QtWidgets.QPushButton(self.page_8)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.statsButton.sizePolicy().hasHeightForWidth())
+        self.statsButton.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Lato")
+        font.setPointSize(21)
+        font.setBold(True)
+        font.setWeight(75)
+        self.statsButton.setFont(font)
+        self.statsButton.setStyleSheet("QPushButton{\n"
+"margin:10px;\n"
+"margin-right:80px;\n"
+"margin-left:80px;\n"
+"border: 8px solid black; \n"
+"background:white;\n"
+"font-weight: bold;\n"
+"border-radius: 16px;\n"
+"}")
+        self.statsButton.setObjectName("statsButton")
+        self.verticalLayout_10.addWidget(self.statsButton)
+        self.stackedWidget.addWidget(self.page_8)
         self.verticalLayout_8.addWidget(self.stackedWidget)
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -2348,3 +2435,6 @@ class Ui_MainWindow(object):
         self.hardButton.setText(_translate("MainWindow", "Hard"))
         self.label_5.setText(_translate("MainWindow", "Waiting opponent"))
         self.label_6.setText(_translate("MainWindow", "Opponent:"))
+        self.homeButton.setText(_translate("MainWindow", "Home"))
+        self.playButton.setText(_translate("MainWindow", "Play"))
+        self.statsButton.setText(_translate("MainWindow", "Stats"))

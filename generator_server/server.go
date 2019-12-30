@@ -3,10 +3,14 @@ package main
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"log"
 	"math/rand"
 	"net/http"
+	"strings"
 	"time"
+
+	"github.com/ykn18/sudo-ku/board/generator"
 
 	"github.com/ykn18/sudo-ku/board/model"
 	"go.mongodb.org/mongo-driver/bson"
@@ -15,6 +19,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 
 	"github.com/gorilla/mux"
+	"github.com/ykn18/sudo-ku/utils"
 )
 
 var client *mongo.Client
@@ -31,32 +36,48 @@ type SudokuEntry struct {
 func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
-	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
+	clientOptions := options.Client().ApplyURI("mongodb://root:toor@mongo:27017/sudo-ku?authSource=admin")
 	client, _ = mongo.Connect(ctx, clientOptions)
 	rand.Seed(time.Now().UnixNano())
 
+	for i := 0; i < 3; i++ {
+		insertSudokuDB(generator.MakeSudokuBoard("easy"), "easy")
+	}
+	for i := 0; i < 3; i++ {
+		insertSudokuDB(generator.MakeSudokuBoard("medium"), "medium")
+	}
+	for i := 0; i < 3; i++ {
+		insertSudokuDB(generator.MakeSudokuBoard("hard"), "hard")
+	}
 	r := mux.NewRouter()
 	r.HandleFunc("/board/difficulty={difficulty}", getBoard)
 	http.ListenAndServe(":7070", r)
 }
 
 func getBoard(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-	vars := mux.Vars(r)
+	splittedAuth := strings.Split(r.Header.Get("Authentication"), " ")
+	token := splittedAuth[1]
 
-	s := getSudokuDB(vars["difficulty"])
+	valid, err := utils.VerifyToken(token, serverSecretKey)
+	if valid && (err == nil) {
+		w.Header().Set("Content-Type", "application/json")
+		vars := mux.Vars(r)
 
-	boardJson, err := json.Marshal(s)
+		s := getSudokuDB(vars["difficulty"])
+		boardJson, err := json.Marshal(s)
 
-	if err != nil {
-		panic(err)
+		if err != nil {
+			panic(err)
+		}
+
+		w.WriteHeader(http.StatusOK)
+		w.Write(boardJson)
+	} else {
+		w.WriteHeader(http.StatusUnauthorized)
+		w.Write([]byte("Unauthorized!"))
 	}
-
-	w.WriteHeader(http.StatusOK)
-	w.Write(boardJson)
 }
 
-/*
 func insertSudokuDB(s model.SudokuBoard, diff string) {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
@@ -70,7 +91,6 @@ func insertSudokuDB(s model.SudokuBoard, diff string) {
 	result, _ := collection.InsertOne(ctx, e)
 	fmt.Println(result)
 }
-*/
 
 func getSudokuDB(diff string) (s model.SudokuBoard) {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
