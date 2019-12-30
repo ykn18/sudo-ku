@@ -9,9 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ykn18/sudo-ku/utils"
-
 	"github.com/gorilla/mux"
+	"github.com/ykn18/sudo-ku/utils"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -60,7 +59,20 @@ func (u User) getStatistics() Stats {
 	return Stats{won, lost, totTime / len(u.Matches)}
 }
 
+func (u User) getWons() int {
+	won := 0
+	for _, match := range u.Matches {
+		if match.Win {
+			won++
+		}
+	}
+	return won
+}
+
 var client *mongo.Client
+
+const userSecretKey = "usersecretkey"
+const serverSecretKey = "serversecretkey"
 
 func main() {
 	clientOptions := options.Client().ApplyURI("mongodb://root:toor@mongo:27017/statistics?authSource=admin")
@@ -75,6 +87,7 @@ func main() {
 	r.HandleFunc("/ping", ping).Methods("GET")
 	r.HandleFunc("/user/{username}/result", saveMatchResult).Methods("POST")
 	r.HandleFunc("/stats", getStats).Methods("GET")
+	r.HandleFunc("/ranking", getRanking).Methods("GET")
 	http.ListenAndServe(":5050", r)
 }
 
@@ -84,38 +97,51 @@ func ping(w http.ResponseWriter, r *http.Request) {
 
 func saveMatchResult(w http.ResponseWriter, r *http.Request) {
 	collection := client.Database("statistics").Collection("users")
-	vars := mux.Vars(r)
-	var matchResult MatchResult
-	err := json.NewDecoder(r.Body).Decode(&matchResult)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
-		return
-	}
-	var user User
-	filter := bson.M{"username": vars["username"]}
-	err = collection.FindOne(context.TODO(), filter).Decode(&user)
-	if err != nil {
-		user.ID = primitive.NewObjectID()
-		user.Username = vars["username"]
-		user.addMatchResult(matchResult)
-		insertResult, err := collection.InsertOne(context.TODO(), user)
+	token := r.Header.Get("Authorization")
+	splitToken := strings.Split(token, " ")
+	token = splitToken[1]
+	valid, err := utils.VerifyToken(token, serverSecretKey)
+	if valid && (err == nil) {
+		_, err := utils.DecodeToken(token)
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
 			return
 		}
-		fmt.Println("Inserted: ", insertResult.InsertedID)
-		w.WriteHeader(http.StatusCreated)
-		return
+		vars := mux.Vars(r)
+		var matchResult MatchResult
+		err = json.NewDecoder(r.Body).Decode(&matchResult)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusBadRequest)
+			return
+		}
+		var user User
+		filter := bson.M{"username": vars["username"]}
+		err = collection.FindOne(context.TODO(), filter).Decode(&user)
+		if err != nil {
+			user.ID = primitive.NewObjectID()
+			user.Username = vars["username"]
+			user.addMatchResult(matchResult)
+			insertResult, err := collection.InsertOne(context.TODO(), user)
+			if err != nil {
+				w.WriteHeader(http.StatusInternalServerError)
+				return
+			}
+			fmt.Println("Inserted: ", insertResult.InsertedID)
+			w.WriteHeader(http.StatusCreated)
+			return
+		}
+		filter = bson.M{"_id": user.ID}
+		update := bson.M{"$push": bson.M{"matches": matchResult}}
+		_, err = collection.UpdateOne(context.TODO(), filter, update)
+		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+			return
+		}
+		w.WriteHeader(http.StatusOK)
 	}
-	filter = bson.M{"_id": user.ID}
-	update := bson.M{"$push": bson.M{"matches": matchResult}}
-	res, err := collection.UpdateOne(context.TODO(), filter, update)
-	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
-		return
-	}
-	fmt.Println(res)
-	w.WriteHeader(http.StatusOK)
+	w.WriteHeader(http.StatusUnauthorized)
+	w.Write([]byte("Error, invalid token"))
+
 }
 
 func getStats(w http.ResponseWriter, r *http.Request) {
@@ -145,6 +171,51 @@ func getStats(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
 		w.Write(jsonStats)
 		return
+	}
+	w.WriteHeader(http.StatusUnauthorized)
+	w.Write([]byte("Error, invalid token"))
+}
+
+func getRanking(w http.ResponseWriter, r *http.Request) {
+	collection := client.Database("statistics").Collection("users")
+	token := r.Header.Get("Authorization")
+	splitToken := strings.Split(token, " ")
+	token = splitToken[1]
+	valid, err := utils.VerifyToken(token, userSecretKey)
+	if valid && (err == nil) {
+		_, err = utils.DecodeToken(token)
+		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+			return
+		}
+		var users []User
+		cursor, err := collection.Find(context.TODO(), bson.D{})
+		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+			return
+		}
+		for cursor.Next(context.TODO()) {
+			var user User
+			err := cursor.Decode(&user)
+			if err != nil {
+				w.WriteHeader(http.StatusInternalServerError)
+				return
+			}
+			users = append(users, user)
+		}
+		m := make(map[string]int)
+		for _, user := range users {
+			m[user.Username] = user.getWons()
+		}
+
+		ranking, err := json.Marshal(m)
+		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+			return
+		}
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		w.Write(ranking)
 	}
 	w.WriteHeader(http.StatusUnauthorized)
 	w.Write([]byte("Error, invalid token"))
