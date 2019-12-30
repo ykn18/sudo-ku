@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QMessageBox, QDialog
 from authentication import *
 import sys
 from communication import *
+from statistics import *
 from board import verify
 import json
 
@@ -115,8 +116,11 @@ class sudokuController:
     #connects signals of buttons to slots
     def connectSignals(self):
         self.view.homeButton.clicked.connect(lambda : self.onHomeButton())
+        self.view.homeButton_2.clicked.connect(lambda : self.onHomeButton())
+        self.view.homeButton_3.clicked.connect(lambda : self.onHomeButton())
         self.view.playButton.clicked.connect(lambda : self.onPlayButton())
         self.view.statsButton.clicked.connect(lambda : self.onStatsButton())
+        self.view.leaderBoardButton.clicked.connect(lambda : self.onLeaderBoardButton())
         self.view.signInButton.clicked.connect(lambda : self.onSignInButton())
         self.view.signUpButton.clicked.connect(lambda : self.onSignUpButton())
         self.view.registrationButton.clicked.connect(lambda : self.onRegistrationButton())
@@ -172,10 +176,39 @@ class sudokuController:
     
     def onHomeButton(self):
         self.view.stackedWidget.setCurrentIndex(7)
-    
+
+    def onLeaderBoardButton(self):
+        res = getLeaderBoard(self.token)
+        response = res.read().decode()
+        if res.status == 200:
+            data = json.loads(response)
+            sorted_leaderboard = sorted(data.items(), key=lambda x: x[1], reverse=True)
+            self.fillLeaderBoard(sorted_leaderboard)
+            self.view.stackedWidget.setCurrentIndex(8)
+        else:
+            msg = MessageBox("Error", response, self.view.geometry().center())
+            msg.showMessage()
+
+
+    def fillLeaderBoard(self, leaderboard):
+        pos = 1
+        for user in leaderboard:
+            self.view.leaderBoardLayout.addRow(QtWidgets.QLabel(str(pos)), QtWidgets.QLabel(user[0]))
+            pos += 1
+     
     def onStatsButton(self):
-        pass
-        #TO DO: ADD LEADERBOARD
+        res = getPersonalStats(self.token)
+        response = res.read().decode()
+        if res.status == 200:
+            stats = json.loads(response)
+            self.view.wonLabel.setText(str(stats['won']))
+            self.view.lostLabel.setText(str(stats['lost']))
+            self.view.avgTimeLabel.setText(str(stats['avgTime']) + " s")
+            self.view.stackedWidget.setCurrentIndex(9)
+        else:
+            msg = MessageBox("Error", response, self.view.geometry().center())
+            msg.showMessage()
+        
 
     def setMode(self, mode):
         self.mode = mode

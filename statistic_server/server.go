@@ -135,6 +135,7 @@ func saveMatchResult(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		w.WriteHeader(http.StatusOK)
+		return
 	}
 	w.WriteHeader(http.StatusUnauthorized)
 	w.Write([]byte("Error, invalid token"))
@@ -213,6 +214,7 @@ func getRanking(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
 		w.Write(ranking)
+		return
 	}
 	w.WriteHeader(http.StatusUnauthorized)
 	w.Write([]byte("Error, invalid token"))
