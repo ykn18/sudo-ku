@@ -1,6 +1,6 @@
 FROM golang
 WORKDIR /go/src/statistic_server
-RUN go get -d -v  github.com/ykn18/sudo-ku/game_server/utils && \ 
+RUN go get -d -v  github.com/ykn18/sudo-ku/utils && \ 
 go get -d -v go.mongodb.org/mongo-driver/bson && \
 go get -d -v go.mongodb.org/mongo-driver/bson/primitive && \
 go get -d -v go.mongodb.org/mongo-driver/mongo && \
