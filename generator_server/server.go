@@ -55,7 +55,7 @@ func main() {
 }
 
 func getBoard(w http.ResponseWriter, r *http.Request) {
-	splittedAuth := strings.Split(r.Header.Get("Authentication"), " ")
+	splittedAuth := strings.Split(r.Header.Get("Authorization"), " ")
 	token := splittedAuth[1]
 
 	valid, err := utils.VerifyToken(token, serverSecretKey)
