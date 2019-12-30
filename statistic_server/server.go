@@ -71,9 +71,6 @@ func (u User) getWons() int {
 
 var client *mongo.Client
 
-const userSecretKey = "usersecretkey"
-const serverSecretKey = "serversecretkey"
-
 func main() {
 	clientOptions := options.Client().ApplyURI("mongodb://root:toor@mongo:27017/statistics?authSource=admin")
 	client, _ = mongo.Connect(context.TODO(), clientOptions)
