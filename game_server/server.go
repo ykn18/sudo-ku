@@ -33,6 +33,12 @@ type serverAuthRes struct {
 	Token string `json:"token"`
 }
 
+type MatchResult struct {
+	Win       bool      `json:"win,omitempty"`
+	MatchTime int       `json:"matchTime,omitempty"`
+	DateTime  time.Time `json:"dateTime,omitempty"`
+}
+
 const userSecretKey = "usersecretkey"
 
 var errBadRequest = errors.New("Bad request")
@@ -67,7 +73,7 @@ func main() {
 }
 
 func getServerToken() string {
-	generatorURI := "http://authserver:5000/servers/auth"
+	authURI := "http://authserver:5000/servers/auth"
 	requestBody, err := json.Marshal(serverAuthReq{
 		Servername: "gameserver",
 		Password:   "gameserver",
@@ -77,7 +83,7 @@ func getServerToken() string {
 		return ""
 	}
 
-	resp, err := http.Post(generatorURI, "application/json", bytes.NewBuffer(requestBody))
+	resp, err := http.Post(authURI, "application/json", bytes.NewBuffer(requestBody))
 	if err != nil {
 		fmt.Println(err)
 		return ""
@@ -265,6 +271,7 @@ func gameServerChallenge(c1 matchRequestMsg, c2 matchRequestMsg) {
 
 	ch1Out <- MakePacket(MatchFoundPkt, startMatchMsg1)
 	ch2Out <- MakePacket(MatchFoundPkt, startMatchMsg2)
+	startTime := time.Now()
 
 	var solutionDecoded CheckSolutionMsg
 
@@ -277,6 +284,7 @@ func gameServerChallenge(c1 matchRequestMsg, c2 matchRequestMsg) {
 					ch2Out <- MakePacket(ErrorPkt, []byte(`{"msg":"Opponent left, you win!"}`))
 					ch1Out <- Packet{}
 					ch2Out <- Packet{}
+					sendStats(c1.username, c2.username, true, false, int(time.Now().Sub(startTime).Seconds()))
 					return
 				case CheckSolutionPkt:
 					json.Unmarshal([]byte(p1.Payload), &solutionDecoded)
@@ -286,6 +294,7 @@ func gameServerChallenge(c1 matchRequestMsg, c2 matchRequestMsg) {
 					if v {
 						msg, _ := json.Marshal(DoneMsg{Done: true})
 						ch2Out <- MakePacket(DonePkt, msg)
+						sendStats(c1.username, c2.username, true, false, int(time.Now().Sub(startTime).Seconds()))
 						ch1Out <- Packet{}
 						ch2Out <- Packet{}
 						return
@@ -298,6 +307,7 @@ func gameServerChallenge(c1 matchRequestMsg, c2 matchRequestMsg) {
 				switch p2.Type {
 				case 0:
 					ch1Out <- MakePacket(ErrorPkt, []byte(`{"msg":"Opponent left, you win!"}`))
+					sendStats(c1.username, c2.username, false, true, int(time.Now().Sub(startTime).Seconds()))
 					ch1Out <- Packet{}
 					ch2Out <- Packet{}
 					return
@@ -309,6 +319,7 @@ func gameServerChallenge(c1 matchRequestMsg, c2 matchRequestMsg) {
 					if v {
 						msg, _ := json.Marshal(DoneMsg{Done: true})
 						ch1Out <- MakePacket(DonePkt, msg)
+						sendStats(c1.username, c2.username, false, true, int(time.Now().Sub(startTime).Seconds()))
 						ch1Out <- Packet{}
 						ch2Out <- Packet{}
 						return
@@ -377,6 +388,7 @@ func gameServerCollaborative(c1 matchRequestMsg, c2 matchRequestMsg) {
 	ch1Out <- MakePacket(MatchFoundPkt, startMatchMsg1)
 	ch2Out <- MakePacket(MatchFoundPkt, startMatchMsg2)
 
+	startTime := time.Now()
 	doneMsg, _ := json.Marshal(DoneMsg{Done: true})
 
 	for {
@@ -386,6 +398,7 @@ func gameServerCollaborative(c1 matchRequestMsg, c2 matchRequestMsg) {
 				switch p1.Type {
 				case 0:
 					ch2Out <- MakePacket(ErrorPkt, []byte(`{"msg":"Your friend left, game over!"}`))
+					sendStats(c1.username, c2.username, false, false, int(time.Now().Sub(startTime).Seconds()))
 					ch1Out <- Packet{}
 					ch2Out <- Packet{}
 					return
@@ -406,6 +419,7 @@ func gameServerCollaborative(c1 matchRequestMsg, c2 matchRequestMsg) {
 					if done {
 						ch1Out <- MakePacket(DonePkt, doneMsg)
 						ch2Out <- MakePacket(DonePkt, doneMsg)
+						sendStats(c1.username, c2.username, true, true, int(time.Now().Sub(startTime).Seconds()))
 						ch1Out <- Packet{}
 						ch2Out <- Packet{}
 						return
@@ -418,6 +432,7 @@ func gameServerCollaborative(c1 matchRequestMsg, c2 matchRequestMsg) {
 				switch p2.Type {
 				case 0:
 					ch1Out <- MakePacket(ErrorPkt, []byte(`{"msg":"Your friend left, game over!"}`))
+					sendStats(c1.username, c2.username, false, false, int(time.Now().Sub(startTime).Seconds()))
 					ch1Out <- Packet{}
 					ch2Out <- Packet{}
 					return
@@ -438,6 +453,7 @@ func gameServerCollaborative(c1 matchRequestMsg, c2 matchRequestMsg) {
 					if done {
 						ch1Out <- MakePacket(DonePkt, doneMsg)
 						ch2Out <- MakePacket(DonePkt, doneMsg)
+						sendStats(c1.username, c2.username, true, true, int(time.Now().Sub(startTime).Seconds()))
 						ch1Out <- Packet{}
 						ch2Out <- Packet{}
 						return
@@ -476,4 +492,32 @@ func handleMoveMsgCollaborative(s *SudokuBoard, p Packet) (r []byte, done bool, 
 		done = true
 	}
 	return r, done, err
+}
+
+func sendStats(user1, user2 string, win1, win2 bool, matchTime int) {
+	client := &http.Client{}
+
+	statsURI := "http://statisticserver:5050/user/" + user1 + "/result"
+	requestBody, _ := json.Marshal(MatchResult{
+		Win:       win1,
+		MatchTime: matchTime,
+		DateTime:  time.Now(),
+	})
+	req, _ := http.NewRequest("POST", statsURI, bytes.NewBuffer(requestBody))
+	req.Header.Set("Authorization", "Bearer "+token)
+	req.Header.Set("Content-Type", "application/json")
+	res, _ := client.Do(req)
+	fmt.Println(res.Status)
+
+	statsURI = "http://statisticserver:5050/user/" + user2 + "/result"
+	requestBody, _ = json.Marshal(MatchResult{
+		Win:       win2,
+		MatchTime: matchTime,
+		DateTime:  time.Now(),
+	})
+	req, _ = http.NewRequest("POST", statsURI, bytes.NewBuffer(requestBody))
+	req.Header.Set("Authorization", "Bearer "+token)
+	req.Header.Set("Content-Type", "application/json")
+	res, _ = client.Do(req)
+	fmt.Println(res.Status)
 }
