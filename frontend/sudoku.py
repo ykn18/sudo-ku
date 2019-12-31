@@ -191,6 +191,8 @@ class sudokuController:
 
 
     def fillLeaderBoard(self, leaderboard):
+        for i in range(self.view.leaderBoardLayout.count()): 
+            self.view.leaderBoardLayout.itemAt(i).widget().deleteLater()
         pos = 1
         for user in leaderboard:
             self.view.leaderBoardLayout.addRow(QtWidgets.QLabel(str(pos)), QtWidgets.QLabel(user[0]))
