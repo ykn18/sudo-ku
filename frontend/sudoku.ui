@@ -3513,7 +3513,7 @@ border-radius: 16px;
           </property>
           <property name="font">
            <font>
-            <family>DejaVu Sans</family>
+            <family>Lato</family>
             <pointsize>21</pointsize>
             <weight>75</weight>
             <bold>true</bold>
@@ -3540,11 +3540,27 @@ border-radius: 16px;
       <widget class="QWidget" name="page_9">
        <layout class="QVBoxLayout" name="verticalLayout_11">
         <item>
+         <widget class="QPushButton" name="homeButton_2">
+          <property name="styleSheet">
+           <string notr="true">QPushButton{
+margin-right:150px;
+margin-left:150px;
+background:black;
+color:white;
+font-weight: bold;
+}</string>
+          </property>
+          <property name="text">
+           <string>home</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QLabel" name="label_7">
           <property name="font">
            <font>
-            <family>aakar</family>
-            <pointsize>30</pointsize>
+            <family>Lato</family>
+            <pointsize>21</pointsize>
             <weight>75</weight>
             <bold>true</bold>
            </font>
@@ -3558,19 +3574,31 @@ border-radius: 16px;
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="homeButton_2">
-          <property name="text">
-           <string>home</string>
-          </property>
-         </widget>
-        </item>
-        <item>
          <widget class="QScrollArea" name="scrollArea">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+           <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Lato</family>
+            <pointsize>15</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QScrollArea QWidget{
+background-color:white;
+}</string>
           </property>
           <property name="widgetResizable">
            <bool>true</bool>
@@ -3580,8 +3608,8 @@ border-radius: 16px;
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>619</width>
-             <height>468</height>
+             <width>611</width>
+             <height>463</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -3593,9 +3621,9 @@ border-radius: 16px;
            <widget class="QWidget" name="formLayoutWidget">
             <property name="geometry">
              <rect>
-              <x>150</x>
+              <x>230</x>
               <y>30</y>
-              <width>301</width>
+              <width>211</width>
               <height>391</height>
              </rect>
             </property>
@@ -3606,6 +3634,9 @@ border-radius: 16px;
              <property name="formAlignment">
               <set>Qt::AlignHCenter|Qt::AlignTop</set>
              </property>
+             <property name="verticalSpacing">
+              <number>14</number>
+             </property>
             </layout>
            </widget>
           </widget>
@@ -3614,60 +3645,146 @@ border-radius: 16px;
        </layout>
       </widget>
       <widget class="QWidget" name="page_10">
-       <layout class="QGridLayout" name="gridLayout_3">
-        <item row="2" column="0">
-         <widget class="QLabel" name="label_10">
-          <property name="text">
-           <string>lost</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_11">
-          <property name="text">
-           <string>won</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QLabel" name="lostLabel">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="QLabel" name="avgTimeLabel">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QLabel" name="wonLabel">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="label_13">
-          <property name="text">
-           <string>avg time</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="label_8">
-          <property name="text">
-           <string>statistics</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
+       <layout class="QVBoxLayout" name="verticalLayout_12">
+        <item>
          <widget class="QPushButton" name="homeButton_3">
+          <property name="styleSheet">
+           <string notr="true">QPushButton{
+margin-right:150px;
+margin-left:150px;
+background:black;
+color:white;
+font-weight: bold;
+}</string>
+          </property>
           <property name="text">
            <string>home</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_8">
+          <property name="font">
+           <font>
+            <family>Lato</family>
+            <pointsize>23</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Statistics</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_11">
+          <property name="font">
+           <font>
+            <family>Lato</family>
+            <pointsize>15</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Won</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="wonLabel">
+          <property name="font">
+           <font>
+            <family>Lato</family>
+            <pointsize>13</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_10">
+          <property name="font">
+           <font>
+            <family>Lato</family>
+            <pointsize>15</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Lost</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="lostLabel">
+          <property name="font">
+           <font>
+            <family>Lato</family>
+            <pointsize>13</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_13">
+          <property name="font">
+           <font>
+            <family>Lato</family>
+            <pointsize>15</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Avg time</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="avgTimeLabel">
+          <property name="font">
+           <font>
+            <family>Lato</family>
+            <pointsize>13</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
           </property>
          </widget>
         </item>

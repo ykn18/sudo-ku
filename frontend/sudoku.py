@@ -176,6 +176,7 @@ class sudokuController:
     
     def onHomeButton(self):
         self.view.stackedWidget.setCurrentIndex(7)
+        self.moves = []
 
     def onLeaderBoardButton(self):
         res = getLeaderBoard(self.token)
@@ -457,12 +458,20 @@ class sudokuController:
 
         
     def updateBoard(self, row, col, value):
+        if self.board[row][col] == 0 and value != 0:
+            self.count -= 1
+        elif self.board[row][col] != 0 and value == 0:
+            self.count += 1
+        self.moves.append((time.time()-self.start_time, 81-self.count))
         box_grid = self.view.gridLayout.itemAtPosition(row//3, (col//3) + 1)
         item = box_grid.itemAtPosition(row%3, col%3)        
         tool_button = item.widget()
         old_value = tool_button.text()
         old_value = int(old_value) if old_value != "" else 0 
-        tool_button.setText(str(value))
+        if value == 0:
+            tool_button.setText("")
+        else:
+            tool_button.setText(str(value))
         self.board[row][col] = int(value)
         verify(self.board, row, col, old_value, int(value), self.mask)       
         self.cellsColor()
