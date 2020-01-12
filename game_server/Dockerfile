@@ -1,4 +1,4 @@
-FROM golang
+FROM golang:1.13.3-alpine3.11
 WORKDIR /go/src/game_server
 RUN go get -d -v github.com/ykn18/sudo-ku/board/handler && \
 go get -d -v github.com/ykn18/sudo-ku/board/model && \
