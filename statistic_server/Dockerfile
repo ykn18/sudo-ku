@@ -1,4 +1,4 @@
-FROM golang:1.13.3-alpine3.11
+FROM golang:1.13.3
 WORKDIR /go/src/statistic_server
 RUN go get -d -v  github.com/ykn18/sudo-ku/utils && \ 
 go get -d -v go.mongodb.org/mongo-driver/bson && \
