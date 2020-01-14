@@ -1,7 +1,7 @@
 import http.client
 import json
 
-conn = http.client.HTTPConnection('localhost',5000)
+conn = http.client.HTTPConnection('46.101.196.176',5000)
 
 def login(username, password):
     headers = {'Content-type': 'application/json'}

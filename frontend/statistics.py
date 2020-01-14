@@ -1,7 +1,7 @@
 import http.client
 import json
 
-conn = http.client.HTTPConnection('localhost',5050)
+conn = http.client.HTTPConnection('46.101.196.176',5050)
 
 def getLeaderBoard(token):
     headers = {'Authorization': 'Bearer {}'.format(token)}
