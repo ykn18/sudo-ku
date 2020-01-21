@@ -8,9 +8,11 @@ import (
 	"io/ioutil"
 	"net"
 	"net/http"
+	"os"
 	"time"
 
 	. "github.com/ykn18/sudo-ku/board/handler"
+	"github.com/ykn18/sudo-ku/board/model"
 	. "github.com/ykn18/sudo-ku/game_server/communication"
 	"github.com/ykn18/sudo-ku/utils"
 )
@@ -45,8 +47,17 @@ var errInternal = errors.New("Internal server error")
 var difficulties = [...]string{"easy", "medium", "hard"}
 
 var token = ""
+var full bool
 
 func main() {
+	/*
+		full = flag.Bool("full", false, "If full is set an almost full sudoku board is going to be used")
+		flag.Parse()
+	*/
+	if os.Getenv("FULL") == "true" {
+		full = true
+	}
+
 	for token == "" {
 		token = getServerToken()
 		time.Sleep(500 * time.Millisecond)
@@ -221,14 +232,18 @@ func gameServerChallenge(c1 matchRequestMsg, c2 matchRequestMsg) {
 	go handleConnectionIn(c2.conn, ch2In)
 	go handleConnectionOut(c2.conn, ch2Out)
 
-	url := "http://generator:7070/board/difficulty=" + c1.difficulty
-	client := &http.Client{}
-	req, _ := http.NewRequest("GET", url, nil)
-	req.Header.Set("Authentication", "Bearer "+token)
-	res, _ := client.Do(req)
-	body, _ := ioutil.ReadAll(res.Body)
+	var sudokuBoard1 SudokuBoard
 
-	/*
+	if !full {
+		url := "http://generator:7070/board/difficulty=" + c1.difficulty
+		client := &http.Client{}
+		req, _ := http.NewRequest("GET", url, nil)
+		req.Header.Set("Authorization", "Bearer "+token)
+		res, _ := client.Do(req)
+		body, _ := ioutil.ReadAll(res.Body)
+
+		json.Unmarshal(body, &sudokuBoard1)
+	} else {
 		sudokuBoard1g := model.SudokuBoard{
 			Board: [9][9]int{
 				{5, 8, 3, 4, 7, 1, 2, 6, 9},
@@ -252,9 +267,9 @@ func gameServerChallenge(c1 matchRequestMsg, c2 matchRequestMsg) {
 				{2, 9, 8, 7, 1, 3, 6, 4, 5}},
 		}
 		sudokuBoard1JSON, _ := json.Marshal(sudokuBoard1g)
-	*/
-	var sudokuBoard1 SudokuBoard
-	json.Unmarshal(body, &sudokuBoard1)
+		json.Unmarshal(sudokuBoard1JSON, &sudokuBoard1)
+	}
+
 	sudokuBoard2 := sudokuBoard1
 
 	startMatchMsg1, err1 := json.Marshal(MatchFoundMsg{OpponentUsername: c2.username, Board: sudokuBoard1.GetBoard()})
@@ -338,15 +353,18 @@ func gameServerCollaborative(c1 matchRequestMsg, c2 matchRequestMsg) {
 	go handleConnectionIn(c2.conn, ch2In)
 	go handleConnectionOut(c2.conn, ch2Out)
 
-	url := "http://generator:7070/board/difficulty=" + c1.difficulty
-	client := &http.Client{}
-	req, _ := http.NewRequest("GET", url, nil)
-	req.Header.Set("Authentication", "Bearer "+token)
-	res, _ := client.Do(req)
-	body, _ := ioutil.ReadAll(res.Body)
+	var sudokuBoard SudokuBoard
+	if !full {
+		url := "http://generator:7070/board/difficulty=" + c1.difficulty
+		client := &http.Client{}
+		req, _ := http.NewRequest("GET", url, nil)
+		req.Header.Set("Authorization", "Bearer "+token)
+		res, _ := client.Do(req)
+		body, _ := ioutil.ReadAll(res.Body)
 
-	/*
-		sudokuBoardg := model.SudokuBoard{
+		json.Unmarshal(body, &sudokuBoard)
+	} else {
+		sudokuBoard1g := model.SudokuBoard{
 			Board: [9][9]int{
 				{5, 8, 3, 4, 7, 1, 2, 6, 9},
 				{4, 6, 7, 2, 5, 9, 0, 0, 8},
@@ -368,10 +386,9 @@ func gameServerCollaborative(c1 matchRequestMsg, c2 matchRequestMsg) {
 				{3, 4, 6, 8, 9, 5, 7, 2, 1},
 				{2, 9, 8, 7, 1, 3, 6, 4, 5}},
 		}
-		sudokuBoardJSON, _ := json.Marshal(sudokuBoardg)
-	*/
-	var sudokuBoard SudokuBoard
-	json.Unmarshal(body, &sudokuBoard)
+		sudokuBoard1JSON, _ := json.Marshal(sudokuBoard1g)
+		json.Unmarshal(sudokuBoard1JSON, &sudokuBoard)
+	}
 
 	startMatchMsg1, err1 := json.Marshal(MatchFoundMsg{OpponentUsername: c2.username, Board: sudokuBoard.GetBoard()})
 	startMatchMsg2, err2 := json.Marshal(MatchFoundMsg{OpponentUsername: c1.username, Board: sudokuBoard.GetBoard()})

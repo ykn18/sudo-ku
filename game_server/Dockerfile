@@ -11,4 +11,4 @@ FROM alpine:latest
 WORKDIR /root/
 COPY --from=0 /go/src/game_server/ .
 RUN chmod +x server
-CMD ["./server"]
+ENTRYPOINT ["./server"]

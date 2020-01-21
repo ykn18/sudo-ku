@@ -451,7 +451,7 @@ class sudokuController:
                 item = box_grid.itemAtPosition(r%3, c%3)        
                 tool_button = item.widget()
                 style = tool_button.styleSheet().replace("background-color: #dddddd;", "background-color: white;")
-                style = tool_button.styleSheet().replace("color:red;", "color:black;")
+                style = style.replace("color:red;", "color:black;")
                 tool_button.setStyleSheet(style)
                 tool_button.setText("")
                 tool_button.setEnabled(True)

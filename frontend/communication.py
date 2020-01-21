@@ -1,6 +1,6 @@
 import socket
 
-HOST = "46.101.196.176"
+HOST = "127.0.0.1"
 PORT = 8080
 
 def createConnection():

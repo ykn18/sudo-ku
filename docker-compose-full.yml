@@ -6,7 +6,9 @@ services:
             - authserver
         ports:
             - "8080:8080"
-        restart: always 
+        restart: always
+        environment: 
+            FULL: "true" 
     generator:
         build: ./generator_server
         depends_on: 
